@@ -11,6 +11,6 @@ import java.util.List;
 @Repository
 public interface AdministradorHotelRepo extends JpaRepository<AdministradorHotel, String> {
 
-    @Query("select h from Hotel h where h.administradorHotel.codigo= :codigoAdmin")
+    @Query("select h from Hotel h where h.administradorHotel.cedula= :codigoAdmin")
     List<Hotel> obtenerHotelesAdmin(String codigoAdmin);
 }

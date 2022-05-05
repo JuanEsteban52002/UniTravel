@@ -23,6 +23,7 @@ public class AdministradorHotelServicioImpl implements AdministradorHotelServici
 
     @Override
     public Hotel crearHotel(Hotel hotel) {
+
         return null;
     }
 
@@ -38,6 +39,7 @@ public class AdministradorHotelServicioImpl implements AdministradorHotelServici
 
     @Override
     public List<Hotel> listarHoteles(String codigoAdmin) {
+
         return adminHotelRepo.obtenerHotelesAdmin(codigoAdmin);
     }
 
