@@ -35,6 +35,10 @@ public class AdministradorServicioImpl implements AdministradorServicio {
     @Override
     public Administrador validarLogin(String email, String password) throws Exception {
 
+        if(email.isEmpty() || password.isEmpty()){
+            throw  new Exception("Por favor llenar todos los campos de texto");
+        }
+
         Optional<Administrador> administrador = administradorRepo.findByEmailAndPassword(email, password);
 
         if(administrador.isEmpty()) {
@@ -47,6 +51,10 @@ public class AdministradorServicioImpl implements AdministradorServicio {
     @Override
     public AdministradorHotel registrarAdminHotel(AdministradorHotel administradorHotel) throws Exception {
 
+        if(administradorHotel == null){
+            throw  new Exception("Por favor llene todos los campos, para poder registrar");
+        }
+
         AdministradorHotel adminHotel = obtenerAdministradorHotel(administradorHotel.getCedula());
 
         if(adminHotel != null) {
@@ -56,8 +64,18 @@ public class AdministradorServicioImpl implements AdministradorServicio {
         return administradorHotelRepo.save(administradorHotel);
     }
 
-    public AdministradorHotel obtenerAdministradorHotel(String cedulaAdminHotel){
-        return administradorHotelRepo.findById(cedulaAdminHotel).orElse(null);
+    public AdministradorHotel obtenerAdministradorHotel(String cedulaAdminHotel) throws Exception{
+
+        if(cedulaAdminHotel.isEmpty()){
+            throw new Exception("Por favor envie una cedula");
+        }
+
+        AdministradorHotel administradorHotel = administradorHotelRepo.findById(cedulaAdminHotel).orElse(null);
+
+        if(administradorHotel == null){
+            throw new Exception("El administrador no existe");
+        }
+        return administradorHotel;
     }
 
     @Override

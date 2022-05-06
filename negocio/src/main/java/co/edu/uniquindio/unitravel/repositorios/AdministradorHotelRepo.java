@@ -17,4 +17,6 @@ public interface AdministradorHotelRepo extends JpaRepository<AdministradorHotel
 
     Optional<AdministradorHotel> findByEmailAndPassword(String email, String password);
 
+    Optional<AdministradorHotel> findByCedula(String cedula);
+
 }

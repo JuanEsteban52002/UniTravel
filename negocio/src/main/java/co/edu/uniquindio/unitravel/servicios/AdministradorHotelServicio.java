@@ -18,7 +18,7 @@ public interface AdministradorHotelServicio {
 
     List<Hotel> listarHoteles(String codigoAdmin);
 
-    Hotel obtenerHotel(Integer codigoHotel);
+    Hotel obtenerHotel(Integer codigoHotel) throws Exception;
 
 
 

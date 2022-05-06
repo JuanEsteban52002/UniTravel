@@ -23,6 +23,10 @@ public class AdministradorHotelServicioImpl implements AdministradorHotelServici
     @Override
     public AdministradorHotel validarLogin(String email, String password) throws Exception {
 
+        if(email.isEmpty() || password.isEmpty()){
+            throw new Exception("Por favor rellenar todo los campos de texto");
+        }
+
         Optional<AdministradorHotel> adminHotel = adminHotelRepo.findByEmailAndPassword(email, password);
 
         if(adminHotel.isEmpty()){
@@ -35,6 +39,10 @@ public class AdministradorHotelServicioImpl implements AdministradorHotelServici
     @Override
     public Hotel crearHotel(Hotel hotel) throws Exception {
 
+        if(hotel == null){
+            throw  new Exception("El hotel a crear, esta incompleto");
+        }
+
         Hotel hotelBuscado = obtenerHotel(hotel.getCodigo());
         if(hotelBuscado != null){
             throw new Exception("El hotel ya existe");
@@ -44,6 +52,10 @@ public class AdministradorHotelServicioImpl implements AdministradorHotelServici
 
     @Override
     public void eliminarHotel(Integer codigoHotel) throws Exception {
+
+        if(codigoHotel ==  null){
+            throw new Exception("No envio niguno codigo");
+        }
         Hotel hotel = obtenerHotel(codigoHotel);
 
         if(hotel == null){
@@ -54,6 +66,9 @@ public class AdministradorHotelServicioImpl implements AdministradorHotelServici
 
     @Override
     public Hotel modificarHotel(Hotel hotel) throws Exception {
+        if(hotel == null){
+            throw new Exception("Por favor envie un hotel a modificar");
+        }
         return hotelRepo.save(hotel);
     }
 
@@ -63,7 +78,10 @@ public class AdministradorHotelServicioImpl implements AdministradorHotelServici
     }
 
     @Override
-    public Hotel obtenerHotel(Integer codigoHotel)  {
+    public Hotel obtenerHotel(Integer codigoHotel) throws Exception  {
+        if(codigoHotel == null){
+            throw new Exception("Por favor envie un codigo");
+        }
         return hotelRepo.findById(codigoHotel).orElse(null);
     }
 }
