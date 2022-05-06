@@ -16,7 +16,7 @@ public interface ClienteServicio {
 
     Cliente actualizarCliente(Cliente cliente) throws Exception;
 
-    List<Cliente> listarCliente(Cliente cliente) ;
+    List<Cliente> listarClientes() ;
 
     void eliminarCliente(String cedula) throws Exception;
 

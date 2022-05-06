@@ -68,7 +68,7 @@ public class ClienteServicioImpl implements ClienteServicio{
     }
 
     @Override
-    public List<Cliente> listarCliente(Cliente cliente) {
+    public List<Cliente> listarClientes() {
         return clienteRepo.findAll();
     }
 
@@ -90,23 +90,36 @@ public class ClienteServicioImpl implements ClienteServicio{
         if(cliente.isEmpty()){
             throw new Exception("Los datos de autenticación son incorrectos");
         }
-
-        return null;
+        return cliente.get();
     }
 
     @Override
     public Comentario crearComentario(Comentario comentario) throws Exception {
+
+        Comentario comentarioBuscado = obtenerComentario(comentario.getCodigo());
+
+        if(comentarioBuscado != null){
+            throw new Exception("El comentario ya existe");
+        }
+
         return comentarioRepo.save(comentario);
     }
 
     @Override
     public void eliminarComentario(Comentario comentario) throws Exception {
 
+        Comentario comentarioBuscado = obtenerComentario(comentario.getCodigo());
+
+        if(comentarioBuscado == null){
+            throw new Exception("El comentario no existe");
+        }
+
+        comentarioRepo.delete(comentario);
     }
 
     @Override
     public Comentario modificarComentario(Comentario comentario) throws Exception {
-        return null;
+        return comentarioRepo.save(comentario);
     }
 
     public Comentario obtenerComentario(String codigo) throws Exception {

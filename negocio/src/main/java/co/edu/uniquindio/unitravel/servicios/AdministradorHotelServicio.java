@@ -10,15 +10,15 @@ public interface AdministradorHotelServicio {
 
     AdministradorHotel validarLogin(String email, String password) throws Exception;
 
-    Hotel crearHotel(Hotel hotel);
+    Hotel crearHotel(Hotel hotel) throws Exception;
 
-    void eliminarHotel(Hotel hotel);
+    void eliminarHotel(Integer codigoHotel) throws Exception;
 
     Hotel modificarHotel(Hotel hotel) throws Exception;
 
     List<Hotel> listarHoteles(String codigoAdmin);
 
-    Hotel obtenerHotel(String codigoHotel) throws Exception;
+    Hotel obtenerHotel(Integer codigoHotel);
 
 
 
