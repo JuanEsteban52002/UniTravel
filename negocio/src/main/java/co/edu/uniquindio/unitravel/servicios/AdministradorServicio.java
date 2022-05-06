@@ -19,7 +19,7 @@ public interface AdministradorServicio {
 
     AdministradorHotel modificarAdminHotel(AdministradorHotel administradorHotel) throws Exception;
 
-    List<AdministradorHotel> listarAdminHotel() throws Exception;
+    List<AdministradorHotel> listarAdminHotel() ;
 
     //Vuelos
 

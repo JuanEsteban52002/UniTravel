@@ -26,16 +26,19 @@ public class ReservaTest {
 
     @Test
     @Sql("classpath:dataset.sql")
-    public void registrar() {
+    public void registrar() throws ParseException {
 
-        Date fechaReserva = new Date(22,5,13);
-        Date fechaInicio = new Date(22,5,13);
-        Date fechaFin = new Date(22,5,16);
+        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+
+        Date fechaReserva = formato.parse("2022-05-13");
+        Date fechaInicio = formato.parse("2022-05-13");
+        Date fechaFin = formato.parse("2022-05-16");
 
 
         Reserva reserva = new Reserva("R4", fechaReserva, fechaInicio, fechaFin, Alimentacion.DESAYUNO_COMIDA, 1200000, EstadoReserva.PENDIENTE, 4);
 
         Reserva reservaGuardada = reservaRepo.save(reserva);
+        System.out.println(reservaGuardada);
 
         Assertions.assertNotNull(reservaGuardada);
     }

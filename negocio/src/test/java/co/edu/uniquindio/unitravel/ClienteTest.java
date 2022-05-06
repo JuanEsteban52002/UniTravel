@@ -130,7 +130,7 @@ public class ClienteTest {
     @Sql("classpath:dataset.sql")
     public void comprobarAutenticacion() {
 
-        Optional<Cliente> clientes = clienteRepo.comprobarAutenticacion("juan@gmail,com", "5555");
+        Optional<Cliente> clientes = clienteRepo.comprobarAutenticacion("juan@gmail.com", "5555");
         System.out.println(clientes.get());
         Assertions.assertNotNull(clientes.get());
     }
@@ -139,7 +139,7 @@ public class ClienteTest {
     @Sql("classpath:dataset.sql")
     public void findByEmailAndPassword() {
 
-        Optional<Cliente> clientes = clienteRepo.findByEmailAndPassword("pepe@gmail,com", "1234");
+        Optional<Cliente> clientes = clienteRepo.findByEmailAndPassword("pepe@gmail.com", "1234");
         System.out.println(clientes.get());
         Assertions.assertNotNull(clientes.get());
     }
@@ -149,7 +149,7 @@ public class ClienteTest {
     @Sql("classpath:dataset.sql")
     public void findByEmail() {
 
-        Optional<Cliente> clientes = clienteRepo.findByEmail("mario@gmail,com");
+        Optional<Cliente> clientes = clienteRepo.findByEmail("mario@gmail.com");
         System.out.println(clientes.get());
         Assertions.assertEquals("Mario", clientes.get().getNombre());
     }

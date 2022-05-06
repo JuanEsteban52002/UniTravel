@@ -6,15 +6,15 @@ insert into ciudad values (5, "Barranquilla");
 insert into ciudad values (6, "Santa Marta");
 
 
-insert into cliente values ("1234", "juan@gmail,com", "Juan", "5555", 1);
-insert into cliente values ("5255", "pepe@gmail,com", "Pepe", "1234", 2);
-insert into cliente values ("4321", "mario@gmail,com", "Mario", "1234", 3);
-insert into cliente values ("7525", "juanS@gmail,com", "Juan", "5555", 4);
+insert into cliente values ("1234", "juan@gmail.com", "Juan", "5555", 1);
+insert into cliente values ("5255", "pepe@gmail.com", "Pepe", "1234", 2);
+insert into cliente values ("4321", "mario@gmail.com", "Mario", "1234", 3);
+insert into cliente values ("7525", "juanS@gmail.com", "Juan", "5555", 4);
 
 
 
-insert into administrador_hotel values ("5555", "admin1@gmail,com", "Admin 1", "admin1");
-insert into administrador_hotel values ("9999", "admin2@gmail,com", "Admin 2", "admin2");
+insert into administrador_hotel values ("5555", "admin1@gmail1.com", "Admin 1", "admin1");
+insert into administrador_hotel values ("9999", "admin2@gmail1.com", "Admin 2", "admin2");
 
 
 insert into hotel values (1, "Carrera 1", "Hotel 1", 5, "7458241", "5555", 1);
@@ -23,8 +23,8 @@ insert into hotel values (3, "Carrera 3", "Hotel 3", 4, "7852584", "5555", 1);
 
 
 
-insert into administrador values ("8754", "adminUnitravel1@gmail,com", "AdminUni 1", "adminUni1");
-insert into administrador values ("7852", "adminUnitravel2@gmail,com", "AdminUni 2", "adminUni2");
+insert into administrador values ("8754", "adminUnitravel1@gmail.com", "AdminUni 1", "adminUni1");
+insert into administrador values ("7852", "adminUnitravel2@gmail.com", "AdminUni 2", "adminUni2");
 
 
 insert into habitacion values (1, "5", 57000, 1);

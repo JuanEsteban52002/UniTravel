@@ -1,7 +1,6 @@
 package co.edu.uniquindio.unitravel.servicios;
 
-import co.edu.uniquindio.unitravel.entidades.Cliente;
-import co.edu.uniquindio.unitravel.entidades.Telefono;
+import co.edu.uniquindio.unitravel.entidades.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +8,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.jdbc.Sql;
 
 import javax.transaction.Transactional;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @SpringBootTest
@@ -81,12 +82,75 @@ public class ClienteServicioTest {
     @Sql("classpath:dataset.sql")
     public void buscarHotelesCiudadTest(){
 
+        try {
+            List<Hotel> hoteles = clienteServicio.buscarHotelesCiudad("Bogota");
+            hoteles.forEach(System.out::println);
+            Assertions.assertEquals(2, hoteles.size());
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
     }
 
     @Test
     @Sql("classpath:dataset.sql")
-    public void hacerReservaTest(){
+    public void hacerReservaTest() throws Exception {
+
+        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+
+        Date fechaReserva = formato.parse("2022-05-12");
+        Date fechaInicio = formato.parse("2022-05-13");
+        Date fechaFin = formato.parse("2022-05-16");
+
+        Reserva reserva = new Reserva("3", fechaReserva, fechaInicio, fechaFin, Alimentacion.DESAYUNO_COMIDA, 1200000, EstadoReserva.PENDIENTE, 4);
+
         try {
+
+            Reserva reservaGuardada = clienteServicio.hacerReserva(reserva);
+            System.out.println(reservaGuardada);
+            Assertions.assertNotNull(reservaGuardada);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    @Sql("classpath:dataset.sql")
+    public void modificarReservaTest() throws Exception {
+
+        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+
+        Date fechaReserva = formato.parse("2022-05-13");
+        Date fechaInicio = formato.parse("2022-05-13");
+        Date fechaFin = formato.parse("2022-05-16");
+
+        Reserva reserva = new Reserva("3", fechaReserva, fechaInicio, fechaFin, Alimentacion.SIN_PLAN, 1200000, EstadoReserva.PENDIENTE, 4);
+
+        try {
+
+            clienteServicio.modificarReserva(reserva);
+            System.out.println(reserva);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    @Sql("classpath:dataset.sql")
+    public void listarReservasClienteTest(){
+
+        List<Reserva> reservas = clienteServicio.listarReservasCliente("juan@gmail.com");
+        reservas.forEach(System.out::println);
+        Assertions.assertEquals(1, reservas.size());
+    }
+
+    @Test
+    @Sql("classpath:dataset.sql")
+    public void eliminarReservaTest(){
+
+        try {
+            clienteServicio.eliminarReserva("2");
 
         }catch (Exception e){
             e.printStackTrace();
@@ -95,38 +159,44 @@ public class ClienteServicioTest {
 
     @Test
     @Sql("classpath:dataset.sql")
-    public void modificarReservaTest(){
-
-    }
-
-    @Test
-    @Sql("classpath:dataset.sql")
-    public void listarReservasClienteTest(){
-
-    }
-
-    @Test
-    @Sql("classpath:dataset.sql")
-    public void eliminarReservaTest(){
-
-    }
-
-    @Test
-    @Sql("classpath:dataset.sql")
     public void crearComentarioTest(){
 
+        Comentario comentario = new Comentario("5", "El hotel es muy bonito y grande", 4);
+
+        try {
+
+            Comentario comentarioGuardado = clienteServicio.crearComentario(comentario);
+            System.out.println(comentarioGuardado);
+            Assertions.assertNotNull(comentarioGuardado);
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
+
 
     @Test
     @Sql("classpath:dataset.sql")
     public void eliminarComentarioTest(){
 
+        try {
+
+            clienteServicio.eliminarComentario("4");
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     @Test
     @Sql("classpath:dataset.sql")
     public void recuperarPasswordTest(){
 
+        try {
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
 

@@ -96,7 +96,7 @@ public class AdministradorServicioImpl implements AdministradorServicio {
     }
 
     @Override
-    public List<AdministradorHotel> listarAdminHotel() throws Exception {
+    public List<AdministradorHotel> listarAdminHotel() {
         return administradorHotelRepo.findAll();
     }
 
@@ -134,6 +134,7 @@ public class AdministradorServicioImpl implements AdministradorServicio {
 
     @Override
     public List<Vuelo> listarVuelos() {
+
         return vueloRepo.findAll();
     }
 

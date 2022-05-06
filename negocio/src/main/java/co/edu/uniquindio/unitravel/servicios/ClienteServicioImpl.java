@@ -106,15 +106,15 @@ public class ClienteServicioImpl implements ClienteServicio{
     }
 
     @Override
-    public void eliminarComentario(Comentario comentario) throws Exception {
+    public void eliminarComentario(String codigo) throws Exception {
 
-        Comentario comentarioBuscado = obtenerComentario(comentario.getCodigo());
+        Comentario comentarioBuscado = obtenerComentario(codigo);
 
         if(comentarioBuscado == null){
             throw new Exception("El comentario no existe");
         }
 
-        comentarioRepo.delete(comentario);
+        comentarioRepo.delete(comentarioBuscado);
     }
 
     @Override
@@ -128,8 +128,17 @@ public class ClienteServicioImpl implements ClienteServicio{
 
     @Override
     public Reserva hacerReserva(Reserva reserva) {
-        return null;
+
+
+        return reservaRepo.save(reserva);
+
     }
+
+   /* public Cliente obtenerReserva(String codigo)  throws Exception{
+        return reservaRepo.findById(codigo);
+    }
+*/
+
 
     @Override
     public void eliminarReserva(String codigoReserva) throws Exception {
@@ -149,6 +158,7 @@ public class ClienteServicioImpl implements ClienteServicio{
 
     @Override
     public List<Hotel> buscarHotelesCiudad(String nombreCiudad) {
+
         return hotelRepo.obtenerHotelesCiudad(nombreCiudad);
     }
 
