@@ -14,6 +14,7 @@ import java.util.List;
 
 @SpringBootTest
 @Transactional
+
 public class ClienteServicioTest {
 
     @Autowired
@@ -25,7 +26,8 @@ public class ClienteServicioTest {
     @Test
     @Sql("classpath:dataset.sql")
     public void registrarClienteTest() {
-        Cliente c = new Cliente("10040987412", "Jorge Antonio", "jorgea.511@gmail.com", "jorgeingeniero511");
+        Cliente c = new Cliente("1007914", "Jorge Antonio", "jorgea.511@gmail.com", "jorgeingeniero511");
+        c.setTelefonos(new ArrayList<>());
 
         List<Telefono> telefonos = new ArrayList();
 
@@ -49,9 +51,104 @@ public class ClienteServicioTest {
 
     @Test
     @Sql("classpath:dataset.sql")
+    public void actualizarClienteTest()  {
+        try{
+            Cliente c = new Cliente("1234", "Carlos", "carlos@gmail.com", "carlos");
+            clienteServicio.actualizarCliente(c);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    @Sql("classpath:dataset.sql")
+    public void eliminarClienteTest() {
+        try {
+            clienteServicio.eliminarCliente("1234");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    @Sql("classpath:dataset.sql")
+    public void listarClientesTest(){
+        List<Cliente> clientes = clienteServicio.listarClientes();
+        Assertions.assertEquals(4, clientes.size());
+    }
+
+    @Test
+    @Sql("classpath:dataset.sql")
+    public void buscarHotelesCiudadTest(){
+
+    }
+
+    @Test
+    @Sql("classpath:dataset.sql")
+    public void hacerReservaTest(){
+        try {
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    @Sql("classpath:dataset.sql")
+    public void modificarReservaTest(){
+
+    }
+
+    @Test
+    @Sql("classpath:dataset.sql")
+    public void listarReservasClienteTest(){
+
+    }
+
+    @Test
+    @Sql("classpath:dataset.sql")
+    public void eliminarReservaTest(){
+
+    }
+
+    @Test
+    @Sql("classpath:dataset.sql")
+    public void crearComentarioTest(){
+
+    }
+
+    @Test
+    @Sql("classpath:dataset.sql")
+    public void eliminarComentarioTest(){
+
+    }
+
+    @Test
+    @Sql("classpath:dataset.sql")
+    public void recuperarPasswordTest(){
+
+    }
+
+
+    @Test
+    @Sql("classpath:dataset.sql")
     public void enviarCorreo() {
         boolean estado = emailServicio.enviarMail("Confirmacion de compra", "Hola, Unitravel te informa que acabas de realizar una compra exitosamente", "juane.grandar@uqvirtual.edu.co");
         Assertions.assertTrue(estado);
+    }
+
+    @Test
+    @Sql("classpath:dataset.sql")
+    public void validarLoginTest(){
+        try{
+            Cliente clienteBuscado = clienteServicio.validarLogin("juan@gmail.com", "5555");
+
+            Assertions.assertNotNull(clienteBuscado);
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
     }
 
 
