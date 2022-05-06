@@ -1,6 +1,7 @@
 package co.edu.uniquindio.unitravel.repositorios;
 
 import co.edu.uniquindio.unitravel.entidades.Habitacion;
+import co.edu.uniquindio.unitravel.entidades.ReservaHabitacion;
 import co.edu.uniquindio.unitravel.entidades.Vuelo;
 import co.edu.uniquindio.unitravel.entidades.dto.ReservaDTO;
 import co.edu.uniquindio.unitravel.entidades.Reserva;
@@ -15,6 +16,13 @@ public interface ReservaRepo extends JpaRepository<Reserva, String> {
 
     @Query("select ha from Reserva r join r.reservasHabitaciones rh join rh.habitacion ha where r.fechaInicio > :fechaMin and r.fechaFin < :fechaMax")
     List<Habitacion> obtenerHabitacionesDisponiblesFechas(Date fechaMin, Date fechaMax);
+
+    //Manito
+    @Query("select v from Reserva r join r.reservasSillas rs join rs.silla s join s.vuelo v where v.codigo = :codigoVuelo")
+    Vuelo seleccionVueloSegunCodigo(String codigoVuelo);
+    //Manito
+    @Query("select r.reservasHabitaciones from Reserva r")
+    List<ReservaHabitacion> habitacionesReservadas();
 
     @Query("select r from Reserva r where r.fechaInicio >= :fechaMin and r.fechaFin <= :fechaMax")
     List<Reserva> devolverReservaIntervaloFecha(Date fechaMin, Date fechaMax);

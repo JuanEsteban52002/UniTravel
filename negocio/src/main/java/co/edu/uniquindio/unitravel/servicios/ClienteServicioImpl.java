@@ -1,9 +1,6 @@
 package co.edu.uniquindio.unitravel.servicios;
 
-import co.edu.uniquindio.unitravel.entidades.Cliente;
-import co.edu.uniquindio.unitravel.entidades.Comentario;
-import co.edu.uniquindio.unitravel.entidades.Hotel;
-import co.edu.uniquindio.unitravel.entidades.Reserva;
+import co.edu.uniquindio.unitravel.entidades.*;
 import co.edu.uniquindio.unitravel.repositorios.ClienteRepo;
 import co.edu.uniquindio.unitravel.repositorios.ComentarioRepo;
 import co.edu.uniquindio.unitravel.repositorios.HotelRepo;
@@ -52,18 +49,43 @@ public class ClienteServicioImpl implements ClienteServicio{
         return clienteRepo.save(cliente);
     }
 
-    public Cliente buscarPorEmail(String email){
-        return clienteRepo.findByEmail(email).orElse(null);
+    public Cliente buscarPorEmail(String email) throws Exception{
+
+        if(email.isEmpty()){
+            throw new Exception("Por favor escribir un correo");
+        }
+        Cliente cliente = clienteRepo.findByEmail(email).orElse(null);
+
+        if(cliente == null){
+            throw  new Exception("No hay ningun ningun con este correo");
+        }
+        return cliente;
     }
 
     @Override
     public Cliente obtenerCliente(String codigo)  throws Exception{
-        return clienteRepo.findById(codigo).orElse(null);
+
+        if(codigo.isEmpty()){
+            throw new Exception("Por favor ingrese una cedula");
+        }
+
+        Cliente cliente = clienteRepo.findById(codigo).orElse(null);
+
+        if(cliente == null){
+            throw new Exception("El cliente no existe, verifique los datos");
+        }
+
+        return cliente;
     }
 
 
     @Override
     public Cliente actualizarCliente(Cliente cliente)  throws Exception{
+
+        if (cliente == null){
+            throw new Exception("Error en los datos, cliente inexistente");
+        }
+
         return clienteRepo.save(cliente);
     }
 
@@ -74,6 +96,11 @@ public class ClienteServicioImpl implements ClienteServicio{
 
     @Override
     public void eliminarCliente(String cedula)  throws Exception{
+
+        if(cedula.isEmpty()){
+            throw new Exception("Porfavor ingrese una cedula");
+        }
+
         Cliente cliente = obtenerCliente(cedula);
 
         if(cliente == null){
@@ -84,6 +111,14 @@ public class ClienteServicioImpl implements ClienteServicio{
 
     @Override
     public Cliente validarLogin(String correo, String password) throws Exception {
+
+        if(correo.isEmpty()){
+            throw new Exception("Porfavor ingrese un correo");
+        }
+
+        if(password.isEmpty()){
+            throw new Exception("Porfavor ingrese una contraseña");
+        }
 
         Optional<Cliente> cliente = clienteRepo.findByEmailAndPassword(correo, password);
 
@@ -127,8 +162,70 @@ public class ClienteServicioImpl implements ClienteServicio{
     }
 
     @Override
-    public Reserva hacerReserva(Reserva reserva) {
-        return null;
+    public void hacerReserva(Reserva reserva) throws Exception {
+
+        if(reserva == null){
+            throw new Exception("Reserva vacia, verifique la informacion");
+        }
+
+        //Revisa que las habitaciones esten disponibles
+        for (int i = 0; i < reserva.getReservasHabitaciones().size(); i++) {
+            ReservaHabitacion habitacion = reserva.getReservasHabitaciones().get(i);
+
+            if(!revisarHabitacionDisponible(habitacion)){
+                if (!revisarHabitacionReservadaSegunFecha(reserva, habitacion)) {
+                    throw new Exception("La habitacion con codigo: " + habitacion.getCodigo() + ", se encuentra ocupada");
+                }
+            }
+        }
+        //Revisa que las sillas esten disponibles
+        for (int i = 0; i < reserva.getReservasSillas().size(); i++) {
+            ReservaSilla silla = reserva.getReservasSillas().get(i);
+            Vuelo vuelo = silla.getSilla().getVuelo();
+            if(!sillaDisponible(silla, vuelo)){
+                throw new Exception("La silla: " + silla.getCodigo() + ", no esta disponible");
+            }
+        }
+    }
+
+    private boolean sillaDisponible(ReservaSilla sillaReservada, Vuelo vuelo) {
+
+        List<Silla> sillas = vuelo.getSillas();
+        for (Silla silla : sillas){
+            if(silla.getCodigo() == sillaReservada.getCodigo()){
+                if(silla.getEstadoSilla() == EstadoSilla.DISPONIBLE){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    private boolean revisarHabitacionReservadaSegunFecha(Reserva reserva, ReservaHabitacion habitaconA) {
+
+        List<Reserva> reservasSegunFecha = reservaRepo.devolverReservaIntervaloFecha(reserva.getFechaInicio(), reserva.getFechaFin());
+        for(Reserva reservas : reservasSegunFecha){
+            List<ReservaHabitacion> habitacionesReservadas = reservas.getReservasHabitaciones();
+            for (int i = 0; i < habitacionesReservadas.size(); i++) {
+                ReservaHabitacion habitacion = habitacionesReservadas.get(i);
+                if(habitacion.getCodigo() == habitaconA.getCodigo()){
+                    return false;
+                }
+            }
+
+        }
+        return true;
+    }
+
+    private boolean revisarHabitacionDisponible(ReservaHabitacion habitacionActual) {
+
+        List<ReservaHabitacion> habitacionesReservadas = reservaRepo.habitacionesReservadas();
+        for(ReservaHabitacion habitacion : habitacionesReservadas){
+           if(habitacion.getCodigo() == habitacionActual.getCodigo()){
+               return false;
+           }
+        }
+        return true;
     }
 
     @Override
