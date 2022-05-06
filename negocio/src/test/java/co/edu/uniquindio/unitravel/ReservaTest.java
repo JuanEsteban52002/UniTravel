@@ -32,6 +32,7 @@ public class ReservaTest {
         Date fechaInicio = new Date(22,5,13);
         Date fechaFin = new Date(22,5,16);
 
+
         Reserva reserva = new Reserva("R4", fechaReserva, fechaInicio, fechaFin, Alimentacion.DESAYUNO_COMIDA, 1200000, EstadoReserva.PENDIENTE, 4);
 
         Reserva reservaGuardada = reservaRepo.save(reserva);
@@ -74,10 +75,12 @@ public class ReservaTest {
 
     @Test
     @Sql("classpath:dataset.sql")
-    public void obtenerHabitacionesDisponiblesFechas() {
+    public void obtenerHabitacionesDisponiblesFechas() throws ParseException {
 
-        Date fechaMin = new Date(22,5,15);
-        Date fechaMax = new Date(22,5,17);
+        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+        Date fechaMin = formato.parse("2022-05-15");
+        Date fechaMax = formato.parse("2022-05-17");
+
 
         List<Habitacion> habitaciones = reservaRepo.obtenerHabitacionesDisponiblesFechas( fechaMin, fechaMax);
         System.out.println(habitaciones);
@@ -86,10 +89,12 @@ public class ReservaTest {
 
     @Test
     @Sql("classpath:dataset.sql")
-    public void devolverReservaIntervaloFecha() {
+    public void devolverReservaIntervaloFecha() throws ParseException {
 
-        Date fechaMin = new Date(22,5,13);
-        Date fechaMax = new Date(22,5,15);
+        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+        Date fechaMin = formato.parse("2022-05-12");
+        Date fechaMax = formato.parse("2022-05-15");
+
 
         List<Reserva> reservas = reservaRepo.devolverReservaIntervaloFecha( fechaMin, fechaMax);
         System.out.println(reservas);
@@ -98,32 +103,37 @@ public class ReservaTest {
 
     @Test
     @Sql("classpath:dataset.sql")
-    public void obtenerReserva()  {
+    public void obtenerReserva() throws ParseException {
 
-        LocalDate fecha = LocalDate.of(2020, 05, 13);
+        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+        Date fechaBuscar = formato.parse("2022-05-13");
 
-        List<Object[]> reservas = reservaRepo.obtenerReserva(1234, fecha);
+        List<Object[]> reservas = reservaRepo.obtenerReserva(1, fechaBuscar);
         reservas.forEach(r -> System.out.println(r[0] + "-" + r[1]));
         Assertions.assertNotNull(reservas.get(0)[0]);
     }
 
     @Test
     @Sql("classpath:dataset.sql")
-    public void obtenerReservaDto()  {
+    public void obtenerReservaDto() throws ParseException {
 
-        LocalDate fecha = LocalDate.of(2020, 05, 13);
+        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+        Date fechaBuscar = formato.parse("2022-05-13");
 
-        List<ReservaDTO> reservas = reservaRepo.obtenerReservaDto(1234, fecha);
+
+        List<ReservaDTO> reservas = reservaRepo.obtenerReservaDto(1, fechaBuscar);
         reservas.forEach(System.out::println);
         Assertions.assertEquals(1, reservas.size());
     }
 
     @Test
     @Sql("classpath:dataset.sql")
-    public void obtenerVuelosEntreFechas() {
+    public void obtenerVuelosEntreFechas() throws ParseException {
 
-        Date fechaMin = new Date(22,5,13);
-        Date fechaMax = new Date(22,5,15);
+
+        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+        Date fechaMin = formato.parse("2022-05-13");
+        Date fechaMax = formato.parse("2022-05-15");
 
         List<Vuelo> vuelos = reservaRepo.obtenerVuelosEntreFechas( fechaMin, fechaMax);
         System.out.println(vuelos);
@@ -134,9 +144,9 @@ public class ReservaTest {
     @Sql("classpath:dataset.sql")
     public void obtenerNumeroDeReserva() {
 
-        int vuelos = reservaRepo.obtenerNumeroDeReserva( 1);
-        System.out.println(vuelos);
-        Assertions.assertEquals(2, vuelos);
+        int reserva = reservaRepo.obtenerNumeroDeReserva( 1);
+        System.out.println(reserva);
+        Assertions.assertEquals(1, reserva);
     }
 
 

@@ -13,6 +13,9 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.jdbc.Sql;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -81,11 +84,14 @@ public class HotelTest {
 
     @Test
     @Sql("classpath:dataset.sql")
-    public void determinarNumeroReservasHotelFecha() {
+    public void determinarNumeroReservasHotelFecha() throws ParseException {
 
-        Date fecha = new Date(2022, 05, 15);
 
-        Integer numeroReservas = hotelRepo.determinarNumeroReservasHotelFecha(1, fecha);
+        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+        Date fechaBuscar = formato.parse("2022-05-13");
+
+
+        Integer numeroReservas = hotelRepo.determinarNumeroReservasHotelFecha(1, fechaBuscar);
         System.out.println(numeroReservas);
         Assertions.assertEquals(1, numeroReservas);
     }
@@ -124,7 +130,7 @@ public class HotelTest {
 
         List<Hotel> hoteles = hotelRepo.buscarHotelesEntrePrecios(30000.0, 60000.0);
         hoteles.forEach(System.out::println);
-        Assertions.assertEquals(4, hoteles.size());
+        Assertions.assertEquals(2, hoteles.size());
     }
 
     @Test

@@ -13,19 +13,19 @@ import java.util.List;
 
 public interface ReservaRepo extends JpaRepository<Reserva, String> {
 
-    @Query("select ha from Reserva r join r.reservasHabitaciones rh join rh.habitacion ha where r.fechaInicio > :fechaMin and r.fechaFin < :fechaMax")
+    @Query("select ha from Reserva r join r.reservasHabitaciones rh join rh.habitacion ha where r.fechaInicio <= :fechaMin and r.fechaFin >= :fechaMax")
     List<Habitacion> obtenerHabitacionesDisponiblesFechas(Date fechaMin, Date fechaMax);
 
     @Query("select r from Reserva r where r.fechaInicio >= :fechaMin and r.fechaFin <= :fechaMax")
     List<Reserva> devolverReservaIntervaloFecha(Date fechaMin, Date fechaMax);
 
     @Query("select r.cliente.nombre, r.fechaReserva, h.habitacion from Reserva r join r.reservasHabitaciones h where h.habitacion.hotel.codigo = :id and r.fechaInicio < :fecha")
-    List<Object[]> obtenerReserva(Integer id, LocalDate fecha);
+    List<Object[]> obtenerReserva(Integer id, Date fecha);
 
     @Query("select new co.edu.uniquindio.unitravel.entidades.dto.ReservaDTO (r.cliente.nombre, r.fechaReserva, h.habitacion) from Reserva r join r.reservasHabitaciones h where h.habitacion.hotel.codigo = :id and r.fechaInicio < :fecha")
-    List<ReservaDTO> obtenerReservaDto(Integer id, LocalDate fecha);
+    List<ReservaDTO> obtenerReservaDto(Integer id, Date fecha);
 
-    @Query("select v from Reserva r join r.reservasSillas rs join rs.silla s join s.vuelo v where r.fechaInicio >= :fechaMin and r.fechaFin <= :fechaMax")
+    @Query("select v from Reserva r join r.reservasSillas rs join rs.silla s join s.vuelo v where r.fechaInicio <= :fechaMin and r.fechaFin >= :fechaMax")
     List<Vuelo> obtenerVuelosEntreFechas(Date fechaMin, Date fechaMax);
 
     //Punto uno taller

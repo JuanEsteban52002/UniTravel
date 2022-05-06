@@ -28,7 +28,7 @@ insert into administrador values ("7852", "adminUnitravel2@gmail,com", "AdminUni
 
 
 insert into habitacion values (1, "5", 57000, 1);
-insert into habitacion values (2, "4", 45000, 1);
+insert into habitacion values (2, "4", 45000, 2);
 insert into habitacion values (3, "3", 35000, 1);
 insert into habitacion values (4, "3", 35000, 1);
 
@@ -72,12 +72,15 @@ insert into reserva_habitacion values ("1", 50000, 1, "1");
 insert into reserva_habitacion values ("2", 20000, 2, "2");
 
 
-insert into vuelo values ("1", "Avianca", 0, 2, 1);
+insert into vuelo values ("1", "Avianca", 0, 1, 2);
 insert into vuelo values ("2", "Volaris", 0, 1, 3);
+insert into vuelo values ("3", "Aero", 0, 2, 1);
 
 
-insert into silla values ("1", "A2", 100000, 1);
-insert into silla values ("2", "A3", 100000, 2);
+insert into silla values ("1", "A2", 100000, "1");
+insert into silla values ("2", "A3", 100000, "2");
+
+
 
 
 insert into reserva_silla values ("1", 20000, "1", "1");

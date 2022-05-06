@@ -81,7 +81,7 @@ public class VueloTest {
 
         List<VuelosCiudadDTO> vuelos = vueloRepo.contarVuelosPorCiudad();
         vuelos.forEach(System.out::println);
-        Assertions.assertEquals(2, vuelos.size());
+        Assertions.assertEquals(3, vuelos.size());
     }
 
 
