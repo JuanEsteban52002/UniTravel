@@ -50,8 +50,8 @@ public class ClienteServicioTest {
     @Test
     @Sql("classpath:dataset.sql")
     public void enviarCorreo() {
-        boolean estado = emailServicio.enviarMail("Confirmacion de compra", "Hola, Unitravel te informa que acabas de realizar una compra exitosamente", "juans.hoyosm@uqvirtual.edu.co");
-        boolean estado2 = emailServicio.enviarMail("Confirmacion de compra", "Hola, Unitravel te informa que acabas de realizar una compra exitosamente", "juans.rodriguezp@uqvirtual.edu.co");
+        boolean estado = emailServicio.enviarMail("Confirmacion de compra", "Hola, Unitravel te informa que acabas de realizar una compra exitosamente", "juane.grandar@uqvirtual.edu.co");
+        Assertions.assertTrue(estado);
     }
 
 
