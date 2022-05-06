@@ -20,6 +20,8 @@ public class Silla implements Serializable {
     @EqualsAndHashCode.Include
     private String codigo;
 
+    private EstadoSilla estadoSilla;
+
     @Column(nullable = false, length = 5)
     private String posicion;
 

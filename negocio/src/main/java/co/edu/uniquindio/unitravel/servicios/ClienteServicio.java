@@ -35,7 +35,7 @@ public interface ClienteServicio {
 
     //Gestionar reserva
 
-    Reserva hacerReserva(Reserva reserva) throws Exception;
+    void hacerReserva(Reserva reserva) throws Exception;
 
     void eliminarReserva(String codigoReserva)throws Exception;
 
