@@ -1,4 +1,3 @@
-
 insert into ciudad values (1, "Bogota");
 insert into ciudad values (2, "Medellin");
 insert into ciudad values (3, "Cali");
@@ -94,5 +93,3 @@ insert into comentario values ("1", 5, "Buen servicio", "2022-05-13", "1234", 1)
 insert into comentario values ("2", 4, "Muy buen servicio", "2022-05-15", "5255", 2);
 insert into comentario values ("3", 3, "Servicio regular", "2022-08-13", "1234", 1);
 insert into comentario values ("4", 2, "Malo servicio", "2022-08-15", "5255", 3);
-
-

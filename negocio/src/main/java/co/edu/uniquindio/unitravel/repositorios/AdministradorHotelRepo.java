@@ -7,10 +7,16 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface AdministradorHotelRepo extends JpaRepository<AdministradorHotel, String> {
 
-    @Query("select h from Hotel h where h.administradorHotel.cedula= :codigoAdmin")
+    @Query("select h from Hotel h where h.administradorHotel.cedula = :codigoAdmin")
     List<Hotel> obtenerHotelesAdmin(String codigoAdmin);
+
+    Optional<AdministradorHotel> findByEmailAndPassword(String email, String password);
+
+    Optional<AdministradorHotel> findByCedula(String cedula);
+
 }
