@@ -152,6 +152,15 @@ public class AdministradorServicioImpl implements AdministradorServicio {
 
     @Override
     public Ciudad actualizarCiudad(Ciudad ciudad) throws Exception {
+
+        if(ciudad == null){
+            throw new Exception("Por favor llene todos los campos, para poder registrar");
+        }
+
+        if(obtenerCiudad(ciudad.getCodigo()) == null) {
+            throw new Exception("La ciudad no existe");
+        }
+
         return ciudadRepo.save(ciudad);
     }
 

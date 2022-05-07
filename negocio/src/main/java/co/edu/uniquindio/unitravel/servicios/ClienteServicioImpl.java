@@ -246,7 +246,11 @@ public class ClienteServicioImpl implements ClienteServicio{
 
     @Override
     public Reserva modificarReserva(Reserva reserva) throws Exception {
-        return null;
+
+        if(reserva == null){
+            throw new Exception("Ingrese los datos correctamente");
+        }
+        return reservaRepo.save(reserva);
     }
 
     @Override

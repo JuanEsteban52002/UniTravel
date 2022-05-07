@@ -4,7 +4,6 @@ package co.edu.uniquindio.unitravel;
 import co.edu.uniquindio.unitravel.entidades.Cliente;
 import co.edu.uniquindio.unitravel.entidades.Comentario;
 import co.edu.uniquindio.unitravel.entidades.Reserva;
-import co.edu.uniquindio.unitravel.entidades.dto.ComentarioDTO;
 import co.edu.uniquindio.unitravel.repositorios.ClienteRepo;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -183,13 +182,7 @@ public class ClienteTest {
         Assertions.assertEquals(1, reservas.size());
     }
 
-    @Test
-    @Sql("classpath:dataset.sql")
-    public void obtenerComentarios() {
 
-        List<ComentarioDTO> comentarios = clienteRepo.obtenerComentarios();
-        comentarios.forEach (System.out:: println);
-    }
 
 
     @Test
