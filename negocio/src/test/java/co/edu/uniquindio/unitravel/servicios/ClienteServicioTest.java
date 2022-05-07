@@ -261,7 +261,7 @@ public class ClienteServicioTest {
     public void recuperarPasswordTest(){
 
         try {
-
+            clienteServicio.recuperarPassword("juane.grandar@uqvirtual.edu.co");
         }catch (Exception e){
             e.printStackTrace();
         }

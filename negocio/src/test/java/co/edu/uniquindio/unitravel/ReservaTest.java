@@ -76,19 +76,7 @@ public class ReservaTest {
                 Consultas
      */
 
-    @Test
-    @Sql("classpath:dataset.sql")
-    public void obtenerHabitacionesDisponiblesFechas() throws ParseException {
 
-        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
-        Date fechaMin = formato.parse("2022-05-15");
-        Date fechaMax = formato.parse("2022-05-17");
-
-
-        List<Habitacion> habitaciones = reservaRepo.obtenerHabitacionesDisponiblesFechas( fechaMin, fechaMax);
-        System.out.println(habitaciones);
-        Assertions.assertEquals(1, habitaciones.size());
-    }
 
     @Test
     @Sql("classpath:dataset.sql")
@@ -129,19 +117,6 @@ public class ReservaTest {
         Assertions.assertEquals(1, reservas.size());
     }
 
-    @Test
-    @Sql("classpath:dataset.sql")
-    public void obtenerVuelosEntreFechas() throws ParseException {
-
-
-        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
-        Date fechaMin = formato.parse("2022-05-13");
-        Date fechaMax = formato.parse("2022-05-15");
-
-        List<Vuelo> vuelos = reservaRepo.obtenerVuelosEntreFechas( fechaMin, fechaMax);
-        System.out.println(vuelos);
-        Assertions.assertEquals(1, vuelos.size());
-    }
 
     @Test
     @Sql("classpath:dataset.sql")

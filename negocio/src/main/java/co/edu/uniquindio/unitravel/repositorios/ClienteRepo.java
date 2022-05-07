@@ -3,6 +3,7 @@ package co.edu.uniquindio.unitravel.repositorios;
 import co.edu.uniquindio.unitravel.entidades.Cliente;
 import co.edu.uniquindio.unitravel.entidades.Comentario;
 import co.edu.uniquindio.unitravel.entidades.Reserva;
+import co.edu.uniquindio.unitravel.entidades.dto.ComentarioDTO;
 import org.springframework.boot.availability.LivenessState;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -48,8 +49,8 @@ public interface ClienteRepo extends JpaRepository<Cliente, String> {
     @Query("select r from Cliente c join c.reservas r where c.cedula = :cedula")
     List<Reserva> obtenerListaReservaCedula(String cedula);
 
-    @Query("select c.email, c.comentarios from Cliente c left join c.comentarios")
-    List<Object[]> obtenerComentarios();
+    @Query("select new co.edu.uniquindio.unitravel.entidades.dto.ComentarioDTO(c.comentarios, c.email) from Cliente c")
+    List<ComentarioDTO> obtenerComentarios();
 
     //distinct, evita que se repita datos
     @Query("select distinct c from Cliente c join c.telefonos")
