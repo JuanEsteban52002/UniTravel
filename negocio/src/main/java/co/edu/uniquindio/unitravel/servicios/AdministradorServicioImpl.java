@@ -57,7 +57,7 @@ public class AdministradorServicioImpl implements AdministradorServicio {
 
         AdministradorHotel adminHotel = obtenerAdministradorHotel(administradorHotel.getCedula());
 
-        if(adminHotel != null) {
+        if(adminHotel == null) {
             throw new Exception("El administrador ya existe");
         }
 

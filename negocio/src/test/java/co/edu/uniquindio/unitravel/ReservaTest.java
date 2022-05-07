@@ -171,5 +171,22 @@ public class ReservaTest {
         Assertions.assertNotNull(reserva.get(0)[0]);
     }
 
+    @Test
+    @Sql("classpath:dataset.sql")
+    public void habitacionesReservadas() {
+
+        List<ReservaHabitacion> reservaHabitacions = reservaRepo.habitacionesReservadas();
+        reservaHabitacions.forEach(System.out::println);
+        Assertions.assertEquals(3, reservaHabitacions.size());
+    }
+
+    @Test
+    @Sql("classpath:dataset.sql")
+    public void seleccionVueloSegunCodigo() {
+
+        Vuelo vuelo = reservaRepo.seleccionVueloSegunCodigo( "1");
+        System.out.println(vuelo);
+        Assertions.assertNotNull(vuelo);
+    }
 
 }

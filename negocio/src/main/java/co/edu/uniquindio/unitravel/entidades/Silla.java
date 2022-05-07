@@ -35,7 +35,7 @@ public class Silla implements Serializable {
     @OneToMany(mappedBy = "silla")
     private List<ReservaSilla> reservasSillas;
 
-    public Silla(String codigo, String posicion, double precio) {
+    public Silla(String codigo,  String posicion, double precio) {
         this.codigo = codigo;
         this.posicion = posicion;
         this.precio = precio;

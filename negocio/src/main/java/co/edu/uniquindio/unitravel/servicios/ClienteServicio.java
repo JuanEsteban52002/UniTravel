@@ -6,7 +6,6 @@ import co.edu.uniquindio.unitravel.entidades.Hotel;
 import co.edu.uniquindio.unitravel.entidades.Reserva;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface ClienteServicio {
 
@@ -31,11 +30,12 @@ public interface ClienteServicio {
 
     void eliminarComentario(String codigo) throws Exception;
 
+
     Comentario modificarComentario(Comentario comentario) throws Exception;
 
     //Gestionar reserva
 
-    void hacerReserva(Reserva reserva) throws Exception;
+    Reserva hacerReserva(Reserva reserva) throws Exception;
 
     void eliminarReserva(String codigoReserva)throws Exception;
 

@@ -141,15 +141,15 @@ public class ClienteServicioImpl implements ClienteServicio{
     }
 
     @Override
-    public void eliminarComentario(Comentario comentario) throws Exception {
+    public void eliminarComentario(String codigo) throws Exception {
 
-        Comentario comentarioBuscado = obtenerComentario(comentario.getCodigo());
+        Comentario comentarioBuscado = obtenerComentario(codigo);
 
         if(comentarioBuscado == null){
             throw new Exception("El comentario no existe");
         }
 
-        comentarioRepo.delete(comentario);
+        comentarioRepo.delete(comentarioBuscado);
     }
 
     @Override
@@ -162,13 +162,16 @@ public class ClienteServicioImpl implements ClienteServicio{
     }
 
     @Override
-    public void hacerReserva(Reserva reserva) throws Exception {
+    public Reserva hacerReserva(Reserva reserva) throws Exception {
 
         if(reserva == null){
             throw new Exception("Reserva vacia, verifique la informacion");
         }
 
         //Revisa que las habitaciones esten disponibles
+        if (reserva.getReservasHabitaciones() == null){
+            throw new Exception("No hay habitaciones disponibles");
+        }
         for (int i = 0; i < reserva.getReservasHabitaciones().size(); i++) {
             ReservaHabitacion habitacion = reserva.getReservasHabitaciones().get(i);
 
@@ -186,6 +189,8 @@ public class ClienteServicioImpl implements ClienteServicio{
                 throw new Exception("La silla: " + silla.getCodigo() + ", no esta disponible");
             }
         }
+
+        return reserva;
     }
 
     private boolean sillaDisponible(ReservaSilla sillaReservada, Vuelo vuelo) {

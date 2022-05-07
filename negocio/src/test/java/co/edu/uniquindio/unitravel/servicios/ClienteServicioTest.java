@@ -97,13 +97,81 @@ public class ClienteServicioTest {
     @Sql("classpath:dataset.sql")
     public void hacerReservaTest() throws Exception {
 
+
         SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
 
         Date fechaReserva = formato.parse("2022-05-12");
         Date fechaInicio = formato.parse("2022-05-13");
         Date fechaFin = formato.parse("2022-05-16");
 
+
+        List<Habitacion> habitaciones = new ArrayList<>();
+        List<Silla> sillas = new ArrayList<>();
+        List<ReservaSilla> reservaSillas = new ArrayList<>();
+        List<ReservaHabitacion> reservaHabitaciones = new ArrayList<>();
+        List<Silla> SillasVuelo = new ArrayList<>();
+        Vuelo vuelo = new Vuelo("5", Estado.DISPONIBLE, "Avianca");
+
+        Silla sillaVuelo1 = new Silla("3", "A3", 50000 );
+        sillaVuelo1.setEstadoSilla(EstadoSilla.DISPONIBLE);
+        SillasVuelo.add(sillaVuelo1);
+
+        Silla sillaVuelo2 = new Silla("4", "A2", 50000 );
+        SillasVuelo.add(sillaVuelo2);
+        sillaVuelo2.setEstadoSilla(EstadoSilla.DISPONIBLE);
+
+        vuelo.setSillas(SillasVuelo);
+
+
+
         Reserva reserva = new Reserva("3", fechaReserva, fechaInicio, fechaFin, Alimentacion.DESAYUNO_COMIDA, 1200000, EstadoReserva.PENDIENTE, 4);
+
+        //Se crean la habitacione 1
+        Habitacion habitacion1 = new Habitacion(5, 50000, "2");
+        habitaciones.add(habitacion1);
+
+
+        //Se crean la habitacione 2
+        Habitacion habitacion2 = new Habitacion(6, 60000, "2");
+        habitaciones.add(habitacion2);
+
+        //Se crea la silla 1
+        Silla silla1 = new Silla("3",  "A1", 50000);
+        silla1.setVuelo(vuelo);
+        sillas.add(silla1);
+
+        //Se crea la silla 2
+        Silla silla2 = new Silla("4",  "A2", 60000);
+        silla2.setVuelo(vuelo);
+        sillas.add(silla2);
+
+
+        //Se crea reserva silla 1
+        ReservaSilla reservaSilla1 = new ReservaSilla("3", 50000 );
+        reservaSilla1.setReserva(reserva);
+        reservaSilla1.setSilla(silla1);
+        reservaSillas.add(reservaSilla1);
+
+        //Se crea reserva silla 2
+        ReservaSilla reservaSilla2 = new ReservaSilla("4", 60000 );
+        reservaSilla2.setReserva(reserva);
+        reservaSilla2.setSilla(silla2);
+        reservaSillas.add(reservaSilla2);
+
+        //Se crea reserva habitacion 1
+        ReservaHabitacion reservaHabitacion1 = new ReservaHabitacion("6", 50000 );
+        reservaHabitacion1.setHabitacion(habitacion1);
+        reservaHabitaciones.add(reservaHabitacion1);
+
+        //Se crea reserva habitacion 2
+        ReservaHabitacion reservaHabitacion2 = new ReservaHabitacion("7", 60000 );
+        reservaHabitacion2.setHabitacion(habitacion2);
+        reservaHabitaciones.add(reservaHabitacion2);
+
+        //Se agragan las sillas y habitaciones a la reserva
+        reserva.setReservasSillas(reservaSillas);
+        reserva.setReservasHabitaciones(reservaHabitaciones);
+
 
         try {
 

@@ -31,6 +31,7 @@ insert into habitacion values (1, "5", 57000, 1);
 insert into habitacion values (2, "4", 45000, 2);
 insert into habitacion values (3, "3", 35000, 1);
 insert into habitacion values (4, "3", 35000, 1);
+insert into habitacion values (5, "2", 25000, 1);
 
 
 insert into cama values (1, "Sencilla", 1);
@@ -66,10 +67,12 @@ insert into foto values ("3", "foto3.jpg", 3, 1);
 
 insert into reserva values ("1", 1, 4, 1, "2022-05-15", "2022-05-13", "2022-05-12", 100000, "1234");
 insert into reserva values ("2", 2, 4, 2, "2022-05-17", "2022-05-15", "2022-05-13", 100000, "5255");
+insert into reserva values ("3", 3, 6, 1, "2022-05-20", "2022-05-18", "2022-05-17", 100000, "4321");
 
 
 insert into reserva_habitacion values ("1", 50000, 1, "1");
 insert into reserva_habitacion values ("2", 20000, 2, "2");
+insert into reserva_habitacion values ("3", 20000, 5, "3");
 
 
 insert into vuelo values ("1", "Avianca", 0, 1, 2);
@@ -77,8 +80,8 @@ insert into vuelo values ("2", "Volaris", 0, 1, 3);
 insert into vuelo values ("3", "Aero", 0, 2, 1);
 
 
-insert into silla values ("1", "A2", 100000, "1");
-insert into silla values ("2", "A3", 100000, "2");
+insert into silla values ("1", 0, "A2", 100000, "1");
+insert into silla values ("2", 0, "A3", 100000, "2");
 
 
 
