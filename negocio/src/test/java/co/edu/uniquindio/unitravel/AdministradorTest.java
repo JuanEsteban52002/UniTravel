@@ -67,7 +67,7 @@ public class AdministradorTest {
 
         List<Reserva> reservasTotales = administradorRepo.obtenerReservasTotales();
         reservasTotales.forEach(System.out:: println);
-        Assertions.assertEquals(2, reservasTotales.size());
+        Assertions.assertEquals(3, reservasTotales.size());
     }
 
 }

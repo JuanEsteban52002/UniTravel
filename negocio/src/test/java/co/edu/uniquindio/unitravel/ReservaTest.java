@@ -149,7 +149,7 @@ public class ReservaTest {
 
         int reserva = reservaRepo.obtenerNumeroDeReserva( 1);
         System.out.println(reserva);
-        Assertions.assertEquals(1, reserva);
+        Assertions.assertEquals(2, reserva);
     }
 
 
