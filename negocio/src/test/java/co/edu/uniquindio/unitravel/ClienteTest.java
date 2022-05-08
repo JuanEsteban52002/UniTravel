@@ -182,14 +182,6 @@ public class ClienteTest {
         Assertions.assertEquals(1, reservas.size());
     }
 
-    @Test
-    @Sql("classpath:dataset.sql")
-    public void obtenerComentarios() {
-
-        List<Object[]> comentarios = clienteRepo.obtenerComentarios();
-        comentarios.forEach(c -> System.out.println("Correo: " + c[0] + " - " + "Comentario: " + c[1]));
-        Assertions.assertNotNull(comentarios.get(0)[0]);
-    }
 
 
 

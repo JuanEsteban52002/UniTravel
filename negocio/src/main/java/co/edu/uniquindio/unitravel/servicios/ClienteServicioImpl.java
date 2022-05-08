@@ -246,7 +246,11 @@ public class ClienteServicioImpl implements ClienteServicio{
 
     @Override
     public Reserva modificarReserva(Reserva reserva) throws Exception {
-        return null;
+
+        if(reserva == null){
+            throw new Exception("Ingrese los datos correctamente");
+        }
+        return reservaRepo.save(reserva);
     }
 
     @Override
@@ -269,6 +273,6 @@ public class ClienteServicioImpl implements ClienteServicio{
 
         String password = cliente.get().getPassword();
         emailServicio.enviarMail("Recuperación de contraseña", "Hola, "+cliente.get().getNombre()+
-                " su contraseña es: " +password, "email");
+                " su contraseña es: " +password, email);
     }
 }

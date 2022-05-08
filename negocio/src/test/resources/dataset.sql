@@ -9,7 +9,7 @@ insert into ciudad values (6, "Santa Marta");
 insert into cliente values ("1234", "juan@gmail.com", "Juan", "5555", 1);
 insert into cliente values ("5255", "pepe@gmail.com", "Pepe", "1234", 2);
 insert into cliente values ("4321", "mario@gmail.com", "Mario", "1234", 3);
-insert into cliente values ("7525", "juanS@gmail.com", "Juan", "5555", 4);
+insert into cliente values ("7525", "juane.grandar@uqvirtual.edu.co", "Juan", "5555", 4);
 
 
 

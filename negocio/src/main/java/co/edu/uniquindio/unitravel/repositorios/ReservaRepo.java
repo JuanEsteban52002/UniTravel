@@ -16,9 +16,6 @@ import java.util.Optional;
 
 public interface ReservaRepo extends JpaRepository<Reserva, String> {
 
-    @Query("select ha from Reserva r join r.reservasHabitaciones rh join rh.habitacion ha where r.fechaInicio <= :fechaMin and r.fechaFin >= :fechaMax")
-    List<Habitacion> obtenerHabitacionesDisponiblesFechas(Date fechaMin, Date fechaMax);
-
     //Manito
     @Query("select v from Reserva r join r.reservasSillas rs join rs.silla s join s.vuelo v where v.codigo = :codigoVuelo")
     Vuelo seleccionVueloSegunCodigo(String codigoVuelo);
@@ -34,9 +31,6 @@ public interface ReservaRepo extends JpaRepository<Reserva, String> {
 
     @Query("select new co.edu.uniquindio.unitravel.entidades.dto.ReservaDTO (r.cliente.nombre, r.fechaReserva, h.habitacion) from Reserva r join r.reservasHabitaciones h where h.habitacion.hotel.codigo = :id and r.fechaInicio < :fecha")
     List<ReservaDTO> obtenerReservaDto(Integer id, Date fecha);
-
-    @Query("select v from Reserva r join r.reservasSillas rs join rs.silla s join s.vuelo v where r.fechaInicio <= :fechaMin and r.fechaFin >= :fechaMax")
-    List<Vuelo> obtenerVuelosEntreFechas(Date fechaMin, Date fechaMax);
 
     //Punto uno taller
     @Query("select count(r) from Reserva r join r.reservasHabitaciones h where h.habitacion.hotel.codigo = :codigoHotel and r.fechaInicio > current_date ")
