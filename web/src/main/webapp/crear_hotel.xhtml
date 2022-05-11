@@ -13,20 +13,17 @@
 </h:head>
 <h:body>
 
-    <h:form>
-        <h:panelGrid columns="2" callPading="5">
+    <h1>Crear Hotel</h1>
 
-            <p:outputLabel value="Atributo1: "/>
-            <p:inputText  value="#{ejemploBean.atributo1}"/>
+    <p:panel header = "Crear Hotel">
+            <h:form>
+                    <h:panelGrid columns="2" cellpadding="5">
 
-            <p:outputLabel value="Atributo1: "/>
-            <p:inputText value="#{ejemploBean.atributo1}"/>
-
-        </h:panelGrid>
-
-        <p:commandButton value="Cambiar valores" action="#{ejemploBean.cambiarValores()}" update="@form"/>
-
-    </h:form>
+                            <p:outputLabel for="nombre_h"/>
+                            <p:inputText id="nombre_h" type="text" required="true"/>
+                    </h:panelGrid>
+            </h:form>
+    </p:panel>
 
 </h:body>
 </html>
