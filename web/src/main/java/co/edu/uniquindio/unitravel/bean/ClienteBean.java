@@ -24,6 +24,7 @@ public class ClienteBean implements Serializable {
 
     @PostConstruct
     public void init() {
+
         cliente = new Cliente();
     }
 
