@@ -33,21 +33,23 @@ public class ClienteServicioImpl implements ClienteServicio{
 
     @Override
     public Cliente registrarCliente(Cliente cliente)  throws Exception{
-
-        Cliente clienteBuscado = obtenerCliente(cliente.getCedula());
+        System.out.println("Cliente repo: ");
+        Cliente clienteBuscado = clienteRepo.findById(cliente.getCedula()).orElse(null);
 
         if(clienteBuscado != null){
             throw new Exception("El cliente ya existe");
         }
 
-        Cliente clienteEmail = buscarPorEmail(cliente.getEmail());
+        Cliente clienteEmail = clienteRepo.findByEmail(cliente.getEmail()).orElse(null);
 
         if(clienteEmail != null){
             throw new Exception("El email ya existe");
         }
 
+        System.out.println("Cliente repo: "+clienteRepo);
         return clienteRepo.save(cliente);
     }
+
 
     public Cliente buscarPorEmail(String email) throws Exception{
 
@@ -61,6 +63,8 @@ public class ClienteServicioImpl implements ClienteServicio{
         }
         return cliente;
     }
+
+
 
     @Override
     public Cliente obtenerCliente(String codigo)  throws Exception{

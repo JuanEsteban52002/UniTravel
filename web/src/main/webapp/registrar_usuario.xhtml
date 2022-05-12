@@ -15,23 +15,25 @@
 
     <h:form>
 
-    <h:panelGrid columns="2" cellpadding="5" >
+        <h:panelGrid columns="2" cellpadding="5">
 
-        <p:outputLabel value="Cédula: " />
-        <p:inputText value="#{clienteBean.cliente.cedula}" />
+            <p:outputLabel value="Cédula: " from="ceduyla_u"/>
+            <p:inputText id="cedula_c" value="#{clienteBean.cliente.cedula}" required="true"/>
 
-        <p:outputLabel value="Nombre:" />
-        <p:inputText value="#{clienteBean.cliente.nombre}" />
+            <p:outputLabel value="Nombre:" from="nombre_c"/>
+            <p:inputText id="nombre_c" value="#{clienteBean.cliente.nombre}" required="true"/>
 
-        <p:outputLabel value="Email:" />
-        <p:inputText value="#{clienteBean.cliente.email}" />
+            <p:outputLabel value="Email:" from="correo_c"/>
+            <p:inputText id="correo_c" type="email" value="#{clienteBean.cliente.email}" required="true"/>
 
-        <p:outputLabel value="Contraseña:" />
-        <p:inputText value="#{clienteBean.cliente.password}" />
+            <p:outputLabel value="Contraseña:" from="password_c"/>
+            <p:password id="password_c" value="#{clienteBean.cliente.password}" toggleMask="true" redisplay="true"
+                        required="true"/>
 
-    </h:panelGrid>
+        </h:panelGrid>
 
-    <p:commandButton value="Registrar Usuario" action="#{clienteBean.registrarCliente}" update="@form" />
+        <p:commandButton value="Registrar Usuario" action="#{clienteBean.registrarCliente}" update="@form"/>
+
 
     </h:form>
 
