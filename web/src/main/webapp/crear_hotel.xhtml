@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Unitravel</title>
+</h:head>
+<h:body>
+    <p:panel header="Crear Hotel">
+        <h:form>
+           <h:panelGrid columns="2" cellpadding="5">
+
+               <p:outputLabel for="nombre_hotel" value="Nombre" />
+               <p:inputText id="nombre_hotel" type="text" value="#{hotelBean.hotel.nombre}" required="true" />
+
+               <p:outputLabel for="direccion_hotel" value="Direccion" />
+               <p:inputText id="direccion_hotel" type="text" value="#{hotelBean.hotel.direccion}" required="true"/>
+
+               <p:outputLabel for="num_estrellas"  value="Numero Estrellas"/>
+               <p:inputText id="num_estrellas" type="text" value="#{hotelBean.hotel.numEstrellas}" required="true"/>
+
+               <p:outputLabel for="tel_hotel" value="Telefono"/>
+               <p:inputText id="tel_hotel" type="text" value="#{hotelBean.hotel.telefono}" required="true"/>
+
+
+           </h:panelGrid>
+
+            <p:commandButton value="Crear Hotel" action="#{hotelBean.registrarHotel()}" update="@form" />
+            <p:growl showDetail="true" />
+        </h:form>
+    </p:panel>
+</h:body>
+</html>

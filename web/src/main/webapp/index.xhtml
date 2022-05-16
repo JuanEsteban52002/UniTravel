@@ -12,12 +12,32 @@
     <title>Unitravel</title>
 </h:head>
 <h:body>
-    <h1>Hola Mundo, facilito</h1>
+    <div id="encabezado" >
+        <ul>
+            <li> <a href="" >Inicio</a> </li>
+            <li> <a href="registrar_cliente.xhtml" >Registrarse</a> </li>
+            <li> <a href="crear_hotel.xhtml" >Crear Hotel</a> </li>
+            <li> <a href="detalle_hotel.xhtml" >Lista Hoteles</a> </li>
+            <li> <a href="mis_reservas.xhtml" >Lista mis reservas</a> </li>
+        </ul>
+    </div>
 
-    <h1>Esto es JSF</h1>
+    <div id="contenido">
+       <h:form>
+           <div class = "input-search ui-inputgroup">
+               <p:inputText placeholder="¿Que hotel esta buscando?" required="true" values="#{busquedaBean.busqueda}" />
+               <p:commandButton update="@form" icon="pi pi-search" action="#{busquedaBean.buscar}" />
 
-    <h1>#{inicioBean.mensaje}</h1>
+           </div>
+       </h:form>
 
-    <p>Mensaje</p>
+        <p>Lista de ciudades</p>
+        <p>Hoteles recomendados</p>
+    </div>
+
+    <div id="pie_pagina">
+        <p>Unitravel - Universidad del Quindío -2022</p>
+    </div>
+
 </h:body>
 </html>
