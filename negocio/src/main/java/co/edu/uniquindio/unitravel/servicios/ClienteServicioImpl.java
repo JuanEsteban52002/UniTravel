@@ -34,16 +34,16 @@ public class ClienteServicioImpl implements ClienteServicio{
     @Override
     public Cliente registrarCliente(Cliente cliente)  throws Exception{
 
-        Cliente clienteBuscado = obtenerCliente(cliente.getCedula());
+        Cliente clienteBuscado = clienteRepo.findById(cliente.getCedula()).orElse(null);
 
         if(clienteBuscado != null){
             throw new Exception("El cliente ya existe");
         }
 
-        Cliente clienteEmail = buscarPorEmail(cliente.getEmail());
+        Cliente clienteEmail = clienteRepo.findByEmail(cliente.getEmail()).orElse(null);
 
         if(clienteEmail != null){
-            throw new Exception("El email ya existe");
+            throw new Exception("Ya existe alguien usando este correo");
         }
 
         return clienteRepo.save(cliente);
