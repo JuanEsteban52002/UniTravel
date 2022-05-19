@@ -1,6 +1,7 @@
 package co.edu.uniquindio.unitravel.servicios;
 
 import co.edu.uniquindio.unitravel.entidades.AdministradorHotel;
+import co.edu.uniquindio.unitravel.entidades.Ciudad;
 import co.edu.uniquindio.unitravel.entidades.Hotel;
 import co.edu.uniquindio.unitravel.repositorios.HotelRepo;
 
@@ -19,6 +20,10 @@ public interface AdministradorHotelServicio {
     List<Hotel> listarHoteles(String codigoAdmin);
 
     Hotel obtenerHotel(Integer codigoHotel) throws Exception;
+
+    Ciudad obtenerCiudad(Integer codigo)throws Exception;
+
+    AdministradorHotel obtenerAdministradorHotel(String codigo) throws Exception;
 
 
 

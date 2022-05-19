@@ -1,0 +1,18 @@
+
+.icon-p{
+    width: 50px;
+    margin-right: 10px;
+}
+
+.color-principal{
+    background-color: #bb2d3b;
+}
+
+.icon-menu{
+    width: 50px;
+    margin-right: 10px;
+}
+
+#buscador_h .ui-inputtext{
+    width: 500px;
+}

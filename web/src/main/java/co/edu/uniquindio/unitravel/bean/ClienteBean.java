@@ -24,24 +24,19 @@ public class ClienteBean implements Serializable {
     private Cliente cliente;
 
     @PostConstruct
-    public void init() {
-
+    public void inicializar(){
         cliente = new Cliente();
     }
 
-    public void registrarCliente() {
-        System.out.println("Cliente "+cliente.getCedula());
-        System.out.println("Cliente servicio: "+clienteServicio);
+    public void registrarCliente(){
         try {
             clienteServicio.registrarCliente(cliente);
 
-            FacesMessage msj = new FacesMessage(FacesMessage.SEVERITY_INFO, "Cliente registrado", "Cliente registrado correctamente");
+            FacesMessage msj = new FacesMessage(FacesMessage.SEVERITY_INFO, "Alerta", "Registro exitoso");
             FacesContext.getCurrentInstance().addMessage(null, msj);
-
         } catch (Exception e) {
-            FacesMessage msj = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage());
+            FacesMessage msj = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Alerta", e.getMessage());
             FacesContext.getCurrentInstance().addMessage(null, msj);
         }
-        System.out.println("FIn del metodo");
     }
 }
