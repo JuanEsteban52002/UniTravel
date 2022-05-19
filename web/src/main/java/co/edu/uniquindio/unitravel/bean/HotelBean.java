@@ -47,7 +47,7 @@ public class HotelBean implements Serializable {
 
                 hotel.setCiudad(administradorHotelServicio.obtenerCiudad(1));
                 hotel.setAdministradorHotel(administradorHotelServicio.obtenerAdministradorHotel("111"));
-                hotel.setFotos(imagenes);
+                //hotel.setFotos(imagenes);
 
                 administradorHotelServicio.crearHotel(hotel);
                 // FacesMessage msj = new FacesMessage(FacesMessage.SEVERITY_INFO, "Alerta", "Hotel creado exitosamente");
