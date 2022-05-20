@@ -141,7 +141,7 @@ public class ClienteServicioImpl implements ClienteServicio{
     }
 
     @Override
-    public void eliminarComentario(String codigo) throws Exception {
+    public void eliminarComentario(Integer codigo) throws Exception {
 
         Comentario comentarioBuscado = obtenerComentario(codigo);
 
@@ -157,8 +157,8 @@ public class ClienteServicioImpl implements ClienteServicio{
         return comentarioRepo.save(comentario);
     }
 
-    public Comentario obtenerComentario(String codigo) throws Exception {
-        return comentarioRepo.findById(codigo).orElse(null);
+    public Comentario obtenerComentario(Integer codigo) throws Exception {
+        return comentarioRepo.findById(String.valueOf(codigo)).orElse(null);
     }
 
     @Override

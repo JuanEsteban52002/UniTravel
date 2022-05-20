@@ -25,7 +25,7 @@ public interface ClienteServicio {
 
     Comentario crearComentario(Comentario comentario) throws Exception;
 
-    void eliminarComentario(String codigo) throws Exception;
+    void eliminarComentario(Integer codigo) throws Exception;
 
 
     Comentario modificarComentario(Comentario comentario) throws Exception;
