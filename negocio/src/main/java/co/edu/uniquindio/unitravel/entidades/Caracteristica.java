@@ -24,6 +24,8 @@ public class Caracteristica implements Serializable {
     @Column(length = 10)
     private String codigo;
 
+    private TipoCaracteritica tipoCaracteritica;
+
     @Column(length = 100, nullable = false)
     private String nombre;
 

@@ -1,7 +1,10 @@
 package co.edu.uniquindio.unitravel.bean;
 
+import co.edu.uniquindio.unitravel.entidades.Caracteristica;
+import co.edu.uniquindio.unitravel.entidades.Ciudad;
 import co.edu.uniquindio.unitravel.entidades.Hotel;
 import co.edu.uniquindio.unitravel.servicios.AdministradorHotelServicio;
+import co.edu.uniquindio.unitravel.servicios.UnitravelUtilServicio;
 import lombok.Getter;
 import lombok.Setter;
 import org.apache.commons.io.IOUtils;
@@ -17,6 +20,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import java.io.*;
 import java.util.ArrayList;
+import java.util.List;
 
 @Component
 @ViewScoped
@@ -28,11 +32,24 @@ public class HotelBean implements Serializable {
     @Autowired
     private AdministradorHotelServicio administradorHotelServicio;
 
+    @Autowired
+    private UnitravelUtilServicio unitravelUtilServicio;
+
+    @Getter @Setter
+    private List<Ciudad> ciudades;
+
+    @Setter @Getter
+    private List<Caracteristica> caracteristicas;
+
+
+    //-------------------------------------------//
     @PostConstruct
     public void inicializar(){
 
         hotel = new Hotel();
         imagenes = new ArrayList<>();
+        ciudades = administradorHotelServicio.listarCiudades();
+        caracteristicas = unitravelUtilServicio.listarCaracteristicasHotel();
     }
 
     @Value("${upload.url}")

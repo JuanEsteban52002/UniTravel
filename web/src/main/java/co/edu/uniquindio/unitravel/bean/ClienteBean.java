@@ -1,5 +1,6 @@
 package co.edu.uniquindio.unitravel.bean;
 
+import co.edu.uniquindio.unitravel.entidades.Ciudad;
 import co.edu.uniquindio.unitravel.entidades.Cliente;
 import co.edu.uniquindio.unitravel.servicios.ClienteServicio;
 import lombok.Getter;
@@ -12,6 +13,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import java.io.Serializable;
+import java.util.List;
 
 @Component
 @ViewScoped
@@ -23,10 +25,17 @@ public class ClienteBean implements Serializable {
     @Getter @Setter
     private Cliente cliente;
 
+    @Getter @Setter
+    private List<Ciudad> ciudades;
+
+    //-----------------------------------------------------------//
     @PostConstruct
     public void inicializar(){
         cliente = new Cliente();
+        ciudades = clienteServicio.listarCiudades();
     }
+
+
 
     public void registrarCliente(){
         try {

@@ -13,6 +13,8 @@ import java.io.Serializable;
 @Setter
 public class InicioBean implements Serializable {
 
-    private String mensaje = "Mi primera pagina en JSF";
 
+    public String irRegistro(){
+        return "registrar_cliente?faces-redirect=true";
+    }
 }

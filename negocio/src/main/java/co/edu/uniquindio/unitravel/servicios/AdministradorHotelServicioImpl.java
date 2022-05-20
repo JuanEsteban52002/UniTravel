@@ -9,6 +9,7 @@ import co.edu.uniquindio.unitravel.repositorios.HotelRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -40,7 +41,7 @@ public class AdministradorHotelServicioImpl implements AdministradorHotelServici
 
         Optional<AdministradorHotel> adminHotel = adminHotelRepo.findByEmailAndPassword(email, password);
 
-        if(adminHotel.isEmpty()){
+        if(adminHotel.equals(null)){
             throw new Exception("Los datos de autenticacion son incorrectos");
         }
 
@@ -105,4 +106,11 @@ public class AdministradorHotelServicioImpl implements AdministradorHotelServici
     public AdministradorHotel obtenerAdministradorHotel(String codigo) throws Exception {
         return adminHotelRepo.findById(codigo).orElse(null);
     }
+
+    @Override
+    public List<Ciudad> listarCiudades() {
+        return ciudadRepo.findAll();
+    }
+
+
 }
