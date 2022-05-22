@@ -1,8 +1,5 @@
 package co.edu.uniquindio.unitravel;
 
-import co.edu.uniquindio.unitravel.entidades.Cama;
-import co.edu.uniquindio.unitravel.entidades.Foto;
-import co.edu.uniquindio.unitravel.repositorios.FotoRepo;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

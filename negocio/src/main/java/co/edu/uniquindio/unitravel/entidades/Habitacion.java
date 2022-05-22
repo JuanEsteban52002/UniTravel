@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
@@ -31,9 +32,9 @@ public class Habitacion implements Serializable{
     @OneToMany(mappedBy = "habitacion")
     private List<Cama> camas;
 
-    @ToString.Exclude
-    @OneToMany(mappedBy = "habitacion")
-    private List<Foto> fotos;
+    @ElementCollection
+    @Column(nullable = false)
+    private List<String> fotos;
 
     @ManyToOne
     private Hotel hotel;

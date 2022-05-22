@@ -41,7 +41,7 @@ public class AdministradorServicioImpl implements AdministradorServicio {
 
         Optional<Administrador> administrador = administradorRepo.findByEmailAndPassword(email, password);
 
-        if(administrador.isEmpty()) {
+        if(administrador.equals(null)) {
             throw new Exception("Los datos de autenticacion son incorrectos");
         }
 

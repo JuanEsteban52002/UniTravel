@@ -14,4 +14,7 @@ public interface CaracteristicaRepo extends JpaRepository<Caracteristica, String
     @Query("select h from Caracteristica c join c.hoteles h where c.nombre = :nombreCaracteristica")
     List<Hotel> obtenerHotelesCaracteristica(String nombreCaracteristica);
 
+    @Query("select  c from Caracteristica c where c.tipoCaracteritica = :tipo")
+    List<Caracteristica> obtenerCaracteristicasSegunTipo(Integer tipo);
+
 }

@@ -229,7 +229,7 @@ public class ClienteServicioTest {
     @Sql("classpath:dataset.sql")
     public void crearComentarioTest(){
 
-        Comentario comentario = new Comentario("5", "El hotel es muy bonito y grande", 4);
+        Comentario comentario = new Comentario(5, "El hotel es muy bonito y grande", 4);
 
         try {
 
@@ -249,7 +249,7 @@ public class ClienteServicioTest {
 
         try {
 
-            clienteServicio.eliminarComentario("4");
+            clienteServicio.eliminarComentario(4);
 
         }catch (Exception e){
             e.printStackTrace();

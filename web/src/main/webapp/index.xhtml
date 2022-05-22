@@ -10,27 +10,97 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Unitravel</title>
+    <h:outputStylesheet library="css" name="bootstrap.min.css" />
+    <h:outputStylesheet library="css" name="style.css" />
+    <h:outputScript library="js" name="bootstrap.bundle.min.js" />
 </h:head>
 <h:body>
+    <div id="encabezado" >
+        <div >
+            <div class="px-3 py-2 color-principal text-white">
+                <div class="container">
+                    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                        <a href="/" class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none">
+                            <h:graphicImage library="img" name="avionpapel.png" styleClass="icon-p" />
+                            <span class="fs-4">Unitravel</span>
+                        </a>
 
-    <div id="encabezado">
-        <ul>
-            <li> <a href="" >Inicio</a></li>
-            <li> <a href="" >Registrarse</a></li>
-            <li> <a href="" >Crear Hotel</a></li>
-            <li> <a href="" >Lista hoteles</a></li>
-            <li> <a href="" >Lista mis hoteles</a></li>
-        </ul>
+                        <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
+                            <li>
+                                <a href="/" class="nav-link text-secondary">
+                                    <i class="pi pi-home d-block mx-auto mb-1 icon-menu" > </i>
+                                    Inicio
+                                </a>
+                            </li>
+                            <li>
+                                <a href="crear_hotel.xhtml" class="nav-link text-white">
+                                    <i class="pi pi-plus-circle d-block mx-auto mb-1 icon-menu" > </i>
+                                    Crear Hotel
+                                </a>
+                            </li>
+                            <li>
+                                <a href="hoteles_destino.xhtml" class="nav-link text-white">
+                                    <i class="pi pi-map d-block mx-auto mb-1 icon-menu" > </i>
+                                    Hoteles
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="nav-link text-white">
+                                    <i class="pi pi-book d-block mx-auto mb-1 icon-menu" > </i>
+                                    Mis reservas
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="nav-link text-white">
+                                    <i class="pi pi-list d-block mx-auto mb-1 icon-menu" > </i>
+                                    Mis hoteles
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="px-3 py-2 border-bottom mb-3">
+                <div class="container d-flex flex-wrap justify-content-center">
+                    <h:form id="buscador_h" styleClass="col-12 col-lg-auto mb-2 mb-lg-0 me-lg-auto">
+                        <div class = "input-search ui-inputgroup">
+                            <p:inputText placeholder="¿Que hotel esta buscando?" required="true" values="#{busquedaBean.busqueda}" />
+                            <p:commandButton update="@form" icon="pi pi-search" action="#{busquedaBean.buscar}" />
+                        </div>
+                    </h:form>
+                    <div class="text-end">
+                        <h:form>
+                            <button type="button" class="btn btn-light text-dark me-2">Login</button>
+                            <p:commandButton type="button" class="btn btn-primary" action="inicioBean.irRegistro"/>
+                        </h:form>
+                    </div>
+                </div>
+            </div>
+           <h1>Hola</h1>
+        </div>
     </div>
+
     <div id="contenido">
-        <p>Formulario búsqueda</p>
+
 
         <p>Lista de ciudades</p>
-
         <p>Hoteles recomendados</p>
     </div>
+
     <div id="pie_pagina">
-        <p>Unitravel - Universidad del Quindio - 2022</p>
+        <div class="container">
+            <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+                <div class="col-md-4 d-flex align-items-center">
+                    <span class="mb-3 mb-md-0 text-muted">&copy; 2022 Unitravel, Inc</span>
+                </div>
+
+                <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+                    <li class="ms-3"><a class="text-muted" href="#"><i class="pi pi-twitter icon-menu"></i></a></li>
+                    <li class="ms-3"><a class="text-muted" href="#"><i class="pi pi-facebook icon-menu"></i></a></li>
+                    <li class="ms-3"><a class="text-muted" href="#"><i class="pi pi-instagram icon-menu"></i></a></li>
+                </ul>
+            </footer>
+        </div>
     </div>
 
 </h:body>

@@ -2,10 +2,7 @@ package co.edu.uniquindio.unitravel.entidades;
 
 import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -22,8 +19,9 @@ import java.util.Date;
 public class Comentario implements Serializable {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
-    private String codigo;
+    private int codigo;
 
     @Column(nullable = false)
     private String comentario;
@@ -43,7 +41,7 @@ public class Comentario implements Serializable {
     @ManyToOne
     private Cliente cliente;
 
-    public Comentario(String codigo, String comentario, int calificacion ){
+    public Comentario(Integer codigo, String comentario, int calificacion ){
         this.codigo = codigo;
         this.comentario = comentario;
         this.fechaCalificacion = LocalDateTime.now();

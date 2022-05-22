@@ -1,19 +1,31 @@
 package co.edu.uniquindio.unitravel.servicios;
 
 import co.edu.uniquindio.unitravel.entidades.AdministradorHotel;
+import co.edu.uniquindio.unitravel.entidades.Ciudad;
 import co.edu.uniquindio.unitravel.entidades.Hotel;
 import co.edu.uniquindio.unitravel.repositorios.AdministradorHotelRepo;
+import co.edu.uniquindio.unitravel.repositorios.CiudadRepo;
 import co.edu.uniquindio.unitravel.repositorios.HotelRepo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class AdministradorHotelServicioImpl implements AdministradorHotelServicio {
 
+    @Autowired
     private AdministradorHotelRepo adminHotelRepo;
+
+    @Autowired
     private HotelRepo hotelRepo;
+
+    @Autowired
+    private CiudadRepo ciudadRepo;
+
+
 
     public AdministradorHotelServicioImpl(AdministradorHotelRepo adminHotelRepo, HotelRepo hotelRepo){
         this.adminHotelRepo = adminHotelRepo;
@@ -29,7 +41,7 @@ public class AdministradorHotelServicioImpl implements AdministradorHotelServici
 
         Optional<AdministradorHotel> adminHotel = adminHotelRepo.findByEmailAndPassword(email, password);
 
-        if(adminHotel.isEmpty()){
+        if(adminHotel.equals(null)){
             throw new Exception("Los datos de autenticacion son incorrectos");
         }
 
@@ -84,4 +96,21 @@ public class AdministradorHotelServicioImpl implements AdministradorHotelServici
         }
         return hotelRepo.findById(codigoHotel).orElse(null);
     }
+
+    @Override
+    public Ciudad obtenerCiudad(Integer codigo) throws Exception {
+        return ciudadRepo.findById(codigo).orElse(null);
+    }
+
+    @Override
+    public AdministradorHotel obtenerAdministradorHotel(String codigo) throws Exception {
+        return adminHotelRepo.findById(codigo).orElse(null);
+    }
+
+    @Override
+    public List<Ciudad> listarCiudades() {
+        return ciudadRepo.findAll();
+    }
+
+
 }

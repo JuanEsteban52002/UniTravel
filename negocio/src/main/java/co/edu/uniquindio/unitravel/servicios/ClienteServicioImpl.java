@@ -1,10 +1,7 @@
 package co.edu.uniquindio.unitravel.servicios;
 
 import co.edu.uniquindio.unitravel.entidades.*;
-import co.edu.uniquindio.unitravel.repositorios.ClienteRepo;
-import co.edu.uniquindio.unitravel.repositorios.ComentarioRepo;
-import co.edu.uniquindio.unitravel.repositorios.HotelRepo;
-import co.edu.uniquindio.unitravel.repositorios.ReservaRepo;
+import co.edu.uniquindio.unitravel.repositorios.*;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,33 +14,36 @@ public class ClienteServicioImpl implements ClienteServicio{
     private ReservaRepo reservaRepo;
     private ComentarioRepo comentarioRepo;
     private HotelRepo hotelRepo;
+    private CiudadRepo ciudadRepo;
     private EmailServicio emailServicio;
 
     public ClienteServicioImpl(ClienteRepo clienteRepo,
                                ReservaRepo reservaRepo,
                                ComentarioRepo comentarioRepo,
                                HotelRepo hotelRepo,
+                               CiudadRepo ciudadRepo,
                                EmailServicio emailServicio) {
         this.clienteRepo = clienteRepo;
         this.reservaRepo = reservaRepo;
         this.comentarioRepo = comentarioRepo;
         this.hotelRepo = hotelRepo;
+        this.ciudadRepo = ciudadRepo;
         this.emailServicio = emailServicio;
     }
 
     @Override
     public Cliente registrarCliente(Cliente cliente)  throws Exception{
 
-        Cliente clienteBuscado = obtenerCliente(cliente.getCedula());
+        Cliente clienteBuscado = clienteRepo.findById(cliente.getCedula()).orElse(null);
 
         if(clienteBuscado != null){
             throw new Exception("El cliente ya existe");
         }
 
-        Cliente clienteEmail = buscarPorEmail(cliente.getEmail());
+        Cliente clienteEmail = clienteRepo.findByEmail(cliente.getEmail()).orElse(null);
 
         if(clienteEmail != null){
-            throw new Exception("El email ya existe");
+            throw new Exception("Ya existe alguien usando este correo");
         }
 
         return clienteRepo.save(cliente);
@@ -117,7 +117,7 @@ public class ClienteServicioImpl implements ClienteServicio{
 
         Optional<Cliente> cliente = clienteRepo.findByEmailAndPassword(correo, password);
 
-        if(cliente.isEmpty()){
+        if(cliente.equals(null)){
             throw new Exception("Los datos de autenticación son incorrectos");
         }
         return cliente.get();
@@ -136,7 +136,7 @@ public class ClienteServicioImpl implements ClienteServicio{
     }
 
     @Override
-    public void eliminarComentario(String codigo) throws Exception {
+    public void eliminarComentario(Integer codigo) throws Exception {
 
         Comentario comentarioBuscado = obtenerComentario(codigo);
 
@@ -152,8 +152,8 @@ public class ClienteServicioImpl implements ClienteServicio{
         return comentarioRepo.save(comentario);
     }
 
-    public Comentario obtenerComentario(String codigo) throws Exception {
-        return comentarioRepo.findById(codigo).orElse(null);
+    public Comentario obtenerComentario(Integer codigo) throws Exception {
+        return comentarioRepo.findById(String.valueOf(codigo)).orElse(null);
     }
 
     @Override
@@ -232,7 +232,7 @@ public class ClienteServicioImpl implements ClienteServicio{
     public void eliminarReserva(String codigoReserva) throws Exception {
         Optional<Reserva> reserva = reservaRepo.findById(codigoReserva);
 
-        if(reserva.isEmpty()){
+        if(reserva.equals(null)){
             throw new Exception("La reserva no existe");
         }else{
             reservaRepo.delete(reserva.get());
@@ -262,12 +262,22 @@ public class ClienteServicioImpl implements ClienteServicio{
     public void recuperarPassword(String email) throws Exception {
         Optional<Cliente> cliente = clienteRepo.findByEmail(email);
 
-        if(cliente.isEmpty()){
+        if(cliente.equals(null)){
             throw new Exception("El email no pertenece a ningun usuario");
         }
 
         String password = cliente.get().getPassword();
         emailServicio.enviarMail("Recuperación de contraseña", "Hola, "+cliente.get().getNombre()+
                 " su contraseña es: " +password, email);
+    }
+
+    @Override
+    public List<Ciudad> listarCiudades() {
+        return ciudadRepo.findAll();
+    }
+
+    @Override
+    public Ciudad obtenerCiudad(Integer codigo) throws Exception {
+        return ciudadRepo.findById(codigo).orElse(null);
     }
 }

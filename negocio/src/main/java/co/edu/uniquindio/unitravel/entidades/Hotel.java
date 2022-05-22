@@ -46,9 +46,9 @@ public class Hotel implements Serializable {
     @OneToMany(mappedBy = "hotel")
     private List<Habitacion> habitaciones;
 
-    @ToString.Exclude
-    @OneToMany(mappedBy = "hotel")
-    private List<Foto> fotos;
+    @ElementCollection
+    @Column(nullable = false)
+    private List<String> fotos;
 
     @ToString.Exclude
     @OneToMany(mappedBy = "hotel")
