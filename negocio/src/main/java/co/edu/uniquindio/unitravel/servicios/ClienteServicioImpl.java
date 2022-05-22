@@ -68,12 +68,7 @@ public class ClienteServicioImpl implements ClienteServicio{
         if(codigo.isEmpty()){
             throw new Exception("Por favor ingrese una cedula");
         }
-
         Cliente cliente = clienteRepo.findById(codigo).orElse(null);
-
-        if(cliente == null){
-            throw new Exception("El cliente no existe, verifique los datos");
-        }
 
         return cliente;
     }
