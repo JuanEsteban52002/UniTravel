@@ -43,7 +43,7 @@ public class HotelBean implements Serializable {
     public String registrarHotel(){
         try {
 
-            if(imagenes.size() > 10) {
+            if(imagenes.size() > 1) {
 
                 hotel.setCiudad(administradorHotelServicio.obtenerCiudad(1));
                 hotel.setAdministradorHotel(administradorHotelServicio.obtenerAdministradorHotel("111"));
@@ -78,6 +78,7 @@ public class HotelBean implements Serializable {
             File archivo = new File(urlImagenes + "/" + imagen.getFileName());
             OutputStream outPutStream = new FileOutputStream(archivo);
             IOUtils.copy(imagen.getInputStream(), outPutStream);
+            return imagen.getFileName();
         } catch (IOException e) {
             e.printStackTrace();
         }

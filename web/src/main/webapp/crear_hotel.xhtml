@@ -37,7 +37,7 @@
 
            </h:panelGrid>
 
-                <p:commandButton value="Adicionar Habitaciones" onclick="PF('crear_hab')" icon="pi pi-plus"/>
+                <p:commandButton value="Adicionar Habitaciones" onclick="PF('crear_hab').show()" icon="pi pi-plus"/>
                     <br/>
                     <br/>
                 <p:commandButton value="Crear Hotel" action="#{hotelBean.registrarHotel()}" update="@form" icon="pi pi-check"/>
@@ -47,7 +47,7 @@
 
     <p:dialog header="Crear Habitacion" widgetVar="crear_hab" modal="true" showEffect="fade" draggable="false">
         <h:form>
-
+            <h1>agregar habitaciones</h1>
         </h:form>
     </p:dialog>
 
