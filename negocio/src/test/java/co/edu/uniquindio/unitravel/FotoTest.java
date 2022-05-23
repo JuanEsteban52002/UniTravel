@@ -1,3 +1,4 @@
+/*
 package co.edu.uniquindio.unitravel;
 
 import org.junit.jupiter.api.Assertions;
@@ -56,3 +57,5 @@ public class FotoTest {
     }
 
 }
+ */
+
