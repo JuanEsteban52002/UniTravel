@@ -25,7 +25,7 @@ public class ComentarioTest {
     @Sql("classpath:dataset.sql")
     public void registrar() {
 
-        Comentario comentario = new Comentario("3", "Me gusto la habitacion", 4);
+        Comentario comentario = new Comentario(3, "Me gusto la habitacion", 4);
         Comentario comentarioGuardado = comentarioRepo.save(comentario);
 
         Assertions.assertNotNull(comentarioGuardado);
