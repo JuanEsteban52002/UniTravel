@@ -3,6 +3,7 @@ package co.edu.uniquindio.unitravel.bean;
 import co.edu.uniquindio.unitravel.entidades.Caracteristica;
 import co.edu.uniquindio.unitravel.entidades.Ciudad;
 import co.edu.uniquindio.unitravel.entidades.Hotel;
+import co.edu.uniquindio.unitravel.entidades.TipoCaracteritica;
 import co.edu.uniquindio.unitravel.servicios.AdministradorHotelServicio;
 import co.edu.uniquindio.unitravel.servicios.UnitravelUtilServicio;
 import lombok.Getter;
@@ -49,8 +50,10 @@ public class HotelBean implements Serializable {
         hotel = new Hotel();
         imagenes = new ArrayList<>();
         ciudades = administradorHotelServicio.listarCiudades();
-        caracteristicas = unitravelUtilServicio.listarCaracteristicasHotel();
+        caracteristicas = unitravelUtilServicio.todasLasCaracteristica();
     }
+
+
 
     @Value("${upload.url}")
     private String urlImagenes;
@@ -70,6 +73,7 @@ public class HotelBean implements Serializable {
                 // FacesMessage msj = new FacesMessage(FacesMessage.SEVERITY_INFO, "Alerta", "Hotel creado exitosamente");
                 // FacesContext.getCurrentInstance().addMessage(null, msj);
                 return "registro_exitoso?faces-redirect=true";
+
             }else{
                 FacesMessage msj = new FacesMessage(FacesMessage.SEVERITY_WARN, "Alerta", "Es obligatorio subir imagenes al hotel");
                 FacesContext.getCurrentInstance().addMessage(null, msj);

@@ -25,7 +25,7 @@
                <p:outputLabel value="Ciudad: " for="ciudad_h"/>
                <p:selectOneMenu id="ciudad_h" value="#{hotelBean.hotel.ciudad}" required="true" converter="#{ciudadConverter}">
                    <f:selectItem itemLabel="Seleccionar la ciudad" noSelectionOption="true"/>
-                   <f:selectItems value="#{clienteBean.ciudades}" var="ciudad" itemLabel="#{ciudad.nombre}" itemValue="ciudad"/>
+                   <f:selectItems value="#{clienteBean.ciudades}" var="ciudad" itemLabel="#{ciudad.nombre}" itemValue="#{ciudad}"/>
                </p:selectOneMenu>
 
                <p:outputLabel for="tel_hotel" value="Telefono"/>
@@ -34,8 +34,12 @@
                <p:outputLabel for="num_estrellas"  value="Numero Estrellas"/>
                <p:inputText id="num_estrellas" type="text" value="#{hotelBean.hotel.numEstrellas}" required="true"/>
 
-               <p:selectManyCheckbox id="caracteristica" value="#{hotelBean.hotel.caracteristicas}" required="true" converter="#{caracteristicasConverter}">
+
+
+               <p:selectManyCheckbox id="caracteristica_h" value="#{hotelBean.hotel.caracteristicas}" required="true" converter="#{caracteristicasConverter}">
+
                    <f:selectItem value="#{hotelBean.caracteristicas}" var="car" itemLabel="#{car.nombre}" itemValue="#{car}"/>
+
                </p:selectManyCheckbox>
 
                <p:fileUpload id="imagenes_hotel"
