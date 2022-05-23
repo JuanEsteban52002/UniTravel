@@ -11,6 +11,8 @@ public interface UnitravelUtilServicio {
 
     List<Caracteristica> listarCaracteristicasHotel();
 
+    List<Caracteristica> todasLasCaracteristica();
+
     List<Caracteristica> listarCaracteristicasHabitacion();
 
     List<Ciudad> listarCiudades();

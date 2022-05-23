@@ -3,6 +3,7 @@ package co.edu.uniquindio.unitravel.bean;
 import co.edu.uniquindio.unitravel.entidades.Caracteristica;
 import co.edu.uniquindio.unitravel.entidades.Ciudad;
 import co.edu.uniquindio.unitravel.entidades.Hotel;
+import co.edu.uniquindio.unitravel.entidades.TipoCaracteritica;
 import co.edu.uniquindio.unitravel.servicios.AdministradorHotelServicio;
 import co.edu.uniquindio.unitravel.servicios.UnitravelUtilServicio;
 import lombok.Getter;
@@ -49,8 +50,10 @@ public class HotelBean implements Serializable {
         hotel = new Hotel();
         imagenes = new ArrayList<>();
         ciudades = administradorHotelServicio.listarCiudades();
-        caracteristicas = unitravelUtilServicio.listarCaracteristicasHotel();
+        caracteristicas = unitravelUtilServicio.todasLasCaracteristica();
     }
+
+
 
     @Value("${upload.url}")
     private String urlImagenes;

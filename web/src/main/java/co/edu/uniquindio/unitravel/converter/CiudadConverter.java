@@ -17,14 +17,14 @@ import static java.lang.Integer.*;
 public class CiudadConverter implements Serializable, Converter<Ciudad> {
 
     @Autowired
-    private CiudadRepo clienteServicio;
+    private ClienteServicio clienteServicio;
 
     @Override
     public Ciudad getAsObject(FacesContext context, UIComponent component, String value) {
 
         try {
             Ciudad ciudad;
-            ciudad = clienteServicio.obtenerCiudadPorId(parseInt(value));
+            ciudad = clienteServicio.obtenerCiudad(parseInt(value));
             return ciudad;
         } catch (Exception e) {
             e.printStackTrace();
