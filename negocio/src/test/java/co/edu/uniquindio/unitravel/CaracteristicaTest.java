@@ -25,7 +25,7 @@ public class CaracteristicaTest {
     @Sql("classpath:dataset.sql")
     public void registrar() {
 
-        Caracteristica caracteristica = new Caracteristica("3", "Aire acondicionado");
+        Caracteristica caracteristica = new Caracteristica(3, "Aire acondicionado");
         Caracteristica caracteristicaGuardada = caracteristicaRepo.save(caracteristica);
 
         Assertions.assertNotNull(caracteristicaGuardada);
