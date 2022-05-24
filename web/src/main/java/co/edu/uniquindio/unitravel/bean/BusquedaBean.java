@@ -37,9 +37,7 @@ public class BusquedaBean implements Serializable {
 
         try{
             if(busquedaParametro!=null && !busquedaParametro.isEmpty()) {
-                hoteles = clienteServicio.buscarHotelesCiudad(busquedaParametro);
-            }else{
-                hoteles = new ArrayList<>();
+                hoteles = clienteServicio.buscarHotelesNombre(busquedaParametro);
             }
         }catch (Exception e){
             e.printStackTrace();
@@ -47,7 +45,7 @@ public class BusquedaBean implements Serializable {
     }
 
     public String buscar(){
-        List<Hotel> hoteles = clienteServicio.buscarHotelesCiudad(busqueda);
+        List<Hotel> hoteles = clienteServicio.buscarHotelesNombre(busqueda);
         return "resultado_busqueda?faces-redirect=true&amp;busqueda="+busqueda;
 
     }

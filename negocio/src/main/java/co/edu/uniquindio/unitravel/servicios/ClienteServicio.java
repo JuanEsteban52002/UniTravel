@@ -44,6 +44,8 @@ public interface ClienteServicio {
 
     List<Hotel> buscarHotelesCiudad(String nombreCiudad);
 
+    List<Hotel> buscarHotelesNombre(String nombreHotel);
+
     //Email
 
     void recuperarPassword(String email) throws Exception;

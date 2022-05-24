@@ -86,7 +86,6 @@ public class AdministradorHotelServicioImpl implements AdministradorHotelServici
         return adminHotelRepo.obtenerHotelesAdmin(codigoAdmin);
     }
 
-    @Override
     public Hotel obtenerHotel(Integer codigoHotel) throws Exception  {
         if(codigoHotel == null){
             throw new Exception("Por favor envie un codigo");
