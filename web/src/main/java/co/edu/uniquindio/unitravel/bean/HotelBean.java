@@ -1,7 +1,10 @@
 package co.edu.uniquindio.unitravel.bean;
 
+import co.edu.uniquindio.unitravel.entidades.Caracteristica;
+import co.edu.uniquindio.unitravel.entidades.Ciudad;
 import co.edu.uniquindio.unitravel.entidades.Hotel;
 import co.edu.uniquindio.unitravel.servicios.AdministradorHotelServicio;
+import co.edu.uniquindio.unitravel.servicios.UnitravelUtilServicio;
 import lombok.Getter;
 import lombok.Setter;
 import org.apache.commons.io.IOUtils;
@@ -17,6 +20,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import java.io.*;
 import java.util.ArrayList;
+import java.util.List;
 
 @Component
 @ViewScoped
@@ -28,26 +32,41 @@ public class HotelBean implements Serializable {
     @Autowired
     private AdministradorHotelServicio administradorHotelServicio;
 
+    @Autowired
+    private UnitravelUtilServicio unitravelUtilServicio;
+
+    @Getter @Setter
+    private List<Ciudad> ciudades;
+
+    @Getter @Setter
+    private List<String> imagenes;
+
+    @Getter @Setter
+    private List<Caracteristica> caracteristicas;
+
+
+    //-------------------------------------------//
     @PostConstruct
-    public void inicializar(){
+    public void inicializar() throws Exception {
 
         hotel = new Hotel();
-        imagenes = new ArrayList<>();
+        imagenes = new ArrayList<String>();
+        ciudades = administradorHotelServicio.listarCiudades();
+        caracteristicas = unitravelUtilServicio.listarCaracteristicasHotel();
+        System.out.println(caracteristicas);
     }
 
     @Value("${upload.url}")
     private String urlImagenes;
 
-    private ArrayList<String> imagenes;
 
     public String registrarHotel(){
         try {
 
             if(imagenes.size() > 1) {
 
-                hotel.setCiudad(administradorHotelServicio.obtenerCiudad(1));
                 hotel.setAdministradorHotel(administradorHotelServicio.obtenerAdministradorHotel("111"));
-                //hotel.setFotos(imagenes);
+
 
                 administradorHotelServicio.crearHotel(hotel);
                 // FacesMessage msj = new FacesMessage(FacesMessage.SEVERITY_INFO, "Alerta", "Hotel creado exitosamente");

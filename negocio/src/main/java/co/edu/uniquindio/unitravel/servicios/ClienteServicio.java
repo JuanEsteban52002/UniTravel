@@ -1,9 +1,6 @@
 package co.edu.uniquindio.unitravel.servicios;
 
-import co.edu.uniquindio.unitravel.entidades.Cliente;
-import co.edu.uniquindio.unitravel.entidades.Comentario;
-import co.edu.uniquindio.unitravel.entidades.Hotel;
-import co.edu.uniquindio.unitravel.entidades.Reserva;
+import co.edu.uniquindio.unitravel.entidades.*;
 
 import java.util.List;
 
@@ -28,7 +25,7 @@ public interface ClienteServicio {
 
     Comentario crearComentario(Comentario comentario) throws Exception;
 
-    void eliminarComentario(String codigo) throws Exception;
+    void eliminarComentario(Integer codigo) throws Exception;
 
 
     Comentario modificarComentario(Comentario comentario) throws Exception;
@@ -50,5 +47,9 @@ public interface ClienteServicio {
     //Email
 
     void recuperarPassword(String email) throws Exception;
+
+    List<Ciudad> listarCiudades();
+
+    Ciudad obtenerCiudad(Integer codigo) throws Exception;
 
 }

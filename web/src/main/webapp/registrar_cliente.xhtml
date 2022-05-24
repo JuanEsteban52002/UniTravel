@@ -25,6 +25,12 @@
                 <p:outputLabel value="Correo: " for="email_c"/>
                 <p:inputText id="email_c" type="email" value="#{clienteBean.cliente.email}" required="true"/>
 
+                <p:outputLabel value="Ciudad: " for="ciudad_c"/>
+                <p:selectOneMenu id="ciudad_c" value="#{clienteBean.cliente.ciudad}" required="true" converter="#{ciudadConverter}">
+                    <f:selectItem itemLabel="Seleccionar la ciudad" noSelectionOption="true"/>
+                    <f:selectItems value="#{clienteBean.ciudades}" var="ciudad" itemLabel="#{ciudad.nombre}" itemValue="ciudad"/>
+                </p:selectOneMenu>
+
                 <p:outputLabel value="Contraseña: " for="password_c"/>
                 <p:password id="password_c" value="#{clienteBean.cliente.password}" toggleMask="true" redisplay="true" required="true"/>
 

@@ -5,6 +5,7 @@ import co.edu.uniquindio.unitravel.entidades.Ciudad;
 import co.edu.uniquindio.unitravel.entidades.Hotel;
 import co.edu.uniquindio.unitravel.repositorios.HotelRepo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public interface AdministradorHotelServicio {
@@ -25,6 +26,6 @@ public interface AdministradorHotelServicio {
 
     AdministradorHotel obtenerAdministradorHotel(String codigo) throws Exception;
 
-
+    List<Ciudad> listarCiudades();
 
 }

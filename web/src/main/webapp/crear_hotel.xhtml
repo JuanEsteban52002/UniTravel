@@ -22,18 +22,31 @@
                <p:outputLabel for="direccion_hotel" value="Direccion" />
                <p:inputText id="direccion_hotel" type="text" value="#{hotelBean.hotel.direccion}" required="true"/>
 
-               <p:outputLabel for="num_estrellas"  value="Numero Estrellas"/>
-               <p:inputText id="num_estrellas" type="text" value="#{hotelBean.hotel.numEstrellas}" required="true"/>
+
 
                <p:outputLabel for="tel_hotel" value="Telefono"/>
                <p:inputText id="tel_hotel" type="text" value="#{hotelBean.hotel.telefono}" required="true"/>
 
+               <p:outputLabel for="num_estrellas"  value="Numero Estrellas"/>
+               <p:inputText id="num_estrellas" type="text" value="#{hotelBean.hotel.numEstrellas}" required="true"/>
+
+               <p:outputLabel value="Ciudad: " for="ciudad_h"/>
+               <p:selectOneMenu id="ciudad_h" value="#{hotelBean.hotel.ciudad}" required="true" converter="#{ciudadConverter}">
+                   <f:selectItem itemLabel="Seleccionar la ciudad" noSelectionOption="true"/>
+                   <f:selectItems value="#{hotelBean.ciudades}" var="ciudad" itemLabel="#{ciudad.nombre}" itemValue="#{ciudad}" />
+               </p:selectOneMenu>
+
+               <p:outputLabel for="imagenes_hotel" value="Imágenes:  " />
                <p:fileUpload id="imagenes_hotel"
 
                              listener="#{hotelBean.subirImagenes}" mode="advanced"
                              multiple="true" sizeLimit="1000000" fileLimit="5"
                              allowTypes="/(\.|\/)(gif|jpe?g|png)$/" required="true" />
 
+               <p:outputLabel value="Caracteristicas:" for="caract_h" />
+               <p:selectManyCheckbox id="caract_h" value="#{hotelBean.hotel.caracteristicas}" required="true" converter="#{caracteristicasConverter}">
+                   <f:selectItems value="#{hotelBean.caracteristicas}" var="car" itemLabel="#{car.nombre}" itemValue="#{car}"/>
+               </p:selectManyCheckbox>
 
            </h:panelGrid>
 

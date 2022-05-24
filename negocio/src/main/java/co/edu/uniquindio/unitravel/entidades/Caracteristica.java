@@ -2,10 +2,7 @@ package co.edu.uniquindio.unitravel.entidades;
 
 import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 
@@ -20,9 +17,12 @@ import java.util.List;
 public class Caracteristica implements Serializable {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
-    @Column(length = 10)
-    private String codigo;
+    private Integer codigo;
+
+    @Column(nullable = false, length = 1)
+    private Integer tipo;
 
     @Column(length = 100, nullable = false)
     private String nombre;
@@ -35,7 +35,7 @@ public class Caracteristica implements Serializable {
     @ManyToMany
     private List<Habitacion> habitaciones;
 
-    public Caracteristica(String codigo, String nombre) {
+    public Caracteristica(Integer codigo, String nombre) {
         this.codigo = codigo;
         this.nombre = nombre;
     }

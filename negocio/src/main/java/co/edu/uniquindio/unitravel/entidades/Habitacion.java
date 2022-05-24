@@ -32,7 +32,9 @@ public class Habitacion implements Serializable{
     @OneToMany(mappedBy = "habitacion")
     private List<Cama> camas;
 
-    ArrayList<String> fotos;
+    @ElementCollection
+    @Column(nullable = false)
+    private List<String> fotos;
 
     @ManyToOne
     private Hotel hotel;

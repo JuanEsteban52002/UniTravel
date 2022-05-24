@@ -9,9 +9,12 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface CaracteristicaRepo extends JpaRepository<Caracteristica, String> {
+public interface CaracteristicaRepo extends JpaRepository<Caracteristica, Integer> {
+
+    List<Caracteristica> findAllByTipo(Integer tipo);
 
     @Query("select h from Caracteristica c join c.hoteles h where c.nombre = :nombreCaracteristica")
     List<Hotel> obtenerHotelesCaracteristica(String nombreCaracteristica);
+
 
 }
