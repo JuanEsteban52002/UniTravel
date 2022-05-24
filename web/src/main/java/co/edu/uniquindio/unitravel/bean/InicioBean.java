@@ -22,6 +22,7 @@ public class InicioBean implements Serializable {
     @Getter @Setter
     private List<Hotel> hoteles;
 
+
     @Getter @Setter
     private List<Ciudad> ciudades;
 
@@ -30,17 +31,14 @@ public class InicioBean implements Serializable {
 
     @PostConstruct
     public void inicializar(){
-
         hoteles = clienteServicio.listarHoteles();
         ciudades = clienteServicio.listarCiudades();
     }
 
     public String irRegistro(){
-
         return "registrar_cliente?faces-redirect=true";
     }
 
-    public String irDetalleHotel(String codigoHotel) {
-        return "detalle_hotel?faces-redirect=true&amp;hotel_id="+codigoHotel;
-    }
+    public String irDetalleHotel(String codigoHotel){
+        return "detalle_hotel?faces-redirect=true&amp;hotel_id="+codigoHotel;}
 }

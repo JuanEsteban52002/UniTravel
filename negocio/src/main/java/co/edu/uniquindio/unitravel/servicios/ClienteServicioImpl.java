@@ -4,6 +4,7 @@ import co.edu.uniquindio.unitravel.entidades.*;
 import co.edu.uniquindio.unitravel.repositorios.*;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -131,6 +132,7 @@ public class ClienteServicioImpl implements ClienteServicio{
         if(comentarioBuscado != null){
             throw new Exception("El comentario ya existe");
         }
+        comentario.setFechaCalificacion(LocalDateTime.now());
 
         return comentarioRepo.save(comentario);
     }
@@ -251,6 +253,11 @@ public class ClienteServicioImpl implements ClienteServicio{
     @Override
     public List<Hotel> buscarHotelesCiudad(String nombreCiudad) {
         return hotelRepo.obtenerHotelesCiudad(nombreCiudad);
+    }
+
+    @Override
+    public List<Hotel> buscarHotelesNombre(String nombreHotel) {
+        return hotelRepo.obtenerHotelesNombre(nombreHotel);
     }
 
     @Override
