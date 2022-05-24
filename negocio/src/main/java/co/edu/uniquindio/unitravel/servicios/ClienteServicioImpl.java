@@ -68,12 +68,7 @@ public class ClienteServicioImpl implements ClienteServicio{
         if(codigo.isEmpty()){
             throw new Exception("Por favor ingrese una cedula");
         }
-
         Cliente cliente = clienteRepo.findById(codigo).orElse(null);
-
-        if(cliente == null){
-            throw new Exception("El cliente no existe, verifique los datos");
-        }
 
         return cliente;
     }
@@ -284,5 +279,10 @@ public class ClienteServicioImpl implements ClienteServicio{
     @Override
     public Ciudad obtenerCiudad(Integer codigo) throws Exception {
         return ciudadRepo.findById(codigo).orElse(null);
+    }
+
+    @Override
+    public List<Hotel> listarHoteles() {
+        return hotelRepo.findAll();
     }
 }

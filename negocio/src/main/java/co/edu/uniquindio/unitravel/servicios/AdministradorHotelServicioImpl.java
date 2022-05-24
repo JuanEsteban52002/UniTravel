@@ -2,6 +2,7 @@ package co.edu.uniquindio.unitravel.servicios;
 
 import co.edu.uniquindio.unitravel.entidades.AdministradorHotel;
 import co.edu.uniquindio.unitravel.entidades.Ciudad;
+import co.edu.uniquindio.unitravel.entidades.Habitacion;
 import co.edu.uniquindio.unitravel.entidades.Hotel;
 import co.edu.uniquindio.unitravel.repositorios.AdministradorHotelRepo;
 import co.edu.uniquindio.unitravel.repositorios.CiudadRepo;
@@ -18,14 +19,10 @@ public class AdministradorHotelServicioImpl implements AdministradorHotelServici
 
     @Autowired
     private AdministradorHotelRepo adminHotelRepo;
-
     @Autowired
     private HotelRepo hotelRepo;
-
     @Autowired
     private CiudadRepo ciudadRepo;
-
-
 
     public AdministradorHotelServicioImpl(AdministradorHotelRepo adminHotelRepo, HotelRepo hotelRepo){
         this.adminHotelRepo = adminHotelRepo;
@@ -95,6 +92,31 @@ public class AdministradorHotelServicioImpl implements AdministradorHotelServici
             throw new Exception("Por favor envie un codigo");
         }
         return hotelRepo.findById(codigoHotel).orElse(null);
+    }
+
+    @Override
+    public Habitacion crearHabitacion(Habitacion habitacion) {
+        return null;
+    }
+
+    @Override
+    public void eliminarHabitacion(Integer numero) throws Exception {
+
+    }
+
+    @Override
+    public Habitacion modificarHabitacion(Habitacion habitacion) throws Exception {
+        return null;
+    }
+
+    @Override
+    public Habitacion obtenerHabitacion(Integer codigoHabitacion, Integer codigoHotel) throws Exception {
+        return adminHotelRepo.obtenerHabitacion(codigoHabitacion, codigoHotel);
+    }
+
+    @Override
+    public List<Habitacion> listarHabitacionesHotel(String codigoHotel) {
+        return null;
     }
 
     @Override

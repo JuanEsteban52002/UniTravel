@@ -35,10 +35,10 @@ public class CaracteristicaTest {
     @Sql("classpath:dataset.sql")
     public void actualizar() {
 
-        Caracteristica caracteristica = caracteristicaRepo.findById("1").orElse(null);
+        Caracteristica caracteristica = caracteristicaRepo.findById(1).orElse(null);
         caracteristica.setNombre("Si hay internet");
         caracteristicaRepo.save(caracteristica);
-        caracteristicaRepo.findById("1").orElse(null);
+        caracteristicaRepo.findById(1).orElse(null);
         Assertions.assertEquals("Si hay internet", caracteristica.getNombre());
     }
 
@@ -46,8 +46,8 @@ public class CaracteristicaTest {
     @Sql("classpath:dataset.sql")
     public void eliminar() {
 
-        caracteristicaRepo.deleteById("1");
-        Caracteristica caracteristica = caracteristicaRepo.findById("1").orElse(null);
+        caracteristicaRepo.deleteById(1);
+        Caracteristica caracteristica = caracteristicaRepo.findById(1).orElse(null);
         Assertions.assertNull(caracteristica);
     }
 
@@ -67,6 +67,13 @@ public class CaracteristicaTest {
         List<Hotel> lista = caracteristicaRepo.obtenerHotelesCaracteristica("Hay camas");
         lista.forEach (System.out:: println);
         Assertions.assertEquals(1, lista.size());
+    }
+
+    @Test
+    public void testCaracteristicaHotel(){
+        List<Caracteristica> caracteristicasHotel = caracteristicaRepo.findAllByTipo(0);
+        caracteristicasHotel.forEach(System.out::println);
+        Assertions.assertEquals(3, caracteristicasHotel.size());
     }
 
 }
