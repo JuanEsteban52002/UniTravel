@@ -85,6 +85,57 @@
 
         <p>Lista de ciudades</p>
         <p>Hoteles recomendados</p>
+
+        <h:form>
+            <p:dataView id="lista-h" value="#{inicioBean.hoteles}" var="hotel" listIcon="pi pi-bars" gridIcon="pi pi-th-large">
+
+                <p:dataViewListItem>
+
+                    <div class="row d-flex m-5" >
+                        <div class="col-lg-2 col-md-1" style="text-align: center" >
+                            <img src="/uploads/#{hotel.imagenPrincipal}" class="imagen-hotel" alt="Imagen"/>
+                        </div>
+                        <div class="col-lg-8 col-md-1 align-self-center" >
+                            <p:outputPanel>
+                                <h:panelGrid columns="2" cellpadding="5">
+                                    <h:outputText value="Nombre:" />
+                                    <h:outputText value="#{hotel.nombre}" style="font-weight:bold"/>
+                                    <h:outputText value="Ciudad:" />
+                                    <h:outputText value="#{hotel.ciudad.nombre}" />
+                                    <h:outputText value="Caracteristicas: " />
+
+                                    <p:repeat value="#{hotel.caracteristicas}" var="car">
+                                        <p:chip label="#{car.nombre}" styleClass="me-2"/>
+                                    </p:repeat>
+
+                                    <h:outputText value="Descripción:" />
+                                    <h:outputText value="#{hotel.descripcion}" />
+                                </h:panelGrid>
+                            </p:outputPanel>
+                        </div>
+                        <div class="col-lg-2 col-md-1 align-self-center" >
+                            <p:commandButton value="Ver detalle" styleClass="ui-button-raised"
+                                             icon="pi pi-arrow-right" iconPos="right" />
+                        </div>
+                    </div>
+
+                </p:dataViewListItem>
+
+                <p:dataViewGridItem>
+                    <div class="card" >
+                        <img src="/uploads/#{hotel.imagenPrincipal}" class="card-img-top" alt="..." />
+                        <div class="card-body">
+                            <h5 class="card-title">#{hotel.nombre}</h5>
+                            <p class="card-text">#{hotel.ciudad.nombre}</p>
+                            <hr />
+                            <p:commandButton value="Ver detalle" styleClass="ui-button-raised"
+                                             icon="pi pi-arrow-right" iconPos="right" />
+                        </div>
+                    </div>
+                </p:dataViewGridItem>
+
+            </p:dataView>
+        </h:form>
     </div>
 
     <div id="pie_pagina">

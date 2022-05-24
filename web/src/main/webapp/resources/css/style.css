@@ -5,7 +5,7 @@
 }
 
 .color-principal{
-    background-color: #9ee0b3;
+    background-color: #40916C;
 }
 
 .icon-menu{
@@ -15,4 +15,10 @@
 
 #buscador_h .ui-inputtext{
     width: 500px;
+}
+.imagen-hotel{
+    width: 100%;
+}
+body .ui-dataview .ui-dataview-content{
+    background: none;
 }
