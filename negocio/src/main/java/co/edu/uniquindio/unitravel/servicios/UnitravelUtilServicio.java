@@ -9,6 +9,8 @@ public interface UnitravelUtilServicio {
 
     Caracteristica obtenerCaracteristica(Integer codigo) throws Exception;
 
+    List<Caracteristica> listarCaracteristicas();
+
     List<Caracteristica> listarCaracteristicasHotel();
 
     List<Caracteristica> listarCaracteristicasHabitacion();

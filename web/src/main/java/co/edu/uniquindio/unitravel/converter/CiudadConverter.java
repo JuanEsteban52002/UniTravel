@@ -14,17 +14,16 @@ import java.io.Serializable;
 import static java.lang.Integer.*;
 
 @Component
-public class CiudadConverter implements Serializable, Converter<Ciudad> {
+public class CiudadConverter implements Converter<Ciudad>, Serializable {
 
     @Autowired
-    private CiudadRepo clienteServicio;
+    private ClienteServicio clienteServicio;
 
     @Override
     public Ciudad getAsObject(FacesContext context, UIComponent component, String value) {
 
         try {
-            Ciudad ciudad;
-            ciudad = clienteServicio.obtenerCiudadPorId(parseInt(value));
+            Ciudad ciudad = clienteServicio.obtenerCiudad(Integer.parseInt(value));
             return ciudad;
         } catch (Exception e) {
             e.printStackTrace();
@@ -35,7 +34,8 @@ public class CiudadConverter implements Serializable, Converter<Ciudad> {
     @Override
     public String getAsString(FacesContext context, UIComponent component, Ciudad value) {
         if (value != null) {
-            return Integer.toString(value.getCodigo());
+            String valor = value.getCodigo()+"";
+            return valor;
         }
         return "";
     }
