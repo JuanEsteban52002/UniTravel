@@ -78,7 +78,6 @@ public class HotelBean implements Serializable {
                    Hotel h = administradorHotelServicio.crearHotel(hotel);
 
                     habitaciones.forEach(hab -> {
-
                         hab.setHotel(h);
                         administradorHotelServicio.crearHabitacion(hab);
                     });
@@ -118,7 +117,7 @@ public class HotelBean implements Serializable {
     }
 
     public void crearHabitacion(){
-        if(!imagenesHabitacion.isEmpty()){
+        if(imagenesHabitacion.isEmpty()){
 
 
             habitacion = new Habitacion();

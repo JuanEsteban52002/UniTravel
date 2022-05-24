@@ -17,8 +17,17 @@
     width: 500px;
 }
 .imagen-hotel{
-    width: 100%;
+    width: 50%;
 }
+.imagen-default{
+    width: 30px;
+
+}
+
 body .ui-dataview .ui-dataview-content{
     background: none;
+}
+
+.item-ciudad{
+    text-align: center;
 }

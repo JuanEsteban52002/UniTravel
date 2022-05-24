@@ -64,19 +64,19 @@
                 <div class="container d-flex flex-wrap justify-content-center">
                     <h:form id="buscador_h" styleClass="col-12 col-lg-auto mb-2 mb-lg-0 me-lg-auto">
                         <div class = "input-search ui-inputgroup">
-                            <p:inputText placeholder="¿Que hotel esta buscando?" required="true" values="#{busquedaBean.busqueda}" />
+                            <p:inputText placeholder="¿Que hotel esta buscando?" required="true"  values="#{busquedaBean.busqueda}" />
+
                             <p:commandButton update="@form" icon="pi pi-search" action="#{busquedaBean.buscar}" />
                         </div>
                     </h:form>
                     <div class="text-end">
                         <h:form>
-                            <button type="button" class="btn btn-light text-dark me-2">Login</button>
-                            <p:commandButton type="button" class="btn btn-primary" action="inicioBean.irRegistro"/>
+                            <button type="button" class="btn btn-light text-dark me-2">Ingresar</button>
+                            <p:commandButton type="button" class="btn btn-primary" value="Registrarse" action="inicioBean.irRegistro"/>
                         </h:form>
                     </div>
                 </div>
             </div>
-           <h1>Hola</h1>
         </div>
     </div>
 
@@ -84,6 +84,15 @@
 
 
         <p>Lista de ciudades</p>
+
+        <p:carousel value="#{inicioBean.ciudades}" var="ciudad" numVisible="3" numScroll="1" circular="true" autoplayInterval="2000">
+            <div class="card m-5 item-ciudad" >
+                <p>#{ciudad.nombre}</p>
+            </div>
+
+        </p:carousel>
+
+
         <p>Hoteles recomendados</p>
 
         <h:form>
@@ -93,7 +102,7 @@
 
                     <div class="row d-flex m-5" >
                         <div class="col-lg-2 col-md-1" style="text-align: center" >
-                            <img src="/uploads/#{hotel.imagenPrincipal}" class="imagen-hotel" alt="Imagen"/>
+                            <img src="/uploads/#{hotel.imagenPrincipal}" class="imagen-hotel" alt="Imagen" id="imagen-default"/>
                         </div>
                         <div class="col-lg-8 col-md-1 align-self-center" >
                             <p:outputPanel>
@@ -114,21 +123,21 @@
                             </p:outputPanel>
                         </div>
                         <div class="col-lg-2 col-md-1 align-self-center" >
-                            <p:commandButton value="Ver detalle" styleClass="ui-button-raised"
-                                             icon="pi pi-arrow-right" iconPos="right" />
+                            <p:commandButton value="Ver detalle" action="#{inicioBean.irDetalleHotel(hotel.codigo)}" styleClass="ui-button-raised" icon="pi pi-arrow-right" iconPos="right" />
                         </div>
                     </div>
 
                 </p:dataViewListItem>
 
                 <p:dataViewGridItem>
+
                     <div class="card" >
                         <img src="/uploads/#{hotel.imagenPrincipal}" class="card-img-top" alt="..." />
                         <div class="card-body">
                             <h5 class="card-title">#{hotel.nombre}</h5>
                             <p class="card-text">#{hotel.ciudad.nombre}</p>
                             <hr />
-                            <p:commandButton value="Ver detalle" styleClass="ui-button-raised"
+                            <p:commandButton value="Ver detalle" action="#{inicioBean.irDetalleHotel(hotel.codigo)}" styleClass="ui-button-raised"
                                              icon="pi pi-arrow-right" iconPos="right" />
                         </div>
                     </div>
