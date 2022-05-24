@@ -1,6 +1,7 @@
 package co.edu.uniquindio.unitravel.converter;
 
 import co.edu.uniquindio.unitravel.entidades.Ciudad;
+import co.edu.uniquindio.unitravel.repositorios.CiudadRepo;
 import co.edu.uniquindio.unitravel.servicios.ClienteServicio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -10,8 +11,10 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import java.io.Serializable;
 
+import static java.lang.Integer.*;
+
 @Component
-public class CiudadConverter implements Serializable, Converter<Ciudad> {
+public class CiudadConverter implements Converter<Ciudad>, Serializable {
 
     @Autowired
     private ClienteServicio clienteServicio;
@@ -30,8 +33,9 @@ public class CiudadConverter implements Serializable, Converter<Ciudad> {
 
     @Override
     public String getAsString(FacesContext context, UIComponent component, Ciudad value) {
-        if (!value.equals(null)) {
-            return Integer.toString(value.getCodigo());
+        if (value != null) {
+            String valor = value.getCodigo()+"";
+            return valor;
         }
         return "";
     }

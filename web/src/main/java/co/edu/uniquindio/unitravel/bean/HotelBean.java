@@ -38,33 +38,35 @@ public class HotelBean implements Serializable {
     @Getter @Setter
     private List<Ciudad> ciudades;
 
-    @Setter @Getter
+    @Getter @Setter
+    private List<String> imagenes;
+
+    @Getter @Setter
     private List<Caracteristica> caracteristicas;
 
 
     //-------------------------------------------//
     @PostConstruct
-    public void inicializar(){
+    public void inicializar() throws Exception {
 
         hotel = new Hotel();
-        imagenes = new ArrayList<>();
+        imagenes = new ArrayList<String>();
         ciudades = administradorHotelServicio.listarCiudades();
         caracteristicas = unitravelUtilServicio.listarCaracteristicasHotel();
+        System.out.println(caracteristicas);
     }
 
     @Value("${upload.url}")
     private String urlImagenes;
 
-    private List<String> imagenes;
 
     public String registrarHotel(){
         try {
 
-            if(imagenes.size() > 10) {
+            if(imagenes.size() > 1) {
 
-                hotel.setCiudad(administradorHotelServicio.obtenerCiudad(1));
                 hotel.setAdministradorHotel(administradorHotelServicio.obtenerAdministradorHotel("111"));
-                hotel.setFotos(imagenes);
+
 
                 administradorHotelServicio.crearHotel(hotel);
                 // FacesMessage msj = new FacesMessage(FacesMessage.SEVERITY_INFO, "Alerta", "Hotel creado exitosamente");
