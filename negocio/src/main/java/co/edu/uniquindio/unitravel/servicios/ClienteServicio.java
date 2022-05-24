@@ -52,4 +52,6 @@ public interface ClienteServicio {
 
     Ciudad obtenerCiudad(Integer codigo) throws Exception;
 
+    List<Hotel> listarHoteles();
+
 }

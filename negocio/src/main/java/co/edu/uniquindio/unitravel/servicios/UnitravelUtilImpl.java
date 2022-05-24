@@ -1,7 +1,9 @@
 package co.edu.uniquindio.unitravel.servicios;
 
+import co.edu.uniquindio.unitravel.entidades.Cama;
 import co.edu.uniquindio.unitravel.entidades.Caracteristica;
 import co.edu.uniquindio.unitravel.entidades.Ciudad;
+import co.edu.uniquindio.unitravel.repositorios.CamaRepo;
 import co.edu.uniquindio.unitravel.repositorios.CaracteristicaRepo;
 import co.edu.uniquindio.unitravel.repositorios.CiudadRepo;
 import org.springframework.stereotype.Service;
@@ -13,10 +15,14 @@ public class UnitravelUtilImpl implements UnitravelUtilServicio{
 
     private CaracteristicaRepo caracteristicaRepo;
     private CiudadRepo ciudadRepo;
+    private CamaRepo camaRepo;
 
-    public UnitravelUtilImpl(CaracteristicaRepo caracteristicaRepo, CiudadRepo ciudadRepo){
+    public UnitravelUtilImpl(CaracteristicaRepo caracteristicaRepo,
+                             CiudadRepo ciudadRepo,
+                             CamaRepo camaRepo){
         this.ciudadRepo = ciudadRepo;
         this.caracteristicaRepo = caracteristicaRepo;
+        this.camaRepo = camaRepo;
     }
 
     //----------------------------------------------------------//
@@ -43,6 +49,11 @@ public class UnitravelUtilImpl implements UnitravelUtilServicio{
     @Override
     public List<Ciudad> listarCiudades() {
         return ciudadRepo.findAll();
+    }
+
+    @Override
+    public List<Cama> listarCamas() {
+        return camaRepo.findAll();
     }
 
 }

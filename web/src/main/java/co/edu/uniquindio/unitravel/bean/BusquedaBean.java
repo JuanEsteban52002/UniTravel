@@ -16,7 +16,7 @@ import java.util.List;
 
 @Component
 @ViewScoped
-public class busquedaBean implements Serializable {
+public class BusquedaBean implements Serializable {
 
     @Autowired
     private ClienteServicio clienteServicio;
@@ -27,14 +27,22 @@ public class busquedaBean implements Serializable {
     @Value("#{param['busqueda']}")
     private String busquedaParametro;
 
+    @Getter @Setter
     private List<Hotel> hoteles;
 
     @PostConstruct
     public void inicializar(){
-        if(busquedaParametro!=null && !busquedaParametro.isEmpty()) {
-            hoteles = clienteServicio.buscarHotelesCiudad(busquedaParametro);
-        }else{
-            hoteles = new ArrayList<>();
+
+        hoteles = new ArrayList<>();
+
+        try{
+            if(busquedaParametro!=null && !busquedaParametro.isEmpty()) {
+                hoteles = clienteServicio.buscarHotelesCiudad(busquedaParametro);
+            }else{
+                hoteles = new ArrayList<>();
+            }
+        }catch (Exception e){
+            e.printStackTrace();
         }
     }
 

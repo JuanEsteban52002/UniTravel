@@ -22,13 +22,14 @@
                <p:outputLabel for="direccion_hotel" value="Direccion" />
                <p:inputText id="direccion_hotel" type="text" value="#{hotelBean.hotel.direccion}" required="true"/>
 
-
-
                <p:outputLabel for="tel_hotel" value="Telefono"/>
                <p:inputText id="tel_hotel" type="text" value="#{hotelBean.hotel.telefono}" required="true"/>
 
                <p:outputLabel for="num_estrellas"  value="Numero Estrellas"/>
                <p:inputText id="num_estrellas" type="text" value="#{hotelBean.hotel.numEstrellas}" required="true"/>
+
+               <p:outputLabel for="desc_h"  value="Descripción"/>
+               <p:inputTextarea id="desc_h" type="text" value="#{hotelBean.hotel.descripcion}" required="true"/>
 
                <p:outputLabel value="Ciudad: " for="ciudad_h"/>
                <p:selectOneMenu id="ciudad_h" value="#{hotelBean.hotel.ciudad}" required="true" converter="#{ciudadConverter}">
@@ -45,7 +46,7 @@
 
                <p:outputLabel value="Caracteristicas:" for="caract_h" />
                <p:selectManyCheckbox id="caract_h" value="#{hotelBean.hotel.caracteristicas}" required="true" converter="#{caracteristicasConverter}">
-                   <f:selectItems value="#{hotelBean.caracteristicas}" var="car" itemLabel="#{car.nombre}" itemValue="#{car}"/>
+                   <f:selectItems value="#{hotelBean.caracteristicasHotel}" var="car" itemLabel="#{car.nombre}" itemValue="#{car}"/>
                </p:selectManyCheckbox>
 
            </h:panelGrid>

@@ -280,4 +280,9 @@ public class ClienteServicioImpl implements ClienteServicio{
     public Ciudad obtenerCiudad(Integer codigo) throws Exception {
         return ciudadRepo.findById(codigo).orElse(null);
     }
+
+    @Override
+    public List<Hotel> listarHoteles() {
+        return hotelRepo.findAll();
+    }
 }
