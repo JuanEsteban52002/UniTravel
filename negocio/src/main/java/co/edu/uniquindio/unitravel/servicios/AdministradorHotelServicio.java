@@ -21,8 +21,6 @@ public interface AdministradorHotelServicio {
 
     List<Hotel> listarHoteles(String codigoAdmin);
 
-    Hotel obtenerHotel(Integer codigoHotel) throws Exception;
-
     Habitacion crearHabitacion(Habitacion habitacion);
 
     void eliminarHabitacion(Integer numero) throws Exception;

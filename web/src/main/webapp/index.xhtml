@@ -76,14 +76,22 @@
                     </div>
                 </div>
             </div>
-           <h1>Hola</h1>
         </div>
     </div>
 
-    <div id="contenido">
+    <div id="contenido" class="fondo-c">
 
 
         <p>Lista de ciudades</p>
+
+        <p:carousel value="#{inicioBean.ciudades}" var="ciudad" numVisible="3" circular="true" autoplayInterval="5000">
+
+            <div class="card">
+                <p>#{ciudad.nombre}</p>
+            </div>
+
+        </p:carousel>
+
         <p>Hoteles recomendados</p>
 
         <h:form>
@@ -114,7 +122,7 @@
                             </p:outputPanel>
                         </div>
                         <div class="col-lg-2 col-md-1 align-self-center" >
-                            <p:commandButton value="Ver detalle" styleClass="ui-button-raised"
+                            <p:commandButton value="Ver detalle" action="#{inicioBean.irDetalleHotel(hotel.codigo)}" styleClass="ui-button-raised"
                                              icon="pi pi-arrow-right" iconPos="right" />
                         </div>
                     </div>
@@ -128,7 +136,7 @@
                             <h5 class="card-title">#{hotel.nombre}</h5>
                             <p class="card-text">#{hotel.ciudad.nombre}</p>
                             <hr />
-                            <p:commandButton value="Ver detalle" styleClass="ui-button-raised"
+                            <p:commandButton value="Ver detalle" action="#{inicioBean.irDetalleHotel(hotel.codigo)}" styleClass="ui-button-raised"
                                              icon="pi pi-arrow-right" iconPos="right" />
                         </div>
                     </div>

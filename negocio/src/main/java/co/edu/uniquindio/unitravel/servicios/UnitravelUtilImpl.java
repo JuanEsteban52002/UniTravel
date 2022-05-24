@@ -3,9 +3,11 @@ package co.edu.uniquindio.unitravel.servicios;
 import co.edu.uniquindio.unitravel.entidades.Cama;
 import co.edu.uniquindio.unitravel.entidades.Caracteristica;
 import co.edu.uniquindio.unitravel.entidades.Ciudad;
+import co.edu.uniquindio.unitravel.entidades.Hotel;
 import co.edu.uniquindio.unitravel.repositorios.CamaRepo;
 import co.edu.uniquindio.unitravel.repositorios.CaracteristicaRepo;
 import co.edu.uniquindio.unitravel.repositorios.CiudadRepo;
+import co.edu.uniquindio.unitravel.repositorios.HotelRepo;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,12 +19,23 @@ public class UnitravelUtilImpl implements UnitravelUtilServicio{
     private CiudadRepo ciudadRepo;
     private CamaRepo camaRepo;
 
+    private HotelRepo hotelRepo;
+
     public UnitravelUtilImpl(CaracteristicaRepo caracteristicaRepo,
                              CiudadRepo ciudadRepo,
-                             CamaRepo camaRepo){
+                             CamaRepo camaRepo,
+                             HotelRepo hotelRepo){
         this.ciudadRepo = ciudadRepo;
         this.caracteristicaRepo = caracteristicaRepo;
         this.camaRepo = camaRepo;
+    }
+
+    @Override
+    public Hotel obtenerHotel(Integer codigoHotel) throws Exception  {
+        if(codigoHotel == null){
+            throw new Exception("Por favor envie un codigo");
+        }
+        return hotelRepo.findById(codigoHotel).orElse(null);
     }
 
     //----------------------------------------------------------//
