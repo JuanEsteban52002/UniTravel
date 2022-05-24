@@ -2,7 +2,6 @@ package co.edu.uniquindio.unitravel;
 
 
 import co.edu.uniquindio.unitravel.entidades.Estado;
-import co.edu.uniquindio.unitravel.entidades.Hotel;
 import co.edu.uniquindio.unitravel.entidades.Vuelo;
 import co.edu.uniquindio.unitravel.entidades.dto.VuelosCiudadDTO;
 import co.edu.uniquindio.unitravel.repositorios.VueloRepo;
