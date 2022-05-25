@@ -70,7 +70,7 @@ public class HotelBean implements Serializable {
     public String registrarHotel(){
         try {
 
-            if(imagenesHotel.size() > 0) {
+            if(imagenesHotel.size() > 1) {
                 if(habitaciones.size() > 0) {
 
                     hotel.setAdministradorHotel(administradorHotelServicio.obtenerAdministradorHotel("111"));
@@ -85,15 +85,15 @@ public class HotelBean implements Serializable {
                     return "registro_exitoso?faces-redirect=true";
                 }else{
                     FacesMessage msj = new FacesMessage(FacesMessage.SEVERITY_WARN, "Alerta", "Es obligatorio subir imagenes");
-                    FacesContext.getCurrentInstance().addMessage(null, msj);
+                    FacesContext.getCurrentInstance().addMessage("msj_bean", msj);
                 }
             }else {
                 FacesMessage msj = new FacesMessage(FacesMessage.SEVERITY_WARN, "Alerta", "Es obligatorio subir imagenes");
-                FacesContext.getCurrentInstance().addMessage(null, msj);
+                FacesContext.getCurrentInstance().addMessage("msj_bean", msj);
             }
         } catch (Exception e) {
             FacesMessage msj = new FacesMessage(FacesMessage.SEVERITY_INFO, "Alerta", e.getMessage());
-            FacesContext.getCurrentInstance().addMessage(null, msj);
+            FacesContext.getCurrentInstance().addMessage("msj_bean", msj);
         }
         return null;
     }
@@ -126,7 +126,7 @@ public class HotelBean implements Serializable {
             imagenesHabitacion = new ArrayList<>();
         }else{
             FacesMessage ms = new FacesMessage(FacesMessage.SEVERITY_WARN, "Alerta", "Es obligatorio asignarle habitaciones al hotel");
-            FacesContext.getCurrentInstance().addMessage(null, ms);
+            FacesContext.getCurrentInstance().addMessage("msj_bean", ms);
         }
     }
 }

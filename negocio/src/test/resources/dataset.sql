@@ -1,4 +1,4 @@
-insert into ciudad values (1, "Bogota");
+insert into ciudad values (1, "Bogota",https://upload.wikimedia.org/wikipedia/commons/2/24/Bogot%C3%A1_Colpatria_Night.jpg);
 insert into ciudad values (2, "Medellin");
 insert into ciudad values (3, "Cali");
 insert into ciudad values (4, "Cartagena");
