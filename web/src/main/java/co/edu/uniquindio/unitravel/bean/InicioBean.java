@@ -34,9 +34,13 @@ public class InicioBean implements Serializable {
     }
 
     public String irRegistro(){
+
         return "registrar_cliente?faces-redirect=true";
     }
 
     public String irDetalleHotel(String codigoHotel){
-        return "detalle_hotel?faces-redirect=true&amp;hotel_id="+codigoHotel;}
+        return "detalle_hotel?faces-redirect=true&amp;hotel_id="+codigoHotel;
+    }
+
+
 }

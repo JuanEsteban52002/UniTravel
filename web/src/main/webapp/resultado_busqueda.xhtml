@@ -6,66 +6,63 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-<h:head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Unitravel | Resultados</title>
-    <h:outputStylesheet library="css" name="bootstrap.min.css" />
-    <h:outputStylesheet library="css" name="style.css" />
-    <h:outputScript library="js" name="bootstrap.bundle.min.js" />
-</h:head>
-<h:body>
-    <h1>¡Resultado busqueda!</h1>
+<ui:composition template="/WEB-INF/template.xhtml">
+    <ui:define name="title">Resultados de Busqueda</ui:define>
+    <ui:define name="content">
+        <h1>¡Resultado busqueda!</h1>
 
-    <h:form>
-        <p:dataView id="lista-h" value="#{busquedaBean.hoteles}" var="hotel" listIcon="pi pi-bars" gridIcon="pi pi-th-large">
+        <h:form>
+            <p:dataView id="lista-h" value="#{busquedaBean.hoteles}" var="hotel" listIcon="pi pi-bars"
+                        gridIcon="pi pi-th-large">
 
-            <p:dataViewListItem>
+                <p:dataViewListItem>
 
-                <div class="row d-flex m-5" >
-                    <div class="col-lg-2 col-md-1" style="text-align: center" >
-                        <img src="/uploads/#{hotel.imagenPrincipal}" class="imagen-hotel" alt="Imagen"/>
+                    <div class="row d-flex m-5">
+                        <div class="col-lg-2 col-md-1" style="text-align: center">
+                            <img src="/uploads/#{hotel.imagenPrincipal}" class="imagen-hotel" alt="Imagen"/>
+                        </div>
+                        <div class="col-lg-8 col-md-1 align-self-center">
+                            <p:outputPanel>
+                                <h:panelGrid columns="2" cellpadding="5">
+                                    <h:outputText value="Nombre:"/>
+                                    <h:outputText value="#{hotel.nombre}" style="font-weight:bold"/>
+                                    <h:outputText value="Ciudad:"/>
+                                    <h:outputText value="#{hotel.ciudad.nombre}"/>
+                                    <h:outputText value="Caracteristicas: "/>
+
+                                    <p:repeat value="#{hotel.caracteristicas}" var="car">
+                                        <p:chip label="#{car.nombre}" styleClass="me-2"/>
+                                    </p:repeat>
+
+                                    <h:outputText value="Descripción:"/>
+                                    <h:outputText value="#{hotel.descripcion}"/>
+                                </h:panelGrid>
+                            </p:outputPanel>
+                        </div>
+                        <div class="col-lg-2 col-md-1 align-self-center">
+                            <p:commandButton value="Ver detalle" styleClass="ui-button-raised"
+                                             icon="pi pi-arrow-right" iconPos="right"/>
+                        </div>
                     </div>
-                    <div class="col-lg-8 col-md-1 align-self-center" >
-                        <p:outputPanel>
-                            <h:panelGrid columns="2" cellpadding="5">
-                                <h:outputText value="Nombre:" />
-                                <h:outputText value="#{hotel.nombre}" style="font-weight:bold"/>
-                                <h:outputText value="Ciudad:" />
-                                <h:outputText value="#{hotel.ciudad.nombre}" />
-                                <h:outputText value="Caracteristicas: " />
 
-                                <p:repeat value="#{hotel.caracteristicas}" var="car">
-                                    <p:chip label="#{car.nombre}" styleClass="me-2"/>
-                                </p:repeat>
+                </p:dataViewListItem>
 
-                                <h:outputText value="Descripción:" />
-                                <h:outputText value="#{hotel.descripcion}" />
-                            </h:panelGrid>
-                        </p:outputPanel>
+                <p:dataViewGridItem>
+                    <div class="card">
+                        <img src="/uploads/#{hotel.imagenPrincipal}" class="card-img-top" alt="..."/>
+                        <div class="card-body">
+                            <h5 class="card-title">#{hotel.nombre}</h5>
+                            <p class="card-text">#{hotel.ciudad.nombre}</p>
+                            <hr/>
+                            <p:commandButton value="Ver detalle" styleClass="ui-button-raised"
+                                             icon="pi pi-arrow-right" iconPos="right"/>
+                        </div>
                     </div>
-                    <div class="col-lg-2 col-md-1 align-self-center" >
-                        <p:commandButton value="Ver detalle" styleClass="ui-button-raised"
-                                         icon="pi pi-arrow-right" iconPos="right" />
-                    </div>
-                </div>
+                </p:dataViewGridItem>
 
-            </p:dataViewListItem>
+            </p:dataView>
+        </h:form>
+    </ui:define>
+</ui:composition>
 
-            <p:dataViewGridItem>
-                <div class="card" >
-                    <img src="/uploads/#{hotel.imagenPrincipal}" class="card-img-top" alt="..." />
-                    <div class="card-body">
-                        <h5 class="card-title">#{hotel.nombre}</h5>
-                        <p class="card-text">#{hotel.ciudad.nombre}</p>
-                        <hr />
-                        <p:commandButton value="Ver detalle" styleClass="ui-button-raised"
-                                         icon="pi pi-arrow-right" iconPos="right" />
-                    </div>
-                </div>
-            </p:dataViewGridItem>
-
-        </p:dataView>
-    </h:form>
-</h:body>
 </html>

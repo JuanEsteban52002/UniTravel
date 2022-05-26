@@ -32,6 +32,9 @@ public class Ciudad implements Serializable {
     @OneToMany(mappedBy = "ciudad")
     private List<Aeropuerto> aeropuertos;
 
+    @Column(nullable = false)
+    private String urlImagen;
+
     @ToString.Exclude
     @OneToMany(mappedBy = "ciudadOrigen")
     private List<Vuelo> vuelosOrigen;

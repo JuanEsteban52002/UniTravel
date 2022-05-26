@@ -19,6 +19,26 @@
 .imagen-hotel{
     width: 100%;
 }
+.imagen-hotel-grid{
+    width: 100%;
+    height: 200px;
+}
 body .ui-dataview .ui-dataview-content{
     background: none;
+}
+
+.item-ciudad{
+    text-align: center;
+    position: relative;
+    border: none;
+    border-radius: 10px;
+    -webkit-box-shadow: 2px 2px 9px -1px #42445A;
+    box-shadow: 2px 2px 9px -1px #42445A;
+    overflow: hidden;
+}
+
+.img-ciudad{
+    width: 100%;
+    height: 210px;
+    overflow: hidden;
 }
