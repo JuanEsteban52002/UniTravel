@@ -31,7 +31,7 @@
                                      converter="#{ciudadConverter}">
                         <f:selectItem itemLabel="Seleccionar la ciudad" noSelectionOption="true"/>
                         <f:selectItems value="#{clienteBean.ciudades}" var="ciudad" itemLabel="#{ciudad.nombre}"
-                                       itemValue="ciudad"/>
+                                       itemValue="#{ciudad}"/>
                     </p:selectOneMenu>
                     <p:message for="ciudad_c"/>
 
