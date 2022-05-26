@@ -15,8 +15,6 @@ import java.util.List;
 
 @Component
 @ViewScoped
-@Getter
-@Setter
 public class InicioBean implements Serializable {
 
     @Getter @Setter
