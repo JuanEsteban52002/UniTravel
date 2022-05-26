@@ -8,41 +8,45 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <ui:composition template="/WEB-INF/template.xhtml">
     <ui:define name="title">Registro</ui:define>
-<ui:define name="content">
+    <ui:define name="content">
 
-    <p:panel>
-        <h:form>
-            <h:panelGrid columns="3" cellpadding="5">
+        <p:panel>
+            <h:form>
+                <h:panelGrid columns="3" cellpadding="5">
 
-                <p:outputLabel value="Cedula: " for="cedula_c"/>
-                <p:inputText id="cedula_c" value="#{clienteBean.cliente.cedula}" required="true"/>
-                <p:message for="cedula_c"/>
+                    <p:outputLabel value="Cedula: " for="cedula_c"/>
+                    <p:inputText id="cedula_c" value="#{clienteBean.cliente.cedula}" required="true"/>
+                    <p:message for="cedula_c"/>
 
-                <p:outputLabel value="Nombre: " for="nombre_c"/>
-                <p:inputText id="nombre_c" value="#{clienteBean.cliente.nombre}" required="true"/>
-                <p:message for="nombre_c"/>
+                    <p:outputLabel value="Nombre: " for="nombre_c"/>
+                    <p:inputText id="nombre_c" value="#{clienteBean.cliente.nombre}" required="true"/>
+                    <p:message for="nombre_c"/>
 
-                <p:outputLabel value="Correo: " for="email_c"/>
-                <p:inputText id="email_c" type="email" value="#{clienteBean.cliente.email}" required="true"/>
-                <p:message for="email_c"/>
+                    <p:outputLabel value="Correo: " for="email_c"/>
+                    <p:inputText id="email_c" type="email" value="#{clienteBean.cliente.email}" required="true"/>
+                    <p:message for="email_c"/>
 
-                <p:outputLabel value="Ciudad: " for="ciudad_c"/>
-                <p:selectOneMenu id="ciudad_c" value="#{clienteBean.cliente.ciudad}" required="true" converter="#{ciudadConverter}">
-                    <f:selectItem itemLabel="Seleccionar la ciudad" noSelectionOption="true"/>
-                    <f:selectItems value="#{clienteBean.ciudades}" var="ciudad" itemLabel="#{ciudad.nombre}" itemValue="ciudad"/>
-                </p:selectOneMenu>
-                <p:message for="ciudad_c"/>
+                    <p:outputLabel value="Ciudad: " for="ciudad_c"/>
+                    <p:selectOneMenu id="ciudad_c" value="#{clienteBean.cliente.ciudad}" required="true"
+                                     converter="#{ciudadConverter}">
+                        <f:selectItem itemLabel="Seleccionar la ciudad" noSelectionOption="true"/>
+                        <f:selectItems value="#{clienteBean.ciudades}" var="ciudad" itemLabel="#{ciudad.nombre}"
+                                       itemValue="ciudad"/>
+                    </p:selectOneMenu>
+                    <p:message for="ciudad_c"/>
 
-                <p:outputLabel value="Contraseña: " for="password_c"/>
-                <p:password id="password_c" value="#{clienteBean.cliente.password}" toggleMask="true" redisplay="true" required="true"/>
-                <p:message for="password_c"/>
+                    <p:outputLabel value="Contraseña: " for="password_c"/>
+                    <p:password id="password_c" value="#{clienteBean.cliente.password}" toggleMask="true"
+                                redisplay="true" required="true"/>
+                    <p:message for="password_c"/>
 
 
-            </h:panelGrid>
-                <p:commandButton value="Registrar" action="#{clienteBean.registrarCliente()}" update="@form" icon="pi pi-plus"/>
+                </h:panelGrid>
+                <p:commandButton value="Registrar" action="#{clienteBean.registrarCliente()}" update="@form"
+                                 icon="pi pi-plus"/>
                 <p:growl for="msj_bean" showDetail="true"/>
-        </h:form>
-    </p:panel>
-</ui:define>
+            </h:form>
+        </p:panel>
+    </ui:define>
 </ui:composition>
 </html>
