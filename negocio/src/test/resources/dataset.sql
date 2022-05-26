@@ -17,9 +17,10 @@ insert into administrador_hotel values ("9999", "admin2@gmail1.com", "Admin 2", 
 insert into administrador values ("8754", "adminUnitravel1@gmail.com", "AdminUni 1", "adminUni1");
 insert into administrador values ("7852", "adminUnitravel2@gmail.com", "AdminUni 2", "adminUni2");
 
-insert into hotel values (1, "Carrera 1", "Hotel 1", 5, "7458241", "5555", 1, "Muy bonito");
-insert into hotel values (2, "Carrera 2", "Hotel 2", 4, "7489652", "9999", 2, "Buena vista");
-insert into hotel values (3, "Carrera 3", "Hotel 3", 4, "7852584", "5555", 1, "Muy cerca a el centro de la ciudad");
+insert into hotel values (1, "Muy bonito", "Carrera 4", "Hotel 4", 5, "7458241", "9999", 2);
+insert into hotel values (2, "Buena vista",  "Carrera 2", "Hotel 2", 4, "7489652", "9999", 2);
+insert into hotel values (3 , "Muy cerca a el centro de la ciudad", "Carrera 3", "Hotel 3", 4, "7852584", "5555", 1);
+
 
 insert into habitacion values (105001, "5", 57000, 1);
 insert into habitacion values (206002, "4", 45000, 2);
@@ -27,9 +28,9 @@ insert into habitacion values (307001, "3", 35000, 1);
 insert into habitacion values (308001, "3", 35000, 1);
 insert into habitacion values (704001, "2", 25000, 1);
 
-insert into cama values (1, "Sencilla", 105);
-insert into cama values (2, "Doble", 206);
-insert into cama values (3, "Triple", 307);
+insert into cama values (1, "Sencilla", 105001);
+insert into cama values (2, "Doble", 206002);
+insert into cama values (3, "Triple", 307001);
 
 insert into caracteristica values (1, "Hay camas", 1);
 insert into caracteristica values (2, "No hay nada", 1);
@@ -80,7 +81,7 @@ insert into vuelo values ("3", "Aero", 0, 2, 1);
 insert into silla values ("1", 0, "A2", 100000, "1");
 insert into silla values ("2", 0, "A3", 100000, "2");
 
-insert into reserva_habitacion values ("1", 50000, 104001, "1");
+insert into reserva_habitacion values ("1", 50000, 105001, "1");
 insert into reserva_habitacion values ("2", 20000, 206002, "2");
 insert into reserva_habitacion values ("3", 20000, 308001, "3");
 
