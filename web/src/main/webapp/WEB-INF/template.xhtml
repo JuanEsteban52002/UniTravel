@@ -74,7 +74,8 @@
                             <p:commandButton type="button" value="Login" onclick="PF('login').show()" styleClass="ui-button-outline ui-button-secondary me-2" icon="pi pi-lock"/>
                             <p:commandButton value="Registrarse" action="#{inicioBean.irRegistro}" />
                         </h:form>
-                        <h:form rendered="#{seguridadBean.autenticado}">
+                        <h:form rendered="#{seguridadBean.autenticado}" styleClass="d-flex">
+                            <p class="me-3 mt-2 mb-0" >Hola, #{seguridadBean.persona.nombre}</p>
                             <p:commandButton type="button" value="Cerrar Sesión" action="#{seguridadBean.cerrarSesion}" icon="pi pi-sign-out"/>
                         </h:form>
                     </div>

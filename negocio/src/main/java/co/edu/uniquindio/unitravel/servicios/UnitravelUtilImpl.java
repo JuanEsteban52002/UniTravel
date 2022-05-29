@@ -2,6 +2,8 @@ package co.edu.uniquindio.unitravel.servicios;
 
 import co.edu.uniquindio.unitravel.entidades.*;
 import co.edu.uniquindio.unitravel.repositorios.*;
+import org.jasypt.contrib.org.apache.commons.codec_1_3.EncoderException;
+import org.jasypt.exceptions.EncryptionOperationNotPossibleException;
 import org.jasypt.util.password.StrongPasswordEncryptor;
 import org.springframework.stereotype.Service;
 
@@ -9,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class UnitravelUtilImpl implements UnitravelUtilServicio{
+public class UnitravelUtilImpl implements UnitravelUtilServicio {
 
     private CaracteristicaRepo caracteristicaRepo;
     private CiudadRepo ciudadRepo;
@@ -28,7 +30,7 @@ public class UnitravelUtilImpl implements UnitravelUtilServicio{
                              ClienteRepo clienteRepo,
                              AdministradorHotelRepo administradorHotelRepo,
                              AdministradorRepo administradorRepo,
-                             HotelRepo hotelRepo){
+                             HotelRepo hotelRepo) {
         this.ciudadRepo = ciudadRepo;
         this.caracteristicaRepo = caracteristicaRepo;
         this.camaRepo = camaRepo;
@@ -39,8 +41,8 @@ public class UnitravelUtilImpl implements UnitravelUtilServicio{
     }
 
     @Override
-    public Hotel obtenerHotel(Integer codigoHotel) throws Exception  {
-        if(codigoHotel == null){
+    public Hotel obtenerHotel(Integer codigoHotel) throws Exception {
+        if (codigoHotel == null) {
             throw new Exception("Por favor envie un codigo");
         }
         return hotelRepo.findById(codigoHotel).orElse(null);
@@ -55,37 +57,42 @@ public class UnitravelUtilImpl implements UnitravelUtilServicio{
     @Override
     public Persona validarLogin(String correo, String password) throws Exception {
 
-        StrongPasswordEncryptor passwordEncryptor = new StrongPasswordEncryptor();
-        Persona cliente = clienteRepo.findByEmail(correo).orElse(null);
+        try {
+            StrongPasswordEncryptor passwordEncryptor = new StrongPasswordEncryptor();
+            Persona cliente = clienteRepo.findByEmail(correo).orElse(null);
 
-        if (cliente == null) {
-            cliente = administradorHotelRepo.findByEmail(correo).orElse(null);
-        }else{
-            if(!passwordEncryptor.checkPassword(password, cliente.getPassword())){
-                throw new Exception("Contraseña incorrecta");
-            }else{
-                return cliente;
+            if (cliente == null) {
+                cliente = administradorHotelRepo.findByEmail(correo).orElse(null);
+            } else {
+                if (!passwordEncryptor.checkPassword(password, cliente.getPassword())) {
+                    throw new Exception("Contraseña incorrecta");
+                } else {
+                    return cliente;
+                }
             }
-        }
 
-        if (cliente == null) {
-            cliente = administradorRepo.findByEmail(correo).orElse(null);
-        }else{
-            if(!passwordEncryptor.checkPassword(password, cliente.getPassword())){
-                throw new Exception("Contraseña incorrecta");
-            }else{
-                return cliente;
+            if (cliente == null) {
+                cliente = administradorRepo.findByEmail(correo).orElse(null);
+            } else {
+                if (!passwordEncryptor.checkPassword(password, cliente.getPassword())) {
+                    throw new Exception("Contraseña incorrecta");
+                } else {
+                    return cliente;
+                }
             }
-        }
 
-        if (cliente == null) {
-            throw new Exception("El correo o la contraseña son incorrectos");
-        }else{
-            if(!passwordEncryptor.checkPassword(password, cliente.getPassword())){
-                throw new Exception("Contraseña incorrecta");
-            }else{
-                return cliente;
+            if (cliente == null) {
+                throw new Exception("El correo o la contraseña son incorrectos");
+            } else {
+                if (!passwordEncryptor.checkPassword(password, cliente.getPassword())) {
+                    throw new Exception("Contraseña incorrecta");
+                } else {
+                    return cliente;
+                }
             }
+        } catch (EncryptionOperationNotPossibleException e) {
+            throw new Exception("Contraseña es incorrecta");
+
         }
     }
 
