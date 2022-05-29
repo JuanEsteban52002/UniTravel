@@ -2,6 +2,7 @@ package co.edu.uniquindio.unitravel.servicios;
 
 import co.edu.uniquindio.unitravel.entidades.*;
 import co.edu.uniquindio.unitravel.repositorios.*;
+import org.jasypt.util.password.StrongPasswordEncryptor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -54,21 +55,40 @@ public class UnitravelUtilImpl implements UnitravelUtilServicio{
     @Override
     public Persona validarLogin(String correo, String password) throws Exception {
 
-        Persona cliente = clienteRepo.findByEmailAndPassword(correo, password).orElse(null);
+        StrongPasswordEncryptor passwordEncryptor = new StrongPasswordEncryptor();
+        Persona cliente = clienteRepo.findByEmail(correo).orElse(null);
 
         if (cliente == null) {
-            cliente = administradorHotelRepo.findByEmailAndPassword(correo, password).orElse(null);
+            cliente = administradorHotelRepo.findByEmail(correo).orElse(null);
+        }else{
+            if(!passwordEncryptor.checkPassword(password, cliente.getPassword())){
+                throw new Exception("Contraseña incorrecta");
+            }else{
+                return cliente;
+            }
         }
 
         if (cliente == null) {
-            cliente = administradorRepo.findByEmailAndPassword(correo, password).orElse(null);
+            cliente = administradorRepo.findByEmail(correo).orElse(null);
+        }else{
+            if(!passwordEncryptor.checkPassword(password, cliente.getPassword())){
+                throw new Exception("Contraseña incorrecta");
+            }else{
+                return cliente;
+            }
         }
 
         if (cliente == null) {
             throw new Exception("El correo o la contraseña son incorrectos");
+        }else{
+            if(!passwordEncryptor.checkPassword(password, cliente.getPassword())){
+                throw new Exception("Contraseña incorrecta");
+            }else{
+                return cliente;
+            }
         }
-        return cliente;
     }
+
 
     @Override
     public List<Caracteristica> listarCaracteristicas() {

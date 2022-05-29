@@ -139,7 +139,7 @@ public class ClienteTest {
     @Sql("classpath:dataset.sql")
     public void findByEmailAndPassword() {
 
-        Optional<Cliente> clientes = clienteRepo.findByEmailAndPassword("pepe@gmail.com", "1234");
+        Optional<Cliente> clientes = clienteRepo.findByEmail("pepe@gmail.com");
         System.out.println(clientes.get());
         Assertions.assertNotNull(clientes.get());
     }

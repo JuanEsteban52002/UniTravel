@@ -2,6 +2,7 @@ package co.edu.uniquindio.unitravel.servicios;
 
 import co.edu.uniquindio.unitravel.entidades.*;
 import co.edu.uniquindio.unitravel.repositorios.*;
+import org.jasypt.util.password.StrongPasswordEncryptor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -46,6 +47,9 @@ public class ClienteServicioImpl implements ClienteServicio{
         if(clienteEmail != null){
             throw new Exception("Ya existe alguien usando este correo");
         }
+
+        StrongPasswordEncryptor passwordEncryptor = new StrongPasswordEncryptor();
+        cliente.setPassword( passwordEncryptor.encryptPassword( cliente.getPassword() ) );
 
         return clienteRepo.save(cliente);
     }

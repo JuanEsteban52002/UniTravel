@@ -36,7 +36,7 @@ public class AdministradorHotelServicioImpl implements AdministradorHotelServici
             throw new Exception("Por favor rellenar todo los campos de texto");
         }
 
-        Optional<AdministradorHotel> adminHotel = adminHotelRepo.findByEmailAndPassword(email, password);
+        Optional<AdministradorHotel> adminHotel = adminHotelRepo.findByEmail(email);
 
         if(adminHotel.equals(null)){
             throw new Exception("Los datos de autenticacion son incorrectos");

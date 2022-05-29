@@ -35,10 +35,9 @@ public class Persona implements Serializable {
     @Size(max = 100, message = "El correo debe tener maximo 100 caracteres")
     private String email;
 
-    @Column(nullable = false, length = 20)
-    @Size(max = 20, message = "El contraseña debe tener maximo 20 caracteres")
+    @Column(nullable = false)
     @NotBlank(message = "La contraseña no puede estar vacia")
-    private String password;
+     private String password;
 
 
 }
