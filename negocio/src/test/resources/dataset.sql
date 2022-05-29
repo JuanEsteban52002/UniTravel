@@ -3,7 +3,7 @@ insert into ciudad values (2, "Bogota","https://upload.wikimedia.org/wikipedia/c
 insert into ciudad values (3, "Santa Marta","https://cloudfront-us-east-1.images.arcpublishing.com/semana/W2USLWLWJ5FF3IJKDEHFYZSC5I.jpg" );
 insert into ciudad values (4, "Pereira", "https://cdn.colombia.com/sdi/2022/01/13/turismo-pereira-top-25-987237.jpg");
 insert into ciudad values (5, "Cartagena", "https://cdn.colombia.com/images/v2/turismo/sitios-turisticos/cartagena/ciudad-cartagena-800.jpg");
-insert into ciudad values (6, "Barrancabermeja", "https://caracoltv.brightspotcdn.com/dims4/default/bce54b2/2147483647/strip/true/crop/1000x716+0+0/resize/1000x716!/quality/90/?url=http%3A%2F%2Fcaracol-brightspot.s3.amazonaws.com%2Fca%2Fd7%2Fbd1bcf2d41e492df1556ca4b3d24%2Fbarrancabermeja.jpg");
+insert into ciudad values (6, "Barrancabermeja", "https://www.terminaldetransporte.gov.co/sites/default/files/2021-06/barrancabermeja.jpg");
 insert into ciudad values (7, "Manizales", "https://i0.wp.com/www.bcnoticias.com.co/wp-content/uploads/2019/05/UJFRDKZTCK_20190520172114.jpeg?resize=600%2C399");
 
 insert into cliente values ("1234", "juan@gmail.com", "Juan", "5555", 1);
