@@ -48,5 +48,7 @@ public class BusquedaBean implements Serializable {
         List<Hotel> hoteles = clienteServicio.buscarHotelesNombre(busqueda);
         return "resultado_busqueda?faces-redirect=true&amp;busqueda="+busqueda;
 
+        //58.26
+
     }
 }
