@@ -43,7 +43,7 @@ public interface HotelRepo extends JpaRepository<Hotel, Integer> {
     List<Hotel> obtenerHotelSinComentarios();
 
     //Cuarto punto
-    @Query("select h from Hotel h where h.nombre like concat('%', :nombreHotel, '%')")
+    @Query("select h from Hotel h where lower(h.nombre) like concat('%', lower(:nombreHotel), '%')")
     List<Hotel> obtenerHotelesNombre(String nombreHotel);
 
     //Punto nuevo taller

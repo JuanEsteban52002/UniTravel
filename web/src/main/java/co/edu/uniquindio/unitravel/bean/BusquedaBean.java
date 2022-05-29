@@ -45,8 +45,10 @@ public class BusquedaBean implements Serializable {
     }
 
     public String buscar(){
-        List<Hotel> hoteles = clienteServicio.buscarHotelesNombre(busqueda);
+        System.out.println("busqueda: " + busqueda);
+        System.out.println("busquedaParametro: " + busquedaParametro);
         return "resultado_busqueda?faces-redirect=true&amp;busqueda="+busqueda;
-
     }
+
+
 }

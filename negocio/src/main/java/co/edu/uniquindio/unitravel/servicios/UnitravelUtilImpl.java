@@ -1,16 +1,11 @@
 package co.edu.uniquindio.unitravel.servicios;
 
-import co.edu.uniquindio.unitravel.entidades.Cama;
-import co.edu.uniquindio.unitravel.entidades.Caracteristica;
-import co.edu.uniquindio.unitravel.entidades.Ciudad;
-import co.edu.uniquindio.unitravel.entidades.Hotel;
-import co.edu.uniquindio.unitravel.repositorios.CamaRepo;
-import co.edu.uniquindio.unitravel.repositorios.CaracteristicaRepo;
-import co.edu.uniquindio.unitravel.repositorios.CiudadRepo;
-import co.edu.uniquindio.unitravel.repositorios.HotelRepo;
+import co.edu.uniquindio.unitravel.entidades.*;
+import co.edu.uniquindio.unitravel.repositorios.*;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UnitravelUtilImpl implements UnitravelUtilServicio{
@@ -19,15 +14,27 @@ public class UnitravelUtilImpl implements UnitravelUtilServicio{
     private CiudadRepo ciudadRepo;
     private CamaRepo camaRepo;
 
+    private AdministradorRepo administradorRepo;
+
+    private AdministradorHotelRepo administradorHotelRepo;
+
+    private ClienteRepo clienteRepo;
     private HotelRepo hotelRepo;
 
     public UnitravelUtilImpl(CaracteristicaRepo caracteristicaRepo,
                              CiudadRepo ciudadRepo,
                              CamaRepo camaRepo,
+                             ClienteRepo clienteRepo,
+                             AdministradorHotelRepo administradorHotelRepo,
+                             AdministradorRepo administradorRepo,
                              HotelRepo hotelRepo){
         this.ciudadRepo = ciudadRepo;
         this.caracteristicaRepo = caracteristicaRepo;
         this.camaRepo = camaRepo;
+        this.hotelRepo = hotelRepo;
+        this.clienteRepo = clienteRepo;
+        this.administradorHotelRepo = administradorHotelRepo;
+        this.administradorRepo = administradorRepo;
     }
 
     @Override
@@ -42,6 +49,25 @@ public class UnitravelUtilImpl implements UnitravelUtilServicio{
     @Override
     public Caracteristica obtenerCaracteristica(Integer codigo) throws Exception {
         return caracteristicaRepo.findById(codigo).orElseThrow(() -> new Exception("EL codigo no existe"));
+    }
+
+    @Override
+    public Persona validarLogin(String correo, String password) throws Exception {
+
+        Persona cliente = clienteRepo.findByEmailAndPassword(correo, password).orElse(null);
+
+        if (cliente == null) {
+            cliente = administradorHotelRepo.findByEmailAndPassword(correo, password).orElse(null);
+        }
+
+        if (cliente == null) {
+            cliente = administradorRepo.findByEmailAndPassword(correo, password).orElse(null);
+        }
+
+        if (cliente == null) {
+            throw new Exception("El correo o la contraseña son incorrectos");
+        }
+        return cliente;
     }
 
     @Override

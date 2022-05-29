@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import java.io.Serializable;
 import java.util.List;
@@ -41,6 +42,7 @@ public class InicioBean implements Serializable {
     public String irDetalleHotel(String codigoHotel){
         return "detalle_hotel?faces-redirect=true&amp;hotel_id="+codigoHotel;
     }
+
 
 
 }

@@ -17,9 +17,7 @@ public interface ClienteServicio {
 
     void eliminarCliente(String cedula) throws Exception;
 
-    //LOGIN
 
-    Cliente validarLogin(String correo, String password) throws Exception;
 
     //COMENTARIO
 

@@ -23,7 +23,7 @@ public class Hotel implements Serializable {
     @Id
     @EqualsAndHashCode.Include
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int codigo;
+    private Integer codigo;
 
     @Column(nullable = false, length = 100)
     private String nombre;
