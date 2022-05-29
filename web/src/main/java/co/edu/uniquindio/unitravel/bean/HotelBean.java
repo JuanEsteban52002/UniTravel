@@ -47,6 +47,9 @@ public class HotelBean implements Serializable {
     @Getter @Setter
     private List<Cama> camas;
 
+    @Value(value = "#{seguridadBean.persona}")
+    private Persona personaSesion;
+
 
     //-------------------------------------------//
     @PostConstruct
@@ -70,26 +73,30 @@ public class HotelBean implements Serializable {
     public String registrarHotel(){
         try {
 
-            if(imagenesHotel.size() > 1) {
-                if(habitaciones.size() > 0) {
+            if(personaSesion != null) {
 
-                    hotel.setAdministradorHotel(administradorHotelServicio.obtenerAdministradorHotel("111"));
 
-                   Hotel h = administradorHotelServicio.crearHotel(hotel);
+                if (imagenesHotel.size() > 1) {
+                    if (habitaciones.size() > 0) {
 
-                    habitaciones.forEach(hab -> {
+                        hotel.setAdministradorHotel((AdministradorHotel) personaSesion);
 
-                        hab.setHotel(h);
-                        administradorHotelServicio.crearHabitacion(hab);
-                    });
-                    return "registro_exitoso?faces-redirect=true";
-                }else{
+                        Hotel h = administradorHotelServicio.crearHotel(hotel);
+
+                        habitaciones.forEach(hab -> {
+
+                            hab.setHotel(h);
+                            administradorHotelServicio.crearHabitacion(hab);
+                        });
+                        return "registro_exitoso?faces-redirect=true";
+                    } else {
+                        FacesMessage msj = new FacesMessage(FacesMessage.SEVERITY_WARN, "Alerta", "Es obligatorio subir imagenes");
+                        FacesContext.getCurrentInstance().addMessage("msj_bean", msj);
+                    }
+                } else {
                     FacesMessage msj = new FacesMessage(FacesMessage.SEVERITY_WARN, "Alerta", "Es obligatorio subir imagenes");
                     FacesContext.getCurrentInstance().addMessage("msj_bean", msj);
                 }
-            }else {
-                FacesMessage msj = new FacesMessage(FacesMessage.SEVERITY_WARN, "Alerta", "Es obligatorio subir imagenes");
-                FacesContext.getCurrentInstance().addMessage("msj_bean", msj);
             }
         } catch (Exception e) {
             FacesMessage msj = new FacesMessage(FacesMessage.SEVERITY_INFO, "Alerta", e.getMessage());

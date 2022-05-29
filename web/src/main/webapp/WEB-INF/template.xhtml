@@ -4,6 +4,7 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -32,25 +33,25 @@
                                     Inicio
                                 </a>
                             </li>
-                            <li>
+                            <li jsf:rendered="#{seguridadBean.autenticado and seguridadBean.rol == 2}">
                                 <a href="crear_hotel.xhtml" class="nav-link text-white">
                                     <i class="pi pi-plus-circle d-block mx-auto mb-1 icon-menu" > </i>
                                     Crear Hotel
                                 </a>
                             </li>
-                            <li>
+                            <li jsf:rendered="#{seguridadBean.rol != 2}">
                                 <a href="hoteles_destino.xhtml" class="nav-link text-white">
                                     <i class="pi pi-map d-block mx-auto mb-1 icon-menu" > </i>
                                     Hoteles
                                 </a>
                             </li>
-                            <li>
+                            <li jsf:rendered="#{seguridadBean.autenticado and seguridadBean.rol == 1}">
                                 <a href="#" class="nav-link text-white">
                                     <i class="pi pi-book d-block mx-auto mb-1 icon-menu" > </i>
                                     Mis reservas
                                 </a>
                             </li>
-                            <li>
+                            <li jsf:rendered="#{seguridadBean.autenticado and seguridadBean.rol == 2}" >
                                 <a href="#" class="nav-link text-white">
                                     <i class="pi pi-list d-block mx-auto mb-1 icon-menu" > </i>
                                     Mis hoteles
@@ -64,21 +65,39 @@
                 <div class="container d-flex flex-wrap justify-content-center">
                     <h:form id="buscador_h" styleClass="col-12 col-lg-auto mb-2 mb-lg-0 me-lg-auto">
                         <div class = "input-search ui-inputgroup">
-                            <p:inputText placeholder="¿Que hotel esta buscando?" required="true" values="#{busquedaBean.busqueda}" />
-                            <p:commandButton update="@form" icon="pi pi-search" action="#{busquedaBean.buscar}" />
+                            <p:inputText placeholder="¿Que hotel esta buscando?" required="true" values="#{busquedaBean.busqueda}"/>
+                            <p:commandButton update="@form" icon="pi pi-search" action="#{busquedaBean.buscar}"/>
                         </div>
                     </h:form>
                     <div class="text-end">
-                        <h:form>
-                            <button type="button" class="btn btn-light text-dark me-2">Login</button>
-                            <p:commandButton value="Registrarse" class="btn btn-primary" action="#{inicioBean.irRegistro}" />
+                        <h:form rendered="#{!seguridadBean.autenticado}">
+                            <p:commandButton type="button" value="Login" onclick="PF('login').show()" styleClass="ui-button-outline ui-button-secondary me-2" icon="pi pi-lock"/>
+                            <p:commandButton value="Registrarse" action="#{inicioBean.irRegistro}" />
+                        </h:form>
+                        <h:form rendered="#{seguridadBean.autenticado}">
+                            <p:commandButton type="button" value="Cerrar Sesión" action="#{seguridadBean.cerrarSesion}" icon="pi pi-sign-out"/>
                         </h:form>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
+        <p:dialog header="Iniciar sesión" widgetVar="login" showEffect="fade" draggable="false" modal="true">
+            <h:form>
+                <h:panelGrid columns="3" cellpadding="5">
+                    <p:outputLabel for="email_login" value="Email: "/>
+                    <p:inputText id="email_login" value="#{seguridadBean.email}" required="true"/>
+                    <p:message for="email_login"/>
+
+                    <p:outputLabel for="password_login" value="Password: "/>
+                    <p:password id="password_login" value="#{seguridadBean.password}" required="true"/>
+                    <p:message for="password_login"/>
+                </h:panelGrid>
+                <p:commandButton value="Iniciar Sesión" action="#{seguridadBean.iniciarSesion}" styleClass="mt-4" update="@form" icon="pi pi-sign-in" iconPos="left"/>
+                <p:growl for="login-bean" showDetail="true"/>
+            </h:form>
+        </p:dialog>
+    </div>
 
     <div id="contenido" class="fondo-c">
         <div class="container" >

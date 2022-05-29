@@ -105,24 +105,7 @@ public class ClienteServicioImpl implements ClienteServicio{
         clienteRepo.delete(cliente);
     }
 
-    @Override
-    public Cliente validarLogin(String correo, String password) throws Exception {
 
-        if(correo.isEmpty()){
-            throw new Exception("Porfavor ingrese un correo");
-        }
-
-        if(password.isEmpty()){
-            throw new Exception("Porfavor ingrese una contraseña");
-        }
-
-        Optional<Cliente> cliente = clienteRepo.findByEmailAndPassword(correo, password);
-
-        if(cliente.equals(null)){
-            throw new Exception("Los datos de autenticación son incorrectos");
-        }
-        return cliente.get();
-    }
 
     @Override
     public Comentario crearComentario(Comentario comentario) throws Exception {

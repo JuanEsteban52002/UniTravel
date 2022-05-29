@@ -4,7 +4,6 @@ package co.edu.uniquindio.unitravel.bean;
 import co.edu.uniquindio.unitravel.entidades.Comentario;
 import co.edu.uniquindio.unitravel.entidades.Hotel;
 import co.edu.uniquindio.unitravel.servicios.ClienteServicio;
-import co.edu.uniquindio.unitravel.servicios.UnitravelUtilImpl;
 import co.edu.uniquindio.unitravel.servicios.UnitravelUtilServicio;
 import lombok.Getter;
 import lombok.Setter;
