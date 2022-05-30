@@ -44,6 +44,7 @@ public class ClienteBean implements Serializable {
             FacesMessage msj = new FacesMessage(FacesMessage.SEVERITY_INFO, "Alerta", "Registro exitoso");
             FacesContext.getCurrentInstance().addMessage("msj_bean", msj);
         } catch (Exception e) {
+            e.printStackTrace();
             FacesMessage msj = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Alerta", e.getMessage());
             FacesContext.getCurrentInstance().addMessage("msj_bean", msj);
         }

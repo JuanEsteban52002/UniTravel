@@ -6,13 +6,13 @@ insert into ciudad values (5, "Cartagena", "https://cdn.colombia.com/images/v2/t
 insert into ciudad values (6, "Barrancabermeja", "https://www.terminaldetransporte.gov.co/sites/default/files/2021-06/barrancabermeja.jpg");
 insert into ciudad values (7, "Manizales", "https://i0.wp.com/www.bcnoticias.com.co/wp-content/uploads/2019/05/UJFRDKZTCK_20190520172114.jpeg?resize=600%2C399");
 
-insert into cliente values ("1234", "juan@gmail.com", "Juan", "5555", 1);
-insert into cliente values ("5255", "pepe@gmail.com", "Pepe", "1234", 2);
-insert into cliente values ("4321", "mario@gmail.com", "Mario", "1234", 3);
-insert into cliente values ("7525", "juane.grandar@uqvirtual.edu.co", "Juan", "5555", 4);
+insert into cliente values ("1234", "juan@gmail.com", "Juan", "/N+FscXmawsnQJlmkyvHu5iKnpcWTcCaIBsAvoE/8lUpGnkhCmRLrWTk+7AWRicj", 1);
+insert into cliente values ("5255", "pepe@gmail.com", "Pepe", "/N+FscXmawsnQJlmkyvHu5iKnpcWTcCaIBsAvoE/8lUpGnkhCmRLrWTk+7AWRicj", 2);
+insert into cliente values ("4321", "mario@gmail.com", "Mario", "/N+FscXmawsnQJlmkyvHu5iKnpcWTcCaIBsAvoE/8lUpGnkhCmRLrWTk+7AWRicj", 3);
+insert into cliente values ("7525", "juane.grandar@uqvirtual.edu.co", "Juan", "/N+FscXmawsnQJlmkyvHu5iKnpcWTcCaIBsAvoE/8lUpGnkhCmRLrWTk+7AWRicj", 4);
 
-insert into administrador_hotel values ("5555", "admin1@gmail1.com", "Admin 1", "admin1");
-insert into administrador_hotel values ("9999", "admin2@gmail1.com", "Admin 2", "admin2");
+insert into administrador_hotel values ("5555", "admin1@gmail1.com", "Admin 1", "/N+FscXmawsnQJlmkyvHu5iKnpcWTcCaIBsAvoE/8lUpGnkhCmRLrWTk+7AWRicj");
+insert into administrador_hotel values ("9999", "admin2@gmail1.com", "Admin 2", "/N+FscXmawsnQJlmkyvHu5iKnpcWTcCaIBsAvoE/8lUpGnkhCmRLrWTk+7AWRicj");
 
 insert into administrador values ("8754", "adminUnitravel1@gmail.com", "AdminUni 1", "adminUni1");
 insert into administrador values ("7852", "adminUnitravel2@gmail.com", "AdminUni 2", "adminUni2");

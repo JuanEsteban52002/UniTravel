@@ -13,5 +13,5 @@ public interface AdministradorRepo extends JpaRepository<Administrador, String> 
     @Query("select r from Reserva r")
     List<Reserva> obtenerReservasTotales();
 
-    Optional<Administrador> findByEmailAndPassword(String email, String password);
+    Optional<Administrador> findByEmail(String email);
 }
