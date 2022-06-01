@@ -1,5 +1,5 @@
 insert into ciudad values (1, "Armenia", "https://parlamentoandino.org/images/P-Fundacin-de-Armenia.jpg");
-insert into ciudad values (2, "Bogota","https://upload.wikimedia.org/wikipedia/commons/2/24/Bogot%C3%A1_Colpatria_Night.jpg");
+insert into ciudad values (2, "Bogotá","https://upload.wikimedia.org/wikipedia/commons/2/24/Bogot%C3%A1_Colpatria_Night.jpg");
 insert into ciudad values (3, "Santa Marta","https://cloudfront-us-east-1.images.arcpublishing.com/semana/W2USLWLWJ5FF3IJKDEHFYZSC5I.jpg" );
 insert into ciudad values (4, "Pereira", "https://cdn.colombia.com/sdi/2022/01/13/turismo-pereira-top-25-987237.jpg");
 insert into ciudad values (5, "Cartagena", "https://cdn.colombia.com/images/v2/turismo/sitios-turisticos/cartagena/ciudad-cartagena-800.jpg");
@@ -11,11 +11,11 @@ insert into cliente values ("5255", "pepe@gmail.com", "Pepe", "/N+FscXmawsnQJlmk
 insert into cliente values ("4321", "mario@gmail.com", "Mario", "/N+FscXmawsnQJlmkyvHu5iKnpcWTcCaIBsAvoE/8lUpGnkhCmRLrWTk+7AWRicj", 3);
 insert into cliente values ("7525", "juane.grandar@uqvirtual.edu.co", "Juan", "/N+FscXmawsnQJlmkyvHu5iKnpcWTcCaIBsAvoE/8lUpGnkhCmRLrWTk+7AWRicj", 4);
 
-insert into administrador_hotel values ("5555", "admin1@gmail1.com", "Admin 1", "/N+FscXmawsnQJlmkyvHu5iKnpcWTcCaIBsAvoE/8lUpGnkhCmRLrWTk+7AWRicj");
-insert into administrador_hotel values ("9999", "admin2@gmail1.com", "Admin 2", "/N+FscXmawsnQJlmkyvHu5iKnpcWTcCaIBsAvoE/8lUpGnkhCmRLrWTk+7AWRicj");
+insert into administrador_hotel values ("5555", "admin1@gmail.com", "Admin 1", "/N+FscXmawsnQJlmkyvHu5iKnpcWTcCaIBsAvoE/8lUpGnkhCmRLrWTk+7AWRicj");
+insert into administrador_hotel values ("9999", "admin2@gmail.com", "Admin 2", "/N+FscXmawsnQJlmkyvHu5iKnpcWTcCaIBsAvoE/8lUpGnkhCmRLrWTk+7AWRicj");
 
-insert into administrador values ("8754", "adminUnitravel1@gmail.com", "AdminUni 1", "adminUni1");
-insert into administrador values ("7852", "adminUnitravel2@gmail.com", "AdminUni 2", "adminUni2");
+insert into administrador values ("8754", "adminUnitravel1@gmail.com", "AdminUni 1", "/N+FscXmawsnQJlmkyvHu5iKnpcWTcCaIBsAvoE/8lUpGnkhCmRLrWTk+7AWRicj");
+insert into administrador values ("7852", "adminUnitravel2@gmail.com", "AdminUni 2", "/N+FscXmawsnQJlmkyvHu5iKnpcWTcCaIBsAvoE/8lUpGnkhCmRLrWTk+7AWRicj");
 
 insert into hotel values (1, "Muy bonito", "Carrera 4", "Hotel 4", 5, "7458241", "9999", 2);
 insert into hotel values (2, "Buena vista",  "Carrera 2", "Hotel 2", 4, "7489652", "9999", 2);
