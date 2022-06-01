@@ -54,10 +54,8 @@
                 <p:message for="imagenes_hotel"/>
 
                 <p:outputLabel value="Caracteristicas:" for="caract_h"/>
-                <p:selectManyCheckbox id="caract_h" value="#{hotelBean.hotel.caracteristicas}" required="true"
-                                      converter="#{caracteristicasConverter}">
-                    <f:selectItems value="#{hotelBean.caracteristicasHotel}" var="car" itemLabel="#{car.nombre}"
-                                   itemValue="#{car}"/>
+                <p:selectManyCheckbox id="caract_h" value="#{hotelBean.hotel.caracteristicas}" required="true" converter="#{caracteristicasConverter}">
+                    <f:selectItems value="#{hotelBean.caracteristicasHotel}" var="car" itemLabel="#{car.nombre}" itemValue="#{car}"/>
                 </p:selectManyCheckbox>
                 <p:message for="caract_h"/>
 
@@ -66,8 +64,7 @@
             <p:commandButton value="Adicionar Habitaciones" onclick="PF('crear_hab').show()" icon="pi pi-plus"/>
             <br/>
             <br/>
-            <p:commandButton value="Crear Hotel" action="#{hotelBean.registrarHotel()}" update="@form"
-                             icon="pi pi-check"/>
+            <p:commandButton value="Crear Hotel" action="#{hotelBean.registrarHotel()}" update="@form" icon="pi pi-check"/>
             <p:growl for="msj_bean" showDetail="true"/>
         </h:form>
 

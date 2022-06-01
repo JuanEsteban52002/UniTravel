@@ -95,6 +95,7 @@ public class AdministradorHotelServicioImpl implements AdministradorHotelServici
 
     @Override
     public Habitacion crearHabitacion(Habitacion habitacion) {
+
         return null;
     }
 
@@ -115,6 +116,7 @@ public class AdministradorHotelServicioImpl implements AdministradorHotelServici
 
     @Override
     public List<Habitacion> listarHabitacionesHotel(String codigoHotel) {
+
         return null;
     }
 
