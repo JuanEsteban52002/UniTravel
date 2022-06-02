@@ -23,6 +23,7 @@ public class DestinoHotelBean implements Serializable {
     @Value("#{param['ciudad']}")
     private String codigoCiudadParametro;
 
+
     @Getter @Setter
     private List<Hotel> hoteles;
 
