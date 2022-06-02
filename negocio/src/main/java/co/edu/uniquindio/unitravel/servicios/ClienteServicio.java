@@ -42,6 +42,8 @@ public interface ClienteServicio {
 
     List<Hotel> buscarHotelesCiudad(String nombreCiudad);
 
+    List<Hotel> obtenerHotelesCodigoCiudad(Integer codigoCiudad);
+
     List<Hotel> buscarHotelesNombre(String nombreHotel);
 
     //Email

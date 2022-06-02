@@ -239,7 +239,12 @@ public class ClienteServicioImpl implements ClienteServicio{
 
     @Override
     public List<Hotel> buscarHotelesCiudad(String nombreCiudad) {
-        return hotelRepo.obtenerHotelesCiudad(nombreCiudad);
+        return hotelRepo.obtenerHotelesNombreCiudad(nombreCiudad);
+    }
+
+    @Override
+    public List<Hotel> obtenerHotelesCodigoCiudad(Integer codigoCiudad) {
+        return hotelRepo.obtenerHotelesCodigoCiudad(codigoCiudad);
     }
 
     @Override

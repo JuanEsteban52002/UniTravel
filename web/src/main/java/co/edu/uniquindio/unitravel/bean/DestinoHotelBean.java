@@ -16,16 +16,12 @@ import java.util.List;
 
 @Component
 @ViewScoped
-public class BusquedaBean implements Serializable {
+public class DestinoHotelBean implements Serializable {
 
     @Autowired
     private ClienteServicio clienteServicio;
-
-    @Getter @Setter
-    private String busqueda;
-
-    @Value("#{param['busqueda']}")
-    private String busquedaParametro;
+    @Value("#{param['ciudad']}")
+    private String codigoCiudadParametro;
 
     @Getter @Setter
     private List<Hotel> hoteles;
@@ -36,21 +32,13 @@ public class BusquedaBean implements Serializable {
         hoteles = new ArrayList<>();
 
         try{
-            if(busquedaParametro!=null && !busquedaParametro.isEmpty()) {
-                hoteles = clienteServicio.buscarHotelesNombre(busquedaParametro);
+            if(codigoCiudadParametro!=null && !codigoCiudadParametro.isEmpty()) {
+                hoteles = clienteServicio.obtenerHotelesCodigoCiudad(Integer.parseInt(codigoCiudadParametro));
+                hoteles.forEach(hotel -> System.out.println(hotel.getNombre()));
             }
         }catch (Exception e){
             e.printStackTrace();
         }
-    }
-
-    public String buscar(){
-        return "resultado_busqueda?faces-redirect=true&amp;busqueda="+busqueda;
-    }
-
-    public String irDetalleHotel(String codigoHotel){
-        System.out.println("codigoHotel: "+codigoHotel);
-        return "detalle_hotel?faces-redirect=true&amp;hotel_id="+codigoHotel;
     }
 
 }

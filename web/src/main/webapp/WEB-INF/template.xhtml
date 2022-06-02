@@ -65,7 +65,7 @@
                 <div class="container d-flex flex-wrap justify-content-center">
                     <h:form id="buscador_h" styleClass="col-12 col-lg-auto mb-2 mb-lg-0 me-lg-auto">
                         <div class = "input-search ui-inputgroup">
-                            <p:inputText placeholder="¿Que hotel esta buscando?" required="true" values="#{busquedaBean.busqueda}"/>
+                            <p:inputText class="form-control" type="text" placeholder="¿Que hotel esta buscando?" required="true" value="#{busquedaBean.busqueda}"/>
                             <p:commandButton update="@form" icon="pi pi-search" action="#{busquedaBean.buscar}"/>
                         </div>
                     </h:form>
