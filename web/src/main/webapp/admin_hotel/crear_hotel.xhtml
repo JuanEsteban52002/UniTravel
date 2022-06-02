@@ -74,7 +74,38 @@
 
         <p:dialog header="Crear Habitacion" widgetVar="crear_hab" modal="true" showEffect="fade" draggable="false">
             <h:form>
-                <h1>agregar habitaciones</h1>
+
+                <h:panelGrid columns="2" cellpadding="4">
+                    <p:outputLabel value="Número Habitación: " for="num_hab"/>
+                    <p:inputText id="num_hab" type="text" value="#{hotelBean.habitacion.numero}" required="true"/>
+
+                    <p:outputLabel value="Precio habitación: " for="precio_hab"/>
+                    <p:inputText id="precio_hab" type="text" value="#{hotelBean.habitacion.precio}" required="true"/>
+
+                    <p:outputLabel value="Camas: " for="cama_hab"/>
+                    <p:selectOneMenu id="cama_hab" value="#{hotelBean.habitacion.camas}" required="true" converter="#{camaConverter}">
+                        <f:selectItem itemLabel="Seleccionar la cama" noSelectionOption="true"/>
+                        <f:selectItems value="#{hotelBean.camas}" var="cama" itemLabel="#{cama.tipo}" itemValue="#{cama}"/>
+                    </p:selectOneMenu>
+
+                    <p:outputLabel value="Caracteristicas:" for="caract_hab"/>
+                    <p:selectManyCheckbox id="caract_hab" value="#{hotelBean.habitacion.caracteristicas}"
+                                          required="true" converter="#{caracteristicasConverter}">
+                        <f:selectItems value="#{hotelBean.caracteristicasHabitacion}" var="car"
+                                       itemLabel="#{car.nombre}" itemValue="#{car}"/>
+                    </p:selectManyCheckbox>
+                    <p:message for="caract_hab"/>
+
+                    <p:outputLabel for="imagenes_habitacion" value="Imágenes:  "/>
+                    <p:fileUpload id="imagenes_habitacion"
+                                  listener="#{hotelBean.subirImagenes}" mode="advanced"
+                                  multiple="true" sizeLimit="1000000" fileLimit="5"
+                                  allowTypes="/(\.|\/)(gif|jpe?g|png)$/" required="true"/>
+                    <p:message for="imagenes_habitacion"/>
+                    
+                </h:panelGrid>
+
+
             </h:form>
         </p:dialog>
     </ui:define>

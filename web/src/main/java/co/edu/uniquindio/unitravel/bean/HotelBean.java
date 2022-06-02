@@ -76,10 +76,12 @@ public class HotelBean implements Serializable {
             if(personaSesion != null) {
 
 
-                if (imagenesHotel.size() > 1) {
-                    if (habitaciones.size() > 0) {
-
+                if (imagenesHotel.size() >= 1) {
+                    if (true){
+                    //if (habitaciones.size() > 0) {
                         hotel.setAdministradorHotel((AdministradorHotel) personaSesion);
+                        hotel.setFotos(imagenesHotel);
+                        hotel.setCodigo(100);
 
                         Hotel h = administradorHotelServicio.crearHotel(hotel);
 
@@ -88,9 +90,10 @@ public class HotelBean implements Serializable {
                             hab.setHotel(h);
                             administradorHotelServicio.crearHabitacion(hab);
                         });
-                        return "registro_exitoso?faces-redirect=true";
+                        return "/admin_hotel/registroExitoso?faces-redirect=true";
+
                     } else {
-                        FacesMessage msj = new FacesMessage(FacesMessage.SEVERITY_WARN, "Alerta", "Es obligatorio subir imagenes");
+                        FacesMessage msj = new FacesMessage(FacesMessage.SEVERITY_WARN, "Alerta", "Es obligatorio agregar habitaciones");
                         FacesContext.getCurrentInstance().addMessage("msj_bean", msj);
                     }
                 } else {
@@ -98,10 +101,13 @@ public class HotelBean implements Serializable {
                     FacesContext.getCurrentInstance().addMessage("msj_bean", msj);
                 }
             }
+
         } catch (Exception e) {
             FacesMessage msj = new FacesMessage(FacesMessage.SEVERITY_INFO, "Alerta", e.getMessage());
             FacesContext.getCurrentInstance().addMessage("msj_bean", msj);
+            System.out.println("ERROR: " + e.getMessage());
         }
+
         return null;
     }
 
@@ -131,6 +137,8 @@ public class HotelBean implements Serializable {
 
             habitacion = new Habitacion();
             imagenesHabitacion = new ArrayList<>();
+
+
         }else{
             FacesMessage ms = new FacesMessage(FacesMessage.SEVERITY_WARN, "Alerta", "Es obligatorio asignarle habitaciones al hotel");
             FacesContext.getCurrentInstance().addMessage("msj_bean", ms);

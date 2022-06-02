@@ -1,9 +1,6 @@
 package co.edu.uniquindio.unitravel.servicios;
 
-import co.edu.uniquindio.unitravel.entidades.AdministradorHotel;
-import co.edu.uniquindio.unitravel.entidades.Ciudad;
-import co.edu.uniquindio.unitravel.entidades.Habitacion;
-import co.edu.uniquindio.unitravel.entidades.Hotel;
+import co.edu.uniquindio.unitravel.entidades.*;
 import co.edu.uniquindio.unitravel.repositorios.HotelRepo;
 
 import java.util.ArrayList;
@@ -36,5 +33,7 @@ public interface AdministradorHotelServicio {
     AdministradorHotel obtenerAdministradorHotel(String codigo) throws Exception;
 
     List<Ciudad> listarCiudades();
+
+    Cama obtenerCama(Integer codigo) throws Exception;
 
 }

@@ -1,10 +1,8 @@
 package co.edu.uniquindio.unitravel.servicios;
 
-import co.edu.uniquindio.unitravel.entidades.AdministradorHotel;
-import co.edu.uniquindio.unitravel.entidades.Ciudad;
-import co.edu.uniquindio.unitravel.entidades.Habitacion;
-import co.edu.uniquindio.unitravel.entidades.Hotel;
+import co.edu.uniquindio.unitravel.entidades.*;
 import co.edu.uniquindio.unitravel.repositorios.AdministradorHotelRepo;
+import co.edu.uniquindio.unitravel.repositorios.CamaRepo;
 import co.edu.uniquindio.unitravel.repositorios.CiudadRepo;
 import co.edu.uniquindio.unitravel.repositorios.HotelRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +21,9 @@ public class AdministradorHotelServicioImpl implements AdministradorHotelServici
     private HotelRepo hotelRepo;
     @Autowired
     private CiudadRepo ciudadRepo;
+
+    @Autowired
+    private CamaRepo camaRepo;
 
     public AdministradorHotelServicioImpl(AdministradorHotelRepo adminHotelRepo, HotelRepo hotelRepo){
         this.adminHotelRepo = adminHotelRepo;
@@ -95,6 +96,7 @@ public class AdministradorHotelServicioImpl implements AdministradorHotelServici
 
     @Override
     public Habitacion crearHabitacion(Habitacion habitacion) {
+
         return null;
     }
 
@@ -115,6 +117,7 @@ public class AdministradorHotelServicioImpl implements AdministradorHotelServici
 
     @Override
     public List<Habitacion> listarHabitacionesHotel(String codigoHotel) {
+
         return null;
     }
 
@@ -130,7 +133,13 @@ public class AdministradorHotelServicioImpl implements AdministradorHotelServici
 
     @Override
     public List<Ciudad> listarCiudades() {
+
         return ciudadRepo.findAll();
+    }
+
+    @Override
+    public Cama obtenerCama(Integer codigo) throws Exception {
+        return camaRepo.findById(codigo).orElse(null);
     }
 
 

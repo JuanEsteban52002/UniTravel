@@ -56,4 +56,6 @@ public interface ClienteServicio {
 
     List<Hotel> listarHoteles();
 
+
+
 }

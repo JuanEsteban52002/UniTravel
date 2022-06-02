@@ -13,6 +13,7 @@ public interface CaracteristicaRepo extends JpaRepository<Caracteristica, Intege
 
     List<Caracteristica> findAllByTipo(Integer tipo);
 
+
     @Query("select h from Caracteristica c join c.hoteles h where c.nombre = :nombreCaracteristica")
     List<Hotel> obtenerHotelesCaracteristica(String nombreCaracteristica);
 
