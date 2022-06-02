@@ -66,6 +66,7 @@ insert into hotel_fotos values (3, "https://assets.hiltonstatic.com/hilton-asset
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 insert into habitacion_fotos values (704001,"defaultHotel.png");
 insert into habitacion_fotos values (308001,"defaultHotel.png");
 insert into habitacion_fotos values (307001,"defaultHotel.png");
@@ -74,12 +75,17 @@ insert into habitacion_fotos values (105001,"defaultHotel.png");
 =======
 =======
 >>>>>>> parent of 3ee3fa4 (se arreglaron detalles del dataset)
+=======
+>>>>>>> parent of 3ee3fa4 (se arreglaron detalles del dataset)
 insert into habitacion_fotos values (704001,"https://www.cataloniahotels.com/es/blog/wp-content/uploads/2016/05/habitaci%C3%B3n-doble-catalonia-620x412.jpg");
 insert into habitacion_fotos values (308001,"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbTFnLLp0kA_5kNYAYTbyhvA1z1UcBuzkHCBO0NLj-KG4RPvwNo0EMQWjdn9hSQ-rLUic&usqp=CAU");
 insert into habitacion_fotos values (307001,"https://dmdiluminacion.com/wp-content/uploads/hotel-lp-012-1200x498.jpg");
 insert into habitacion_fotos values (206002,"https://s3.amazonaws.com/arc-wordpress-client-uploads/infobae-wp/wp-content/uploads/2019/05/20152451/Mandarin-Oriental-Hong-Kong-3.jpg");
 insert into habitacion_fotos values (105001,"https://static.abc.es/Media/201504/27/hotel12--644x362.jpg");
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> parent of 3ee3fa4 (se arreglaron detalles del dataset)
+=======
 >>>>>>> parent of 3ee3fa4 (se arreglaron detalles del dataset)
 =======
 >>>>>>> parent of 3ee3fa4 (se arreglaron detalles del dataset)
