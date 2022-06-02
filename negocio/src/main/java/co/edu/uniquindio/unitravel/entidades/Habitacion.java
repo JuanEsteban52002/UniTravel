@@ -52,4 +52,13 @@ public class Habitacion implements Serializable{
         this.precio = precio;
         this.capacidad = capacidad;
     }
+
+    public String getImagenPrincipal(){
+        if(fotos != null){
+            if(!fotos.isEmpty()){
+                return fotos.get(0);
+            }
+        }
+        return "defaultHotel.png";
+    }
 }

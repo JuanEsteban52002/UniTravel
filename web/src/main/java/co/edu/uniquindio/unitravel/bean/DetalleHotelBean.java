@@ -1,6 +1,7 @@
 package co.edu.uniquindio.unitravel.bean;
 
 
+import co.edu.uniquindio.unitravel.entidades.AdministradorHotel;
 import co.edu.uniquindio.unitravel.entidades.Comentario;
 import co.edu.uniquindio.unitravel.entidades.Hotel;
 import co.edu.uniquindio.unitravel.servicios.ClienteServicio;
@@ -39,6 +40,9 @@ public class DetalleHotelBean implements Serializable {
     @Getter @Setter
     private List<Comentario> comentarios;
 
+    @Getter @Setter
+    private AdministradorHotel administradorHotel;
+
     @PostConstruct
     public void inicializar(){
         nuevoComentario = new Comentario();
@@ -47,6 +51,7 @@ public class DetalleHotelBean implements Serializable {
         if(codigoHotel != null && !codigoHotel.isEmpty()){
             try{
                 hotel = unitravelServicio.obtenerHotel(Integer.parseInt(codigoHotel));
+                administradorHotel = hotel.getAdministradorHotel();
                 comentarios = hotel.getComentarios();
             }catch(Exception e){
                 e.printStackTrace();

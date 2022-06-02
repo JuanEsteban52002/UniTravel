@@ -54,11 +54,8 @@ public class SeguridadFilter implements Filter {
                     //El usuario no está logueado, entonces se redirecciona al inicio
                     response.sendRedirect(request.getContextPath() + PAGINA_INICIO);
                 }
-
             } else {
-
                 //La página solicitada no está en la carpeta /usuario entonces el filtro no aplica
-
                 filterChain.doFilter(servletRequest, servletResponse);
             }
         } catch (

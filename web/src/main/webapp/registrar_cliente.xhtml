@@ -43,7 +43,7 @@
 
                 </h:panelGrid>
                 <p:commandButton value="Registrar" action="#{clienteBean.registrarCliente}" update="@form"
-                                 icon="pi pi-plus"/>
+                                 icon="pi pi-plus" oncomplete="limpiarForm()"/>
                 <p:growl for="msj_bean" showDetail="true"/>
             </h:form>
         </p:panel>

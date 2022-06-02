@@ -64,11 +64,11 @@ insert into hotel_fotos values (1, "defaultHotel.png");
 insert into hotel_fotos values (2, "defaultHotel.png");
 insert into hotel_fotos values (3, "defaultHotel.png");
 
-insert into habitacion_fotos values (704001,"default_hab.png");
-insert into habitacion_fotos values (308001,"default_hab.png");
-insert into habitacion_fotos values (307001,"default_hab.png");
-insert into habitacion_fotos values (206002,"default_hab.png");
-insert into habitacion_fotos values (105001,"default_hab.png");
+insert into habitacion_fotos values (704001,"defaultHotel.png");
+insert into habitacion_fotos values (308001,"defaultHotel.png");
+insert into habitacion_fotos values (307001,"defaultHotel.png");
+insert into habitacion_fotos values (206002,"defaultHotel.png");
+insert into habitacion_fotos values (105001,"defaultHotel.png");
 
 insert into reserva values ("1", 1, 4, 1, "2022-05-15", "2022-05-13", "2022-05-12", 100000, "1234");
 insert into reserva values ("2", 2, 4, 2, "2022-05-17", "2022-05-15", "2022-05-13", 100000, "5255");
