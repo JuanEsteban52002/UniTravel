@@ -65,17 +65,23 @@ insert into hotel_fotos values (2, "https://imgcy.trivago.com/c_lfill,f_auto,g_f
 insert into hotel_fotos values (3, "https://assets.hiltonstatic.com/hilton-asset-cache/image/upload/t_MODx%20-%20Masthead/t_MODx%20-%20Masthead/v1626385058/Imagery/Property%20Photography/Hilton%20Full%20Service/C/CTGHIHH/Facade_Pool_Complex.jpg");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 insert into habitacion_fotos values (704001,"defaultHotel.png");
 insert into habitacion_fotos values (308001,"defaultHotel.png");
 insert into habitacion_fotos values (307001,"defaultHotel.png");
 insert into habitacion_fotos values (206002,"defaultHotel.png");
 insert into habitacion_fotos values (105001,"defaultHotel.png");
 =======
+=======
+>>>>>>> parent of 3ee3fa4 (se arreglaron detalles del dataset)
 insert into habitacion_fotos values (704001,"https://www.cataloniahotels.com/es/blog/wp-content/uploads/2016/05/habitaci%C3%B3n-doble-catalonia-620x412.jpg");
 insert into habitacion_fotos values (308001,"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbTFnLLp0kA_5kNYAYTbyhvA1z1UcBuzkHCBO0NLj-KG4RPvwNo0EMQWjdn9hSQ-rLUic&usqp=CAU");
 insert into habitacion_fotos values (307001,"https://dmdiluminacion.com/wp-content/uploads/hotel-lp-012-1200x498.jpg");
 insert into habitacion_fotos values (206002,"https://s3.amazonaws.com/arc-wordpress-client-uploads/infobae-wp/wp-content/uploads/2019/05/20152451/Mandarin-Oriental-Hong-Kong-3.jpg");
 insert into habitacion_fotos values (105001,"https://static.abc.es/Media/201504/27/hotel12--644x362.jpg");
+<<<<<<< HEAD
+>>>>>>> parent of 3ee3fa4 (se arreglaron detalles del dataset)
+=======
 >>>>>>> parent of 3ee3fa4 (se arreglaron detalles del dataset)
 
 insert into reserva values ("1", 1, 4, 1, "2022-05-15", "2022-05-13", "2022-05-12", 100000, "1234");
