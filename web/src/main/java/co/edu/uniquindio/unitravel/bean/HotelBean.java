@@ -137,6 +137,8 @@ public class HotelBean implements Serializable {
 
             habitacion = new Habitacion();
             imagenesHabitacion = new ArrayList<>();
+
+
         }else{
             FacesMessage ms = new FacesMessage(FacesMessage.SEVERITY_WARN, "Alerta", "Es obligatorio asignarle habitaciones al hotel");
             FacesContext.getCurrentInstance().addMessage("msj_bean", ms);

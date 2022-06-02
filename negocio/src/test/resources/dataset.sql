@@ -32,10 +32,10 @@ insert into cama values (1, "Sencilla", 105001);
 insert into cama values (2, "Doble", 206002);
 insert into cama values (3, "Triple", 307001);
 
-insert into caracteristica values (1, "Hay camas", 1);
-insert into caracteristica values (2, "No hay nada", 1);
-insert into caracteristica values (3, "La cama es muy dura", 1);
-insert into caracteristica values (4, "La cama es muy blanda", 1);
+insert into caracteristica values (1, "Televisor", 1);
+insert into caracteristica values (2, "Aire acondicionado", 1);
+insert into caracteristica values (3, "Habitación Doble", 1);
+insert into caracteristica values (4, "Habitacion Sensilla", 1);
 insert into caracteristica values (5, "Gimnasio", 0);
 insert into caracteristica values (6, "Spa", 0);
 insert into caracteristica values (7, "Se admiten mascotas", 0);

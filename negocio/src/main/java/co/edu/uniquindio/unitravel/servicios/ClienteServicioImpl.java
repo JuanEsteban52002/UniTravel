@@ -279,4 +279,5 @@ public class ClienteServicioImpl implements ClienteServicio{
     public List<Hotel> listarHoteles() {
         return hotelRepo.findAll();
     }
+
 }
