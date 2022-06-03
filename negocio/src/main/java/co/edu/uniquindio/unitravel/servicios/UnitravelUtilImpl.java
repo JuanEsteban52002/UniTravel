@@ -107,10 +107,6 @@ public class UnitravelUtilImpl implements UnitravelUtilServicio {
         return caracteristicaRepo.findAllByTipo(0);
     }
 
-    @Override
-    public List<Caracteristica> todasLasCaracteristica() {
-        return caracteristicaRepo.findAll();
-    }
 
     @Override
     public List<Caracteristica> listarCaracteristicasHabitacion() {
