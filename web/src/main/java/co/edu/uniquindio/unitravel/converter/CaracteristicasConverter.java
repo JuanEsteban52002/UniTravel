@@ -32,8 +32,8 @@ public class CaracteristicasConverter implements Serializable, Converter<Caracte
 
     @Override
     public String getAsString(FacesContext context, UIComponent component, Caracteristica value) {
-        if (!value.equals(null)) {
-            return Integer.toString(value.getCodigo());
+        if (value != null) {
+            return value.getCodigo().toString();
         }
         return "";
     }

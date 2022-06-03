@@ -21,7 +21,8 @@ public class Caracteristica implements Serializable {
     @EqualsAndHashCode.Include
     private Integer codigo;
 
-    private TipoCaracteritica tipoCaracteritica;
+    @Column(nullable = false, length = 1)
+    private Integer tipo;
 
     @Column(length = 100, nullable = false)
     private String nombre;

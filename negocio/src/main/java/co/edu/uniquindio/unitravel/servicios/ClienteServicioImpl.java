@@ -2,8 +2,10 @@ package co.edu.uniquindio.unitravel.servicios;
 
 import co.edu.uniquindio.unitravel.entidades.*;
 import co.edu.uniquindio.unitravel.repositorios.*;
+import org.jasypt.util.password.StrongPasswordEncryptor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -46,6 +48,9 @@ public class ClienteServicioImpl implements ClienteServicio{
             throw new Exception("Ya existe alguien usando este correo");
         }
 
+        StrongPasswordEncryptor passwordEncryptor = new StrongPasswordEncryptor();
+        cliente.setPassword( passwordEncryptor.encryptPassword( cliente.getPassword() ) );
+
         return clienteRepo.save(cliente);
     }
 
@@ -68,12 +73,7 @@ public class ClienteServicioImpl implements ClienteServicio{
         if(codigo.isEmpty()){
             throw new Exception("Por favor ingrese una cedula");
         }
-
         Cliente cliente = clienteRepo.findById(codigo).orElse(null);
-
-        if(cliente == null){
-            throw new Exception("El cliente no existe, verifique los datos");
-        }
 
         return cliente;
     }
@@ -109,24 +109,7 @@ public class ClienteServicioImpl implements ClienteServicio{
         clienteRepo.delete(cliente);
     }
 
-    @Override
-    public Cliente validarLogin(String correo, String password) throws Exception {
 
-        if(correo.isEmpty()){
-            throw new Exception("Porfavor ingrese un correo");
-        }
-
-        if(password.isEmpty()){
-            throw new Exception("Porfavor ingrese una contraseña");
-        }
-
-        Optional<Cliente> cliente = clienteRepo.findByEmailAndPassword(correo, password);
-
-        if(cliente.equals(null)){
-            throw new Exception("Los datos de autenticación son incorrectos");
-        }
-        return cliente.get();
-    }
 
     @Override
     public Comentario crearComentario(Comentario comentario) throws Exception {
@@ -136,6 +119,7 @@ public class ClienteServicioImpl implements ClienteServicio{
         if(comentarioBuscado != null){
             throw new Exception("El comentario ya existe");
         }
+        comentario.setFechaCalificacion(LocalDateTime.now());
 
         return comentarioRepo.save(comentario);
     }
@@ -255,7 +239,17 @@ public class ClienteServicioImpl implements ClienteServicio{
 
     @Override
     public List<Hotel> buscarHotelesCiudad(String nombreCiudad) {
-        return hotelRepo.obtenerHotelesCiudad(nombreCiudad);
+        return hotelRepo.obtenerHotelesNombreCiudad(nombreCiudad);
+    }
+
+    @Override
+    public List<Hotel> obtenerHotelesCodigoCiudad(Integer codigoCiudad) {
+        return hotelRepo.obtenerHotelesCodigoCiudad(codigoCiudad);
+    }
+
+    @Override
+    public List<Hotel> buscarHotelesNombre(String nombreHotel) {
+        return hotelRepo.obtenerHotelesNombre(nombreHotel);
     }
 
     @Override
@@ -285,4 +279,10 @@ public class ClienteServicioImpl implements ClienteServicio{
     public Ciudad obtenerCiudad(Integer codigo) throws Exception {
         return ciudadRepo.findById(codigo).orElse(null);
     }
+
+    @Override
+    public List<Hotel> listarHoteles() {
+        return hotelRepo.findAll();
+    }
+
 }

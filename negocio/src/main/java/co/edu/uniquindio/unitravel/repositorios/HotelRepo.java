@@ -32,7 +32,10 @@ public interface HotelRepo extends JpaRepository<Hotel, Integer> {
     String obtenerNombreCiudad(int codigoHotel);
 
     @Query ("select h from Hotel h where h.ciudad.nombre = :nombreCiudad")
-    List<Hotel> obtenerHotelesCiudad (String nombreCiudad);
+    List<Hotel> obtenerHotelesNombreCiudad (String nombreCiudad);
+
+    @Query ("select h from Hotel h where h.ciudad.codigo = :codigoCiudad")
+    List<Hotel> obtenerHotelesCodigoCiudad (Integer codigoCiudad);
 
     //Punto dos taller
     @Query("select h.ciudad.nombre, count(h) from Hotel h group by h.ciudad")
@@ -43,7 +46,7 @@ public interface HotelRepo extends JpaRepository<Hotel, Integer> {
     List<Hotel> obtenerHotelSinComentarios();
 
     //Cuarto punto
-    @Query("select h from Hotel h where h.nombre like concat('%', :nombreHotel, '%')")
+    @Query("select h from Hotel h where lower(h.nombre) like concat('%', lower(:nombreHotel), '%') or lower(h.ciudad.nombre) like concat('%', lower(:nombreHotel), '%')")
     List<Hotel> obtenerHotelesNombre(String nombreHotel);
 
     //Punto nuevo taller

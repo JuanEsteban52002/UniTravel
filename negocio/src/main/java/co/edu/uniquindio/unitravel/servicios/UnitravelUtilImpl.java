@@ -1,42 +1,110 @@
 package co.edu.uniquindio.unitravel.servicios;
 
-import co.edu.uniquindio.unitravel.entidades.Caracteristica;
-import co.edu.uniquindio.unitravel.entidades.Ciudad;
-import co.edu.uniquindio.unitravel.entidades.TipoCaracteritica;
-import co.edu.uniquindio.unitravel.repositorios.CaracteristicaRepo;
-import co.edu.uniquindio.unitravel.repositorios.CiudadRepo;
+import co.edu.uniquindio.unitravel.entidades.*;
+import co.edu.uniquindio.unitravel.repositorios.*;
+import org.jasypt.contrib.org.apache.commons.codec_1_3.EncoderException;
+import org.jasypt.exceptions.EncryptionOperationNotPossibleException;
+import org.jasypt.util.password.StrongPasswordEncryptor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
-public class UnitravelUtilImpl implements UnitravelUtilServicio{
+public class UnitravelUtilImpl implements UnitravelUtilServicio {
 
     private CaracteristicaRepo caracteristicaRepo;
     private CiudadRepo ciudadRepo;
+    private CamaRepo camaRepo;
 
-    public UnitravelUtilImpl(CaracteristicaRepo caracteristicaRepo, CiudadRepo ciudadRepo){
+    private AdministradorRepo administradorRepo;
+
+    private AdministradorHotelRepo administradorHotelRepo;
+
+    private ClienteRepo clienteRepo;
+    private HotelRepo hotelRepo;
+
+    public UnitravelUtilImpl(CaracteristicaRepo caracteristicaRepo,
+                             CiudadRepo ciudadRepo,
+                             CamaRepo camaRepo,
+                             ClienteRepo clienteRepo,
+                             AdministradorHotelRepo administradorHotelRepo,
+                             AdministradorRepo administradorRepo,
+                             HotelRepo hotelRepo) {
         this.ciudadRepo = ciudadRepo;
         this.caracteristicaRepo = caracteristicaRepo;
+        this.camaRepo = camaRepo;
+        this.hotelRepo = hotelRepo;
+        this.clienteRepo = clienteRepo;
+        this.administradorHotelRepo = administradorHotelRepo;
+        this.administradorRepo = administradorRepo;
+    }
+
+    @Override
+    public Hotel obtenerHotel(Integer codigoHotel) throws Exception {
+        if (codigoHotel == null) {
+            throw new Exception("Por favor envie un codigo");
+        }
+        return hotelRepo.findById(codigoHotel).orElse(null);
     }
 
     //----------------------------------------------------------//
     @Override
     public Caracteristica obtenerCaracteristica(Integer codigo) throws Exception {
-        return caracteristicaRepo.findById(Integer.toString(codigo)).orElseThrow(() -> new Exception("EL codigo no existe"));
+        return caracteristicaRepo.findById(codigo).orElseThrow(() -> new Exception("EL codigo no existe"));
+    }
+
+    @Override
+    public Persona validarLogin(String correo, String password) throws Exception {
+
+        try {
+            StrongPasswordEncryptor passwordEncryptor = new StrongPasswordEncryptor();
+            Persona cliente = clienteRepo.findByEmail(correo).orElse(null);
+
+            if (cliente == null) {
+                cliente = administradorHotelRepo.findByEmail(correo).orElse(null);
+            } else {
+                if (!passwordEncryptor.checkPassword(password, cliente.getPassword())) {
+                    throw new Exception("Contraseña incorrecta");
+                } else {
+                    return cliente;
+                }
+            }
+
+            if (cliente == null) {
+                cliente = administradorRepo.findByEmail(correo).orElse(null);
+            } else {
+                if (!passwordEncryptor.checkPassword(password, cliente.getPassword())) {
+                    throw new Exception("Contraseña incorrecta");
+                } else {
+                    return cliente;
+                }
+            }
+
+            if (cliente == null) {
+                throw new Exception("El correo o la contraseña son incorrectos");
+            } else {
+                if (!passwordEncryptor.checkPassword(password, cliente.getPassword())) {
+                    throw new Exception("Contraseña incorrecta");
+                } else {
+                    return cliente;
+                }
+            }
+        } catch (EncryptionOperationNotPossibleException e) {
+            throw new Exception("Contraseña es incorrecta");
+
+        }
+    }
+
+
+    @Override
+    public List<Caracteristica> listarCaracteristicas() {
+        return caracteristicaRepo.findAll();
     }
 
     @Override
     public List<Caracteristica> listarCaracteristicasHotel() {
-        Caracteristica ca = new Caracteristica();
-        ca.setTipoCaracteritica(TipoCaracteritica.HOTEL);
-        System.out.println(ca.getTipoCaracteritica());
-        ca.setTipoCaracteritica(TipoCaracteritica.HABITACION);
-        System.out.println(ca.getTipoCaracteritica());
-        for(Caracteristica c : caracteristicaRepo.obtenerCaracteristicasSegunTipo(TipoCaracteritica.HOTEL)){
-            System.out.println(c.getNombre());
-        }
-        return caracteristicaRepo.obtenerCaracteristicasSegunTipo(TipoCaracteritica.HOTEL);
+        return caracteristicaRepo.findAllByTipo(0);
     }
 
     @Override
@@ -46,12 +114,17 @@ public class UnitravelUtilImpl implements UnitravelUtilServicio{
 
     @Override
     public List<Caracteristica> listarCaracteristicasHabitacion() {
-        return caracteristicaRepo.obtenerCaracteristicasSegunTipo(TipoCaracteritica.HABITACION);
+        return caracteristicaRepo.findAllByTipo(1);
     }
 
     @Override
     public List<Ciudad> listarCiudades() {
         return ciudadRepo.findAll();
+    }
+
+    @Override
+    public List<Cama> listarCamas() {
+        return camaRepo.findAll();
     }
 
 }

@@ -1,8 +1,8 @@
 package co.edu.uniquindio.unitravel.converter;
 
-import co.edu.uniquindio.unitravel.entidades.Ciudad;
-import co.edu.uniquindio.unitravel.repositorios.CiudadRepo;
-import co.edu.uniquindio.unitravel.servicios.ClienteServicio;
+import co.edu.uniquindio.unitravel.entidades.AdministradorHotel;
+import co.edu.uniquindio.unitravel.entidades.Cama;
+import co.edu.uniquindio.unitravel.servicios.AdministradorHotelServicio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -11,28 +11,29 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import java.io.Serializable;
 
-import static java.lang.Integer.*;
-
 @Component
-public class CiudadConverter implements Converter<Ciudad>, Serializable {
+public class CamaConverter implements Converter<Cama>, Serializable {
 
     @Autowired
-    private ClienteServicio clienteServicio;
+    private AdministradorHotelServicio administradorHotel;
+
 
     @Override
-    public Ciudad getAsObject(FacesContext context, UIComponent component, String value) {
+    public Cama getAsObject(FacesContext context, UIComponent component, String value) {
 
         try {
-            Ciudad ciudad = clienteServicio.obtenerCiudad(Integer.parseInt(value));
-            return ciudad;
+            Cama cama = administradorHotel.obtenerCama(Integer.parseInt(value));
+            return cama;
         } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
     }
 
+
     @Override
-    public String getAsString(FacesContext context, UIComponent component, Ciudad value) {
+    public String getAsString(FacesContext context, UIComponent component, Cama value) {
+
         if (value != null) {
             String valor = value.getCodigo()+"";
             return valor;

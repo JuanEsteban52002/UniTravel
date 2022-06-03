@@ -1,8 +1,6 @@
 package co.edu.uniquindio.unitravel.servicios;
 
-import co.edu.uniquindio.unitravel.entidades.AdministradorHotel;
-import co.edu.uniquindio.unitravel.entidades.Ciudad;
-import co.edu.uniquindio.unitravel.entidades.Hotel;
+import co.edu.uniquindio.unitravel.entidades.*;
 import co.edu.uniquindio.unitravel.repositorios.HotelRepo;
 
 import java.util.ArrayList;
@@ -20,12 +18,22 @@ public interface AdministradorHotelServicio {
 
     List<Hotel> listarHoteles(String codigoAdmin);
 
-    Hotel obtenerHotel(Integer codigoHotel) throws Exception;
+    Habitacion crearHabitacion(Habitacion habitacion);
+
+    void eliminarHabitacion(Integer numero) throws Exception;
+
+    Habitacion modificarHabitacion(Habitacion habitacion) throws Exception;
+
+    Habitacion obtenerHabitacion(Integer codigoHabitacion, Integer codigoHotel) throws Exception;
+
+    List<Habitacion> listarHabitacionesHotel(String codigoHotel);
 
     Ciudad obtenerCiudad(Integer codigo)throws Exception;
 
     AdministradorHotel obtenerAdministradorHotel(String codigo) throws Exception;
 
     List<Ciudad> listarCiudades();
+
+    Cama obtenerCama(Integer codigo) throws Exception;
 
 }

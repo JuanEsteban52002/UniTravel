@@ -1,7 +1,5 @@
 package co.edu.uniquindio.unitravel.repositorios;
 
-import co.edu.uniquindio.unitravel.entidades.Cliente;
-import co.edu.uniquindio.unitravel.entidades.Habitacion;
 import co.edu.uniquindio.unitravel.entidades.ReservaHabitacion;
 import co.edu.uniquindio.unitravel.entidades.Vuelo;
 import co.edu.uniquindio.unitravel.entidades.dto.ReservaDTO;
@@ -9,10 +7,8 @@ import co.edu.uniquindio.unitravel.entidades.Reserva;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 public interface ReservaRepo extends JpaRepository<Reserva, String> {
 

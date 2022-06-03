@@ -6,102 +6,81 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-<h:head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Unitravel</title>
-    <h:outputStylesheet library="css" name="bootstrap.min.css" />
-    <h:outputStylesheet library="css" name="style.css" />
-    <h:outputScript library="js" name="bootstrap.bundle.min.js" />
-</h:head>
-<h:body>
-    <div id="encabezado" >
-        <div >
-            <div class="px-3 py-2 color-principal text-white">
-                <div class="container">
-                    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-                        <a href="/" class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none">
-                            <h:graphicImage library="img" name="avionpapel.png" styleClass="icon-p" />
-                            <span class="fs-4">Unitravel</span>
-                        </a>
 
-                        <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
-                            <li>
-                                <a href="/" class="nav-link text-secondary">
-                                    <i class="pi pi-home d-block mx-auto mb-1 icon-menu" > </i>
-                                    Inicio
-                                </a>
-                            </li>
-                            <li>
-                                <a href="crear_hotel.xhtml" class="nav-link text-white">
-                                    <i class="pi pi-plus-circle d-block mx-auto mb-1 icon-menu" > </i>
-                                    Crear Hotel
-                                </a>
-                            </li>
-                            <li>
-                                <a href="hoteles_destino.xhtml" class="nav-link text-white">
-                                    <i class="pi pi-map d-block mx-auto mb-1 icon-menu" > </i>
-                                    Hoteles
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="nav-link text-white">
-                                    <i class="pi pi-book d-block mx-auto mb-1 icon-menu" > </i>
-                                    Mis reservas
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="nav-link text-white">
-                                    <i class="pi pi-list d-block mx-auto mb-1 icon-menu" > </i>
-                                    Mis hoteles
-                                </a>
-                            </li>
-                        </ul>
+
+<ui:composition template="/WEB-INF/template.xhtml">
+    <ui:define name="title">Inicio</ui:define>
+    <ui:define name="content">
+
+        <h2 class="m-3">Lista de ciudades</h2>
+
+        <p:carousel value="#{inicioBean.ciudades}" var="ciudad" numVisible="3" circular="true" autoplayInterval="4000">
+            <div class="card m-2 item-ciudad">
+                <a href="hoteles_destino.xhtml?ciudad=#{ciudad.codigo}">
+                    <div class="img-ciudad">
+                        <img src="#{ciudad.urlImagen}" alt="Imagen Ciudad"/>
                     </div>
-                </div>
+                    <p>#{ciudad.nombre}</p>
+                </a>
             </div>
-            <div class="px-3 py-2 border-bottom mb-3">
-                <div class="container d-flex flex-wrap justify-content-center">
-                    <h:form id="buscador_h" styleClass="col-12 col-lg-auto mb-2 mb-lg-0 me-lg-auto">
-                        <div class = "input-search ui-inputgroup">
-                            <p:inputText placeholder="¿Que hotel esta buscando?" required="true" values="#{busquedaBean.busqueda}" />
-                            <p:commandButton update="@form" icon="pi pi-search" action="#{busquedaBean.buscar}" />
-                        </div>
-                    </h:form>
-                    <div class="text-end">
-                        <h:form>
-                            <button type="button" class="btn btn-light text-dark me-2">Login</button>
-                            <p:commandButton type="button" class="btn btn-primary" action="inicioBean.irRegistro"/>
-                        </h:form>
-                    </div>
-                </div>
-            </div>
-           <h1>Hola</h1>
-        </div>
-    </div>
+        </p:carousel>
 
-    <div id="contenido">
-
-
-        <p>Lista de ciudades</p>
         <p>Hoteles recomendados</p>
-    </div>
 
-    <div id="pie_pagina">
-        <div class="container">
-            <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
-                <div class="col-md-4 d-flex align-items-center">
-                    <span class="mb-3 mb-md-0 text-muted">&copy; 2022 Unitravel, Inc</span>
-                </div>
+        <h:form>
+            <p:dataView id="lista-h" value="#{inicioBean.hoteles}" var="hotel" listIcon="pi pi-bars"
+                        gridIcon="pi pi-th-large">
 
-                <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
-                    <li class="ms-3"><a class="text-muted" href="#"><i class="pi pi-twitter icon-menu"></i></a></li>
-                    <li class="ms-3"><a class="text-muted" href="#"><i class="pi pi-facebook icon-menu"></i></a></li>
-                    <li class="ms-3"><a class="text-muted" href="#"><i class="pi pi-instagram icon-menu"></i></a></li>
-                </ul>
-            </footer>
-        </div>
-    </div>
+                <p:dataViewListItem>
 
-</h:body>
+                    <div class="row d-flex m-5">
+                        <div class="col-lg-2 col-md-1" style="text-align: center">
+                            <img src="/uploads/#{hotel.imagenPrincipal}" class="imagen-hotel" alt="Imagen"/>
+                        </div>
+                        <div class="col-lg-8 col-md-1 align-self-center">
+                            <p:outputPanel>
+                                <h:panelGrid columns="2" cellpadding="5">
+                                    <h:outputText value="Nombre:"/>
+                                    <h:outputText value="#{hotel.nombre}" style="font-weight:bold"/>
+                                    <h:outputText value="Ciudad:"/>
+                                    <h:outputText value="#{hotel.ciudad.nombre}"/>
+                                    <h:outputText value="Caracteristicas: "/>
+
+                                    <p:repeat value="#{hotel.caracteristicas}" var="car">
+                                        <p:chip label="#{car.nombre}" styleClass="me-2"/>
+                                    </p:repeat>
+
+                                    <h:outputText value="Descripción:"/>
+                                    <h:outputText value="#{hotel.descripcion}"/>
+                                </h:panelGrid>
+                            </p:outputPanel>
+                        </div>
+                        <div class="col-lg-2 col-md-1 align-self-center">
+                            <p:commandButton value="Ver detalle" action="#{inicioBean.irDetalleHotel(hotel.codigo)}"
+                                             styleClass="ui-button-raised"
+                                             icon="pi pi-arrow-right" iconPos="right"/>
+                        </div>
+                    </div>
+
+                </p:dataViewListItem>
+
+                <p:dataViewGridItem>
+                    <div class="card">
+                        <img src="#{hotel.imagenPrincipal}" class="card-img-top, imagen-hotel-grid" alt="..."/>
+                        <div class="card-body">
+                            <h5 class="card-title">#{hotel.nombre}</h5>
+                            <p class="card-text">#{hotel.ciudad.nombre}</p>
+                            <hr/>
+                            <p:commandButton value="Ver detalle" action="#{inicioBean.irDetalleHotel(hotel.codigo)}"
+                                             styleClass="ui-button-raised"
+                                             icon="pi pi-arrow-right" iconPos="right"/>
+                        </div>
+                    </div>
+                </p:dataViewGridItem>
+
+            </p:dataView>
+        </h:form>
+    </ui:define>
+</ui:composition>
+
 </html>

@@ -19,7 +19,7 @@ public class Ciudad implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
-    private int codigo;
+    private Integer codigo;
 
     @Column(length = 50, nullable = false)
     private String nombre;
@@ -31,6 +31,9 @@ public class Ciudad implements Serializable {
     @ToString.Exclude
     @OneToMany(mappedBy = "ciudad")
     private List<Aeropuerto> aeropuertos;
+
+    @Column(nullable = false)
+    private String urlImagen;
 
     @ToString.Exclude
     @OneToMany(mappedBy = "ciudadOrigen")

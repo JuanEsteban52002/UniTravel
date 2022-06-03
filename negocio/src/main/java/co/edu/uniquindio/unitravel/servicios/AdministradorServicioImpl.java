@@ -39,7 +39,7 @@ public class AdministradorServicioImpl implements AdministradorServicio {
             throw  new Exception("Por favor llenar todos los campos de texto");
         }
 
-        Optional<Administrador> administrador = administradorRepo.findByEmailAndPassword(email, password);
+        Optional<Administrador> administrador = administradorRepo.findByEmail(email);
 
         if(administrador.equals(null)) {
             throw new Exception("Los datos de autenticacion son incorrectos");

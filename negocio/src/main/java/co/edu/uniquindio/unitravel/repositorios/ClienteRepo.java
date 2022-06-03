@@ -32,10 +32,11 @@ public interface ClienteRepo extends JpaRepository<Cliente, String> {
     @Query("select c from Cliente c where  c.nombre = :nombre")
     List<Cliente> buscarPorNombre(String nombre);
 
+ /*
     @Query("select  c from Cliente c where c.email = :email and c.password = :password ")
-    Optional<Cliente> comprobarAutenticacion(String email, String password);
+       Optional<Cliente> comprobarAutenticacion(String email, String password);
+  */
 
-    Optional<Cliente> findByEmailAndPassword(String email, String password);
 
     Optional<Cliente> findByEmail(String email);
 

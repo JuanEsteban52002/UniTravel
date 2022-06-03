@@ -16,7 +16,7 @@ import java.util.List;
 
 @Component
 @ViewScoped
-public class busquedaBean implements Serializable {
+public class BusquedaBean implements Serializable {
 
     @Autowired
     private ClienteServicio clienteServicio;
@@ -27,20 +27,30 @@ public class busquedaBean implements Serializable {
     @Value("#{param['busqueda']}")
     private String busquedaParametro;
 
+    @Getter @Setter
     private List<Hotel> hoteles;
 
     @PostConstruct
     public void inicializar(){
-        if(busquedaParametro!=null && !busquedaParametro.isEmpty()) {
-            hoteles = clienteServicio.buscarHotelesCiudad(busquedaParametro);
-        }else{
-            hoteles = new ArrayList<>();
+
+        hoteles = new ArrayList<>();
+
+        try{
+            if(busquedaParametro!=null && !busquedaParametro.isEmpty()) {
+                hoteles = clienteServicio.buscarHotelesNombre(busquedaParametro);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
         }
     }
 
     public String buscar(){
-        List<Hotel> hoteles = clienteServicio.buscarHotelesCiudad(busqueda);
         return "resultado_busqueda?faces-redirect=true&amp;busqueda="+busqueda;
-
     }
+
+    public String irDetalleHotel(String codigoHotel){
+        System.out.println("codigoHotel: "+codigoHotel);
+        return "detalle_hotel?faces-redirect=true&amp;hotel_id="+codigoHotel;
+    }
+
 }

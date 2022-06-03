@@ -17,9 +17,7 @@ public interface ClienteServicio {
 
     void eliminarCliente(String cedula) throws Exception;
 
-    //LOGIN
 
-    Cliente validarLogin(String correo, String password) throws Exception;
 
     //COMENTARIO
 
@@ -44,6 +42,10 @@ public interface ClienteServicio {
 
     List<Hotel> buscarHotelesCiudad(String nombreCiudad);
 
+    List<Hotel> obtenerHotelesCodigoCiudad(Integer codigoCiudad);
+
+    List<Hotel> buscarHotelesNombre(String nombreHotel);
+
     //Email
 
     void recuperarPassword(String email) throws Exception;
@@ -51,5 +53,9 @@ public interface ClienteServicio {
     List<Ciudad> listarCiudades();
 
     Ciudad obtenerCiudad(Integer codigo) throws Exception;
+
+    List<Hotel> listarHoteles();
+
+
 
 }

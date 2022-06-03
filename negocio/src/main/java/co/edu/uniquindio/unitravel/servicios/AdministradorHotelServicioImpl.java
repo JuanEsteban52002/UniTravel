@@ -1,9 +1,8 @@
 package co.edu.uniquindio.unitravel.servicios;
 
-import co.edu.uniquindio.unitravel.entidades.AdministradorHotel;
-import co.edu.uniquindio.unitravel.entidades.Ciudad;
-import co.edu.uniquindio.unitravel.entidades.Hotel;
+import co.edu.uniquindio.unitravel.entidades.*;
 import co.edu.uniquindio.unitravel.repositorios.AdministradorHotelRepo;
+import co.edu.uniquindio.unitravel.repositorios.CamaRepo;
 import co.edu.uniquindio.unitravel.repositorios.CiudadRepo;
 import co.edu.uniquindio.unitravel.repositorios.HotelRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,14 +17,13 @@ public class AdministradorHotelServicioImpl implements AdministradorHotelServici
 
     @Autowired
     private AdministradorHotelRepo adminHotelRepo;
-
     @Autowired
     private HotelRepo hotelRepo;
-
     @Autowired
     private CiudadRepo ciudadRepo;
 
-
+    @Autowired
+    private CamaRepo camaRepo;
 
     public AdministradorHotelServicioImpl(AdministradorHotelRepo adminHotelRepo, HotelRepo hotelRepo){
         this.adminHotelRepo = adminHotelRepo;
@@ -39,7 +37,7 @@ public class AdministradorHotelServicioImpl implements AdministradorHotelServici
             throw new Exception("Por favor rellenar todo los campos de texto");
         }
 
-        Optional<AdministradorHotel> adminHotel = adminHotelRepo.findByEmailAndPassword(email, password);
+        Optional<AdministradorHotel> adminHotel = adminHotelRepo.findByEmail(email);
 
         if(adminHotel.equals(null)){
             throw new Exception("Los datos de autenticacion son incorrectos");
@@ -89,12 +87,38 @@ public class AdministradorHotelServicioImpl implements AdministradorHotelServici
         return adminHotelRepo.obtenerHotelesAdmin(codigoAdmin);
     }
 
-    @Override
     public Hotel obtenerHotel(Integer codigoHotel) throws Exception  {
         if(codigoHotel == null){
             throw new Exception("Por favor envie un codigo");
         }
         return hotelRepo.findById(codigoHotel).orElse(null);
+    }
+
+    @Override
+    public Habitacion crearHabitacion(Habitacion habitacion) {
+
+        return null;
+    }
+
+    @Override
+    public void eliminarHabitacion(Integer numero) throws Exception {
+
+    }
+
+    @Override
+    public Habitacion modificarHabitacion(Habitacion habitacion) throws Exception {
+        return null;
+    }
+
+    @Override
+    public Habitacion obtenerHabitacion(Integer codigoHabitacion, Integer codigoHotel) throws Exception {
+        return adminHotelRepo.obtenerHabitacion(codigoHabitacion, codigoHotel);
+    }
+
+    @Override
+    public List<Habitacion> listarHabitacionesHotel(String codigoHotel) {
+
+        return null;
     }
 
     @Override
@@ -109,7 +133,13 @@ public class AdministradorHotelServicioImpl implements AdministradorHotelServici
 
     @Override
     public List<Ciudad> listarCiudades() {
+
         return ciudadRepo.findAll();
+    }
+
+    @Override
+    public Cama obtenerCama(Integer codigo) throws Exception {
+        return camaRepo.findById(codigo).orElse(null);
     }
 
 
