@@ -15,19 +15,17 @@ import java.util.Optional;
 @Service
 public class AdministradorHotelServicioImpl implements AdministradorHotelServicio {
 
-    @Autowired
     private AdministradorHotelRepo adminHotelRepo;
-    @Autowired
     private HotelRepo hotelRepo;
-    @Autowired
     private CiudadRepo ciudadRepo;
-
-    @Autowired
     private CamaRepo camaRepo;
 
-    public AdministradorHotelServicioImpl(AdministradorHotelRepo adminHotelRepo, HotelRepo hotelRepo){
+    public AdministradorHotelServicioImpl(AdministradorHotelRepo adminHotelRepo
+            , HotelRepo hotelRepo, CiudadRepo ciudadRepo, CamaRepo camaRepo) {
         this.adminHotelRepo = adminHotelRepo;
         this.hotelRepo = hotelRepo;
+        this.ciudadRepo = ciudadRepo;
+        this.camaRepo = camaRepo;
     }
 
     @Override
