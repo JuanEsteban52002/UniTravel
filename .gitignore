@@ -20,4 +20,9 @@ build/
 
 *.properties
 
+/gradle
+/.gradle
+
 /bin
+
+.DS_Store
