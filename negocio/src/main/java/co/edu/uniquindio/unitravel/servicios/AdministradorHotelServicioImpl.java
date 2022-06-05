@@ -21,7 +21,7 @@ public class AdministradorHotelServicioImpl implements AdministradorHotelServici
     private CamaRepo camaRepo;
 
     public AdministradorHotelServicioImpl(AdministradorHotelRepo adminHotelRepo
-            , HotelRepo hotelRepo, CiudadRepo ciudadRepo, CamaRepo camaRepo) {
+            ,HotelRepo hotelRepo, CiudadRepo ciudadRepo, CamaRepo camaRepo) {
         this.adminHotelRepo = adminHotelRepo;
         this.hotelRepo = hotelRepo;
         this.ciudadRepo = ciudadRepo;
