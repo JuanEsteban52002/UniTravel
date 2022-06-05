@@ -28,7 +28,7 @@ public class DatosIniciales implements CommandLineRunner {
     public void run(String... args) throws Exception {
 
         if (unitravelUtilServicio.listarCiudades().isEmpty()) {
-            
+            administradorServicio.crearCiudad(new Ciudad("Bogota"));
         }
     }
 }

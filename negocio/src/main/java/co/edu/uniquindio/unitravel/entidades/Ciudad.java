@@ -51,4 +51,8 @@ public class Ciudad implements Serializable {
         this.nombre = nombre;
         this.urlImagen = urlImagen;
     }
+
+    public Ciudad(String nombre){
+        this.nombre = nombre;
+    }
 }

@@ -74,14 +74,11 @@ public class HotelBean implements Serializable {
         try {
 
             if(personaSesion != null) {
-
-
-                if (imagenesHotel.size() >= 1) {
+           //     if (imagenesHotel.size() >= 1) {
                     if (true){
                     //if (habitaciones.size() > 0) {
                         hotel.setAdministradorHotel((AdministradorHotel) personaSesion);
                         hotel.setFotos(imagenesHotel);
-                        hotel.setCodigo(100);
 
                         Hotel h = administradorHotelServicio.crearHotel(hotel);
 
@@ -95,11 +92,13 @@ public class HotelBean implements Serializable {
                     } else {
                         FacesMessage msj = new FacesMessage(FacesMessage.SEVERITY_WARN, "Alerta", "Es obligatorio agregar habitaciones");
                         FacesContext.getCurrentInstance().addMessage("msj_bean", msj);
-                    }
+               }
+                    /*
                 } else {
                     FacesMessage msj = new FacesMessage(FacesMessage.SEVERITY_WARN, "Alerta", "Es obligatorio subir imagenes");
                     FacesContext.getCurrentInstance().addMessage("msj_bean", msj);
                 }
+                     */
             }
 
         } catch (Exception e) {
