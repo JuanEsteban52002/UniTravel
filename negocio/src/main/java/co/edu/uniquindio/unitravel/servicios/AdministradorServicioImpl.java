@@ -146,7 +146,6 @@ public class AdministradorServicioImpl implements AdministradorServicio {
         if(ciudadBuscada != null) {
             throw new Exception("La ciudad ya existe");
         }
-
         return ciudadRepo.save(ciudad);
     }
 

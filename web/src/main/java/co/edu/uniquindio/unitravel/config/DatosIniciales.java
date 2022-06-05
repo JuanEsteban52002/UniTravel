@@ -28,7 +28,7 @@ public class DatosIniciales implements CommandLineRunner {
     public void run(String... args) throws Exception {
 
         if (unitravelUtilServicio.listarCiudades().isEmpty()) {
-            administradorServicio.crearCiudad(new Ciudad("Armenia", "https://www.desktodirtbag.com/wp-content/uploads/2017/05/armenia-colombia-11.jpg"));
+            administradorServicio.crearCiudad(new Ciudad("Armenia", ""));
         }
     }
 }
