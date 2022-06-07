@@ -141,11 +141,11 @@ public class AdministradorServicioImpl implements AdministradorServicio {
     @Override
     public Ciudad crearCiudad(Ciudad ciudad) throws Exception {
 
-        Ciudad ciudadBuscada = obtenerCiudad(ciudad.getCodigo());
+        /*Ciudad ciudadBuscada = obtenerCiudad(ciudad.getCodigo());
 
         if(ciudadBuscada != null) {
             throw new Exception("La ciudad ya existe");
-        }
+        }*/
         return ciudadRepo.save(ciudad);
     }
 

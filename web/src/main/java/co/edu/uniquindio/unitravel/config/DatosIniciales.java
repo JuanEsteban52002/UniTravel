@@ -32,6 +32,8 @@ public class DatosIniciales implements CommandLineRunner {
             administradorServicio.crearCiudad(new Ciudad("Armenia"));
             administradorServicio.crearCiudad(new Ciudad("Pereira"));
             administradorServicio.crearCiudad(new Ciudad("Bogota"));
+            administradorServicio.crearCiudad(new Ciudad("Barranquilla"));
+            administradorServicio.crearCiudad(new Ciudad("Cali"));
         }
     }
 }
