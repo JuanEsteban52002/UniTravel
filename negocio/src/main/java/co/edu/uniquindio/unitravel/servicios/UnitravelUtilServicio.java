@@ -2,6 +2,7 @@ package co.edu.uniquindio.unitravel.servicios;
 
 import co.edu.uniquindio.unitravel.entidades.*;
 
+import java.util.Date;
 import java.util.List;
 
 public interface UnitravelUtilServicio {
@@ -16,5 +17,7 @@ public interface UnitravelUtilServicio {
     List<Caracteristica> listarCaracteristicasHabitacion();
     List<Ciudad> listarCiudades();
     List<Cama> listarCamas();
+    List<ReservaHabitacion> obtenerHabitacionesReservadas();
+    List<Reserva> reservasIntervalo(Date inicio, Date fin);
 
 }

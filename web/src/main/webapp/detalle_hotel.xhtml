@@ -74,8 +74,24 @@
         </p:panel>
 
         <p:panel header="Habitaciones" styleClass="mt-3">
+
+            <div>
+                <div class="p-field p-col-12 p-md-4">
+                    <p:outputLabel for="fechaInicio" value="Fecha de inicio"/>
+                    <p:datePicker id="fechaInicio" value="#{calendarView.date10}" showButtonBar="true"/>
+
+                    <p:outputLabel for="fechaFin" value="   Fecha final"/>
+                    <p:datePicker id="fechaFin" value="#{calendarView.date10}" showButtonBar="true"/>
+
+                    <p:button value="Reservar" />
+                </div>
+            </div>
+
+
+
             <div class="d-flex">
-                <p:repeat value="#{detalleHotelBean.hotel.habitaciones}" var="hab">
+
+                <p:repeat value="#{detalleHotelBean.hotel.habitaciones}" var="hab" >
                     <div class="card border-primary m-4">
                         <div class="d-block text-center img-hab mt-2">
                             <img src="/uploads/#{hab.imagenPrincipal}" alt="Habitacion"/>
@@ -97,7 +113,13 @@
                             <p:repeat value="#{hab.caracteristicas}" var="cat">
                                 <p:chip styleClass="me-2" label="#{cat.nombre}"/>
                             </p:repeat>
+
+                            <hr class="m-3"/>
+                            <div>
+                            <p:selectBooleanCheckbox> Reservar </p:selectBooleanCheckbox>
+                            </div>
                         </div>
+
                     </div>
                 </p:repeat>
             </div>

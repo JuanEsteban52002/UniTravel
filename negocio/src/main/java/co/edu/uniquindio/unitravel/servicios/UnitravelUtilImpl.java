@@ -7,6 +7,7 @@ import org.jasypt.exceptions.EncryptionOperationNotPossibleException;
 import org.jasypt.util.password.StrongPasswordEncryptor;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,6 +24,7 @@ public class UnitravelUtilImpl implements UnitravelUtilServicio {
 
     private ClienteRepo clienteRepo;
     private HotelRepo hotelRepo;
+    private ReservaRepo reservaRepo;
 
     public UnitravelUtilImpl(CaracteristicaRepo caracteristicaRepo,
                              CiudadRepo ciudadRepo,
@@ -30,7 +32,8 @@ public class UnitravelUtilImpl implements UnitravelUtilServicio {
                              ClienteRepo clienteRepo,
                              AdministradorHotelRepo administradorHotelRepo,
                              AdministradorRepo administradorRepo,
-                             HotelRepo hotelRepo) {
+                             HotelRepo hotelRepo,
+                             ReservaRepo reservaRepo) {
         this.ciudadRepo = ciudadRepo;
         this.caracteristicaRepo = caracteristicaRepo;
         this.camaRepo = camaRepo;
@@ -38,6 +41,7 @@ public class UnitravelUtilImpl implements UnitravelUtilServicio {
         this.clienteRepo = clienteRepo;
         this.administradorHotelRepo = administradorHotelRepo;
         this.administradorRepo = administradorRepo;
+        this.reservaRepo = reservaRepo;
     }
 
     @Override
@@ -121,6 +125,16 @@ public class UnitravelUtilImpl implements UnitravelUtilServicio {
     @Override
     public List<Cama> listarCamas() {
         return camaRepo.findAll();
+    }
+
+    @Override
+    public List<ReservaHabitacion> obtenerHabitacionesReservadas() {
+        return reservaRepo.habitacionesReservadas();
+    }
+
+    @Override
+    public List<Reserva> reservasIntervalo(Date inicio, Date fin) {
+        return reservaRepo.devolverReservaIntervaloFecha(inicio, fin);
     }
 
 }

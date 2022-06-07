@@ -1,9 +1,8 @@
 package co.edu.uniquindio.unitravel.bean;
 
 
-import co.edu.uniquindio.unitravel.entidades.AdministradorHotel;
-import co.edu.uniquindio.unitravel.entidades.Comentario;
-import co.edu.uniquindio.unitravel.entidades.Hotel;
+import co.edu.uniquindio.unitravel.entidades.*;
+import co.edu.uniquindio.unitravel.repositorios.ReservaRepo;
 import co.edu.uniquindio.unitravel.servicios.ClienteServicio;
 import co.edu.uniquindio.unitravel.servicios.UnitravelUtilServicio;
 import lombok.Getter;
@@ -16,6 +15,7 @@ import javax.annotation.PostConstruct;
 import javax.faces.view.ViewScoped;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Component
@@ -58,6 +58,31 @@ public class DetalleHotelBean implements Serializable {
             }
 
         }
+    }
+
+    public List<Habitacion> habitacionesDisponibles(Date fechaInicio, Date fechaFin){
+
+        List<Reserva> reservas = unitravelServicio.reservasIntervalo(fechaInicio, fechaFin);
+
+        List<Habitacion> habitaciones = hotel.getHabitaciones();
+        List<Habitacion> habitacionesDisponibles = new ArrayList<>();
+        boolean centinela = false;
+
+        for(Reserva r : reservas){
+            for(ReservaHabitacion rh : r.getReservasHabitaciones()){
+                for(int i = 0; i < habitaciones.size() ; i++){
+                    if(Integer.parseInt(rh.getCodigo()) == habitaciones.get(i).getNumero()){
+                        centinela = true;
+                    }
+                }
+                if(centinela == false){
+
+                }
+            }
+        }
+
+
+        return habitacionesDisponibles;
     }
 
     public void crearComentario(){
