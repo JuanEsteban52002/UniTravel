@@ -27,7 +27,6 @@ public class DatosIniciales implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        if (unitravelUtilServicio.listarCiudades().isEmpty()) {
             try{
                 administradorServicio.crearCiudad(new Ciudad("Medellin", "https://traveler.marriott.com/es/wp-content/uploads/sites/2/2021/01/GI-529527806-Medellin-1920x1080.png"));
                 administradorServicio.crearCiudad(new Ciudad("Armenia", "https://www.desktodirtbag.com/wp-content/uploads/2017/05/armenia-colombia-11.jpg"));
@@ -36,7 +35,5 @@ public class DatosIniciales implements CommandLineRunner {
             }catch (Exception e){
                 e.printStackTrace();
             }
-
-        }
     }
 }
