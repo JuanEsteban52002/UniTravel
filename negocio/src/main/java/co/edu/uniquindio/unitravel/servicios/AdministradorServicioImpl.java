@@ -66,15 +66,8 @@ public class AdministradorServicioImpl implements AdministradorServicio {
 
     public AdministradorHotel obtenerAdministradorHotel(String cedulaAdminHotel) throws Exception{
 
-        if(cedulaAdminHotel.isEmpty()){
-            throw new Exception("Por favor envie una cedula");
-        }
-
         AdministradorHotel administradorHotel = administradorHotelRepo.findById(cedulaAdminHotel).orElse(null);
 
-        if(administradorHotel == null){
-            throw new Exception("El administrador no existe");
-        }
         return administradorHotel;
     }
 
