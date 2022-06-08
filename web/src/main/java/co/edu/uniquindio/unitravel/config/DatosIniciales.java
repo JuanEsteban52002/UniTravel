@@ -1,5 +1,6 @@
 package co.edu.uniquindio.unitravel.config;
 
+import co.edu.uniquindio.unitravel.entidades.AdministradorHotel;
 import co.edu.uniquindio.unitravel.entidades.Ciudad;
 import co.edu.uniquindio.unitravel.servicios.AdministradorHotelServicio;
 import co.edu.uniquindio.unitravel.servicios.AdministradorServicio;
@@ -28,10 +29,7 @@ public class DatosIniciales implements CommandLineRunner {
     public void run(String... args) throws Exception {
 
         if(unitravelUtilServicio.listarCiudades().isEmpty()){
-            administradorServicio.crearCiudad(new Ciudad("Medellin"));
-            administradorServicio.crearCiudad(new Ciudad("Armenia"));
-            administradorServicio.crearCiudad(new Ciudad("Cartagena"));
-            administradorServicio.crearCiudad(new Ciudad("Santa Marta"));
+            administradorServicio.registrarAdminHotel(new AdministradorHotel("212", "Jorge", "jorge@email.com", "12345"));
         }
 
     }
