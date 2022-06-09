@@ -39,4 +39,9 @@ public class Caracteristica implements Serializable {
         this.codigo = codigo;
         this.nombre = nombre;
     }
+
+    public Caracteristica(String nombre, Integer tipo) {
+        this.nombre = nombre;
+        this.tipo = tipo;
+    }
 }

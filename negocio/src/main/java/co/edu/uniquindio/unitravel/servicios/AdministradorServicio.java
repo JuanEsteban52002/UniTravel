@@ -1,9 +1,6 @@
 package co.edu.uniquindio.unitravel.servicios;
 
-import co.edu.uniquindio.unitravel.entidades.Administrador;
-import co.edu.uniquindio.unitravel.entidades.AdministradorHotel;
-import co.edu.uniquindio.unitravel.entidades.Ciudad;
-import co.edu.uniquindio.unitravel.entidades.Vuelo;
+import co.edu.uniquindio.unitravel.entidades.*;
 
 import java.util.List;
 
@@ -40,4 +37,6 @@ public interface AdministradorServicio {
     List<Ciudad> listarCiudades();
 
     void eliminarCiudad(Integer codigoCiudad) throws Exception;
+
+    Caracteristica crearCaracteristica(Caracteristica caracteristica) throws Exception;
 }
