@@ -1,6 +1,7 @@
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-    implementation 'org.postgresql:postgresql'
+    runtimeOnly 'org.postgresql:postgresql'
     implementation 'org.springframework.boot:spring-boot-starter-mail'
-    implementation 'org.jasypt:jasypt:1.9.3'
+    implementation  'org.jasypt:jasypt:1.9.3'
+
 }

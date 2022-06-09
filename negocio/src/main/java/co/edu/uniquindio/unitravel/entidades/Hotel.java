@@ -56,6 +56,7 @@ public class Hotel implements Serializable {
 
     @ToString.Exclude
     @OneToMany(mappedBy = "hotel")
+    @LazyCollection(LazyCollectionOption.FALSE)
     private List<Comentario> comentarios;
 
     @ToString.Exclude

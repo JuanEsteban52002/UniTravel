@@ -1,13 +1,7 @@
 package co.edu.uniquindio.unitravel.servicios;
 
-import co.edu.uniquindio.unitravel.entidades.Administrador;
-import co.edu.uniquindio.unitravel.entidades.AdministradorHotel;
-import co.edu.uniquindio.unitravel.entidades.Ciudad;
-import co.edu.uniquindio.unitravel.entidades.Vuelo;
-import co.edu.uniquindio.unitravel.repositorios.AdministradorHotelRepo;
-import co.edu.uniquindio.unitravel.repositorios.AdministradorRepo;
-import co.edu.uniquindio.unitravel.repositorios.CiudadRepo;
-import co.edu.uniquindio.unitravel.repositorios.VueloRepo;
+import co.edu.uniquindio.unitravel.entidades.*;
+import co.edu.uniquindio.unitravel.repositorios.*;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,14 +15,18 @@ public class AdministradorServicioImpl implements AdministradorServicio {
     private VueloRepo vueloRepo;
     private AdministradorHotelRepo administradorHotelRepo;
 
+    private CaracteristicaRepo caracteristicaRepo;
+
     public AdministradorServicioImpl(AdministradorRepo administradorRepo,
                                      CiudadRepo ciudadRepo,
                                      VueloRepo vueloRepo,
-                                     AdministradorHotelRepo administradorHotelRepo) {
+                                     AdministradorHotelRepo administradorHotelRepo,
+                                     CaracteristicaRepo caracteristicaRepo) {
         this.administradorRepo = administradorRepo;
         this.ciudadRepo = ciudadRepo;
         this.vueloRepo = vueloRepo;
         this.administradorHotelRepo = administradorHotelRepo;
+        this.caracteristicaRepo = caracteristicaRepo;
     }
 
 
@@ -66,15 +64,8 @@ public class AdministradorServicioImpl implements AdministradorServicio {
 
     public AdministradorHotel obtenerAdministradorHotel(String cedulaAdminHotel) throws Exception{
 
-        if(cedulaAdminHotel.isEmpty()){
-            throw new Exception("Por favor envie una cedula");
-        }
-
         AdministradorHotel administradorHotel = administradorHotelRepo.findById(cedulaAdminHotel).orElse(null);
 
-        if(administradorHotel == null){
-            throw new Exception("El administrador no existe");
-        }
         return administradorHotel;
     }
 
@@ -146,7 +137,6 @@ public class AdministradorServicioImpl implements AdministradorServicio {
         if(ciudadBuscada != null) {
             throw new Exception("La ciudad ya existe");
         }
-
         return ciudadRepo.save(ciudad);
     }
 
@@ -181,5 +171,10 @@ public class AdministradorServicioImpl implements AdministradorServicio {
             throw new Exception("La ciudad no existe");
         }
         ciudadRepo.delete(ciudad);
+    }
+
+    @Override
+    public Caracteristica crearCaracteristica(Caracteristica caracteristica) throws Exception {
+        return caracteristicaRepo.save(caracteristica);
     }
 }
