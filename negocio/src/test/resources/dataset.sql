@@ -19,7 +19,7 @@ insert into administrador values ("7852", "adminUnitravel2@gmail.com", "AdminUni
 
 insert into hotel values (1, "Muy bonito", "Carrera 4", "Hotel 4", 5, "7458241", "9999", 2);
 insert into hotel values (2, "Buena vista",  "Carrera 2", "Hotel 2", 4, "7489652", "9999", 2);
-insert into hotel values (3 , "Muy cerca a el centro de la ciudad", "Carrera 3", "Hotel 3", 4, "7852584", "5555", 1);
+insert into hotel values (3, "Muy cerca a el centro de la ciudad", "Carrera 3", "Hotel 3", 4, "7852584", "5555", 1);
 
 
 insert into habitacion values (105001, "5", 57000, 1);
@@ -60,9 +60,9 @@ insert into carro values ("ABC-123", 1, 4, 1, 2019, 250000, 1, "A1");
 insert into carro values ("DEF-456", 1, 4, 1, 2019, 300000, 1, "A2");
 insert into carro values ("GHI-789", 1, 6, 1, 2019, 150000, 1, "A3");
 
-insert into hotel_fotos values (1, "defaultHotel.png");
-insert into hotel_fotos values (2, "defaultHotel.png");
-insert into hotel_fotos values (3, "defaultHotel.png");
+insert into hotel_fotos values (1, "1580193688_427894_1580193739_noticia_normal.jpg");
+insert into hotel_fotos values (2, "1635959194_040679_1636404276_noticia_normal.jpg");
+insert into hotel_fotos values (3, "hotel-exterior.jpg");
 
 insert into habitacion_fotos values (704001,"defaultHotel.png");
 insert into habitacion_fotos values (308001,"defaultHotel.png");

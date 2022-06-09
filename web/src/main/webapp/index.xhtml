@@ -44,12 +44,12 @@
                                     <h:outputText value="#{hotel.nombre}" style="font-weight:bold"/>
                                     <h:outputText value="Ciudad:"/>
                                     <h:outputText value="#{hotel.ciudad.nombre}"/>
+                                    <h:outputText value="Dirección:"/>
+                                    <h:outputText value="#{hotel.direccion}"/>
                                     <h:outputText value="Caracteristicas: "/>
-
                                     <p:repeat value="#{hotel.caracteristicas}" var="car">
                                         <p:chip label="#{car.nombre}" styleClass="me-2"/>
                                     </p:repeat>
-
                                     <h:outputText value="Descripción:"/>
                                     <h:outputText value="#{hotel.descripcion}"/>
 
@@ -68,7 +68,7 @@
 
                 <p:dataViewGridItem>
                     <div class="card">
-                        <img src="#{hotel.imagenPrincipal}" class="card-img-top, imagen-hotel-grid" alt="..."/>
+                        <img src="/uploads/#{hotel.imagenPrincipal}" class="card-img-top, imagen-hotel-grid" alt="..."/>
                         <div class="card-body">
                             <h5 class="card-title">#{hotel.nombre}</h5>
                             <p class="card-text">#{hotel.ciudad.nombre}</p>
